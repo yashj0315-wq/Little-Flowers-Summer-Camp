@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Flowers Summer Camp 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #5a9e6f; --green-dark: #3d7a52; --green-light: #e8f5ec;
+            --amber: #e8a838; --coral: #e8705a; --sky: #6db8d4;
+            --cream: #fdf8f0; --brown: #7a5c3a; --text: #3a2e22; --border: #d4c4a8;
+        }
+        * { box-sizing: border-box; outline: none; }
+        body { margin: 0; font-family: 'Nunito', sans-serif; background-color: var(--cream); color: var(--text); display: flex; justify-content: center; min-height: 100vh; }
+        #progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 6px; background: rgba(0,0,0,0.05); z-index: 1000; }
+        #progress-bar { height: 100%; background: var(--green); width: 0%; transition: width 0.4s ease; }
+        #app-container { width: 100%; max-width: 720px; padding: 40px 20px 120px 20px; position: relative; }
+        .card { background: #fff; border-radius: 24px; padding: 40px; box-shadow: 0 10px 30px rgba(122, 92, 58, 0.1); animation: slideUp 0.4s ease-out forwards; min-height: 500px; display: flex; flex-direction: column; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        h1, h2, h3 { font-family: 'Baloo 2', cursive; color: var(--green-dark); margin: 0 0 15px 0; }
+        .label { font-family: 'Baloo 2', cursive; color: var(--brown); font-size: 1.1rem; display: block; margin-bottom: 8px; }
+        input, select, textarea { width: 100%; padding: 14px 18px; border: 2px solid var(--border); border-radius: 14px; font-size: 1rem; margin-bottom: 20px; font-family: inherit; }
+        input:focus { border-color: var(--green); box-shadow: 0 0 0 4px var(--green-light); }
+        .option-card, .course-card { border: 2px solid var(--border); border-radius: 18px; padding: 15px; cursor: pointer; transition: 0.2s; background: #fff; }
+        .selected { border-color: var(--green) !important; background: var(--green-light) !important; border-width: 3px !important; }
+        .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+        .course-card { text-align: center; }
+        .badge { display: inline-block; padding: 6px 14px; border-radius: 50px; font-weight: 700; font-size: 0.9rem; margin-bottom: 10px; }
+        .badge-amber { background: var(--amber); color: #fff; }
+        #nav-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; border-top: 1px solid var(--border); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+        .btn { padding: 12px 28px; border-radius: 50px; border: none; font-family: 'Baloo 2'; font-size: 1.1rem; cursor: pointer; transition: 0.2s; }
+        .btn-primary { background: var(--green); color: #fff; }
+        .btn-primary:disabled { background: #ccc; cursor: not-allowed; }
+        .btn-ghost { background: transparent; color: var(--brown); }
+        .review-item { padding: 10px; border-bottom: 1px solid var(--border); margin-bottom: 10px; }
+        .hidden { display: none; }
+        .error-msg { color: var(--coral); font-size: 0.85rem; margin-top: -15px; margin-bottom: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div id="progress-container"><div id="progress-bar"></div></div>
+    <main id="app-container"><div id="step-content"></div></main>
+    <footer id="nav-bar" class="hidden">
+        <button id="btn-back" class="btn btn-ghost" onclick="prevStep()">← Back</button>
+        <span id="step-counter" style="font-weight:bold; color:var(--brown)"></span>
+        <button id="btn-next" class="btn btn-primary" onclick="nextStep()">Next →</button>
+    </footer>
+
+    <script>
+        // --- CONFIGURATION ---
+        const FORMSPREE_ID = "mgoprplj"; 
+        const TOTAL_EARLY_BIRD_SLOTS = 8; 
+
+        // --- THE RESET FIX ---
+        // This clears your accidental test and forces the count back to 8.
+        if (localStorage.getItem('lf_reg_count_2026') !== '0' && !localStorage.getItem('reset_done')) {
+            localStorage.setItem('lf_reg_count_2026', '0');
+            localStorage.setItem('reset_done', 'true');
+        }
+
+        const COURSES = [
+            { id: 'Handwriting', emoji: '✏️' }, { id: 'Vedic Maths', emoji: '🔢' },
+            { id: 'Spoken English', emoji: '🗣️' }, { id: 'Drawing', emoji: '🎨' },
+            { id: 'Craft', emoji: '✂️' }, { id: 'Flower Making', emoji: '🌸' },
+            { id: 'Glass Painting', emoji: '🫙' }, { id: 'Dance', emoji: '💃' }
+        ];
+
+        let currentStepIndex = 0;
+        let flowSteps = ['welcome'];
+        let formData = { registrationType: '', count: 1, children: [], parentName: '', parentPhone: '', rating: '', notes: '' };
+
+        function renderStep() {
+            const container = document.getElementById('step-content');
+            const nav = document.getElementById('nav-bar');
+            const stepKey = flowSteps[currentStepIndex];
+
+            document.getElementById('progress-bar').style.width = ((currentStepIndex / (flowSteps.length - 1)) * 100) + '%';
+            
+            if (stepKey === 'welcome' || stepKey === 'success') { 
+                nav.classList.add('hidden'); 
+            } else { 
+                nav.classList.remove('hidden'); 
+                document.getElementById('step-counter').innerText = `Step ${currentStepIndex} of ${flowSteps.length - 1}`;
+                document.getElementById('btn-next').innerText = (currentStepIndex === flowSteps.length - 1) ? "🌸 Submit Registration" : "Next →";
+            }
+            container.innerHTML = getStepHTML(stepKey);
+        }
+
+        function getStepHTML(key) {
+            const ebCount = parseInt(localStorage.getItem('lf_reg_count_2026')) || 0;
+            const slots = TOTAL_EARLY_BIRD_SLOTS - ebCount;
+
+            if (key === 'welcome') return `<div class="card" style="text-align:center; justify-content:center;"><h1>Little Flowers <br>Summer Camp 2026</h1>${slots > 0 ? `<div class="badge badge-amber">🌟 ${slots} Early Bird Slots Left! (20% Off)</div>` : ''}<p>📍 Krishnanagar Society, Samau Road, Gozaria</p><button class="btn btn-primary" style="width:100%; margin-top:20px;" onclick="start()">Let's Begin →</button></div>`;
+            
+            if (key === 'regType') return `<div class="card"><h2>How are you registering?</h2><div onclick="setReg('single')" class="option-card ${formData.registrationType === 'single' ? 'selected' : ''}">👦 Single Student</div><div onclick="setReg('siblings')" class="option-card ${formData.registrationType === 'siblings' ? 'selected' : ''}" style="margin:15px 0">👫 Siblings (2-4 children)</div><div onclick="setReg('group')" class="option-card ${formData.registrationType === 'group' ? 'selected' : ''}">👥 Group (5+ children)</div></div>`;
+
+            if (key === 'count') return `<div class="card"><h2>Total Children</h2><label class="label">How many children in total?</label><input type="number" id="cnt" value="${formData.count}" min="2" max="20"></div>`;
+
+            if (key.startsWith('child-')) {
+                const idx = key.split('-')[1];
+                const child = formData.children[idx] || {};
+                return `<div class="card"><div class="badge badge-amber">Child ${parseInt(idx)+1} of ${formData.count}</div><h2>Child's Details</h2><label class="label">Full Name</label><input type="text" id="c-name" value="${child.name || ''}" placeholder="Full Name" required><label class="label">Age (5-14)</label><input type="text" inputmode="numeric" id="c-age" value="${child.age || ''}" placeholder="Enter Age" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required><div id="age-error" class="error-msg" style="display:none;">⚠️ Camp is for ages 5 to 14 only.</div></div>`;
+            }
+
+            if (key.startsWith('course-')) {
+                const idx = key.split('-')[1];
+                const childName = formData.children[idx].name || `Child ${parseInt(idx)+1}`;
+                return `<div class="card"><h3>Course Selection</h3><p class="label">Interests for ${childName}:</p><div class="course-grid">${COURSES.map(c => `<div class="course-card ${formData.children[idx].courses?.includes(c.id) ? 'selected' : ''}" onclick="this.classList.toggle('selected')"><span>${c.emoji}</span><br><strong>${c.id}</strong></div>`).join('')}</div></div>`;
+            }
+
+            if (key === 'parents') return `<div class="card"><h2>Parent Details</h2><label class="label">Parent Name</label><input type="text" id="p-name" value="${formData.parentName}" placeholder="Full Name" required><label class="label">WhatsApp Number (10 Digits)</label><input type="text" inputmode="numeric" id="p-phone" value="${formData.parentPhone}" placeholder="10 Digit Mobile No" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required><div id="phone-error" class="error-msg" style="display:none;">⚠️ Please enter exactly 10 digits.</div></div>`;
+
+            if (key === 'pref') return `<div class="card"><h2>Final Remarks</h2><p style="background:var(--green-light); padding:10px; border-radius:10px; font-size:0.9rem;">ℹ️ Batch timings will be sent via WhatsApp after registration.</p><label class="label">Special Requests</label><textarea id="notes" placeholder="Any requests?">${formData.notes}</textarea><label class="label">Rate us (1-5)</label><input type="number" id="rate" value="${formData.rating}" min="1" max="5"></div>`;
+
+            if (key === 'review') return `<div class="card"><h2>Final Review</h2><div style="overflow-y:auto; max-height:400px;">${formData.children.map((c, i) => `<div class="review-item"><strong>${i+1}. ${c.name} (${c.age} yrs)</strong><br><small>Courses: ${c.courses.join(', ') || 'None selected'}</small></div>`).join('')}<div class="review-item"><strong>WhatsApp:</strong> ${formData.parentPhone}</div></div><p style="font-size:0.8rem; color:var(--coral); margin-top:10px;">Check all details before submitting.</p></div>`;
+
+            if (key === 'success') return `<div class="card" style="text-align:center; justify-content:center;"><h1>🌸 Submitted!</h1><p>Thank you! We have received your registration and will contact you within 24 hours.</p></div>`;
+        }
+
+        function start() { flowSteps = ['welcome', 'regType']; currentStepIndex = 1; renderStep(); }
+
+        function setReg(t) { 
+            formData.registrationType = t; 
+            if (t === 'single') { formData.count = 1; flowSteps = ['welcome', 'regType']; nextStep(); } 
+            else { flowSteps = ['welcome', 'regType', 'count']; nextStep(); }
+        }
+
+        function nextStep() {
+            const key = flowSteps[currentStepIndex];
+            
+            if (key.startsWith('child-')) {
+                const ageVal = parseInt(document.getElementById('c-age').value);
+                if (isNaN(ageVal) || ageVal < 5 || ageVal > 14) {
+                    document.getElementById('age-error').style.display = 'block';
+                    return;
+                }
+            }
+
+            if (key === 'parents') {
+                const phone = document.getElementById('p-phone').value;
+                if (phone.length !== 10) {
+                    document.getElementById('phone-error').style.display = 'block';
+                    return;
+                }
+            }
+
+            if (key === 'count') formData.count = parseInt(document.getElementById('cnt').value);
+            if (key.startsWith('child-')) {
+                const idx = key.split('-')[1];
+                formData.children[idx] = { ...formData.children[idx], name: document.getElementById('c-name').value, age: document.getElementById('c-age').value };
+            }
+            if (key.startsWith('course-')) {
+                const idx = key.split('-')[1];
+                formData.children[idx].courses = Array.from(document.querySelectorAll('.course-card.selected')).map(el => el.querySelector('strong').innerText);
+            }
+            if (key === 'parents') {
+                formData.parentName = document.getElementById('p-name').value;
+                formData.parentPhone = document.getElementById('p-phone').value;
+            }
+            if (key === 'pref') {
+                formData.notes = document.getElementById('notes').value;
+                formData.rating = document.getElementById('rate').value;
+            }
+
+            if (currentStepIndex === flowSteps.length - 1) {
+                if (key === 'regType' || key === 'count') {
+                    for(let i=0; i<formData.count; i++) flowSteps.push(`child-${i}`);
+                    for(let i=0; i<formData.count; i++) flowSteps.push(`course-${i}`);
+                    flowSteps.push('parents', 'pref', 'review');
+                } else if (key === 'review') {
+                    submit(); return;
+                }
+            }
+            currentStepIndex++; renderStep();
+        }
+
+        function prevStep() { if (currentStepIndex > 1) { currentStepIndex--; renderStep(); } }
+
+        async function submit() {
+            const btn = document.getElementById('btn-next');
+            btn.disabled = true; btn.innerText = "⏳ Sending...";
+            try {
+                await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                let c = parseInt(localStorage.getItem('lf_reg_count_2026')) || 0;
+                localStorage.setItem('lf_reg_count_2026', c + 1);
+                flowSteps.push('success'); currentStepIndex++; renderStep();
+            } catch (e) {
+                alert("Error sending. Check connection.");
+                btn.disabled = false; btn.innerText = "🌸 Submit Registration";
+            }
+        }
+        renderStep();
+    </script>
+</body>
+</html>
