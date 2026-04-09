@@ -6,57 +6,69 @@
 <title>Little Flowers Summer Camp 2026 – Gozaria</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg-deep: #050d1a;
-  --bg-mid:  #071428;
-  --glass:   rgba(255,255,255,0.07);
-  --glass-border: rgba(255,255,255,0.15);
-  --glow-green: #4ade80;
-  --glow-sky:   #38bdf8;
-  --glow-pink:  #f472b6;
-  --glow-amber: #fbbf24;
-  --text-main: #e8f4ff;
-  --text-muted: #8aabcc;
-  --accent: #4ade80;
-  --radius: 20px;
-  --card-shadow: 0 8px 40px rgba(0,0,0,0.4);
+/* ── VARIABLES ── */
+:root{
+  --bg-deep:#050d1a;
+  --glass:rgba(255,255,255,0.07);
+  --glass-border:rgba(255,255,255,0.15);
+  --glow-green:#4ade80;
+  --glow-sky:#38bdf8;
+  --glow-pink:#f472b6;
+  --glow-amber:#fbbf24;
+  --glow-purple:#a78bfa;
+  --text-main:#e8f4ff;
+  --text-muted:#8aabcc;
+  --radius:20px;
+  --card-shadow:0 8px 40px rgba(0,0,0,0.45);
 }
+/* ── RESET ── */
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Nunito',sans-serif;background:var(--bg-deep);color:var(--text-main);min-height:100vh;overflow-x:hidden;}
 h1,h2,h3,h4{font-family:'Baloo 2',cursive;}
+/* ── CANVAS ── */
 #bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+/* ── CONFETTI CANVAS ── */
+#confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:200;pointer-events:none;display:none;}
+/* ── LAYOUT ── */
 #app{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:20px 16px 60px;}
+/* ── PAGES ── */
 .page{display:none;animation:fadeUp 0.5s ease both}
 .page.active{display:block}
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+/* ── GLASS ── */
 .glass{background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:var(--radius);box-shadow:var(--card-shadow);}
+/* ── TOP BAR ── */
 .top-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;margin-bottom:24px;}
 .logo-text{font-family:'Baloo 2',cursive;font-size:1.15rem;font-weight:800;background:linear-gradient(135deg,var(--glow-green),var(--glow-sky));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-#early-bird-badge{font-size:0.82rem;font-weight:700;padding:6px 14px;background:linear-gradient(135deg,rgba(251,191,36,0.2),rgba(244,114,182,0.2));border:1px solid rgba(251,191,36,0.4);border-radius:30px;color:var(--glow-amber);cursor:pointer;white-space:nowrap;transition:all 0.3s;}
-#early-bird-badge:hover{background:rgba(251,191,36,0.25)}
+#early-bird-badge{font-size:0.82rem;font-weight:700;padding:6px 14px;background:linear-gradient(135deg,rgba(251,191,36,0.2),rgba(244,114,182,0.2));border:1px solid rgba(251,191,36,0.4);border-radius:30px;color:var(--glow-amber);white-space:nowrap;transition:all 0.3s;}
+/* ── HERO ── */
 .hero{text-align:center;padding:48px 24px 36px;}
-.hero-icon{font-size:4.5rem;margin-bottom:12px;filter:drop-shadow(0 0 20px rgba(74,222,128,0.6));animation:float 4s ease-in-out infinite;}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero-icon{font-size:4.5rem;margin-bottom:12px;filter:drop-shadow(0 0 20px rgba(74,222,128,0.6));animation:floatY 4s ease-in-out infinite;}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 .hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.15;margin-bottom:8px;background:linear-gradient(135deg,#fff 30%,var(--glow-sky));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .hero .sub{font-size:1rem;color:var(--text-muted);margin-bottom:28px;}
 .quote-block{max-width:540px;margin:0 auto 32px;padding:20px 24px;border-radius:16px;background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.2);position:relative;}
 .quote-block::before{content:'\201C';font-size:4rem;line-height:1;position:absolute;top:-8px;left:14px;font-family:'Baloo 2',cursive;color:rgba(56,189,248,0.3);}
 #quote-text{font-size:0.97rem;font-style:italic;color:#c8dff5;line-height:1.7;}
 #quote-author{font-size:0.8rem;color:var(--text-muted);margin-top:8px;text-align:right;}
+/* ── BUTTONS ── */
 .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border:none;border-radius:50px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:all 0.3s;text-decoration:none;}
 .btn-primary{background:linear-gradient(135deg,var(--glow-green),#22c55e);color:#062010;box-shadow:0 0 24px rgba(74,222,128,0.4);}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(74,222,128,0.6);}
+.btn-primary:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
 .btn-secondary{background:var(--glass);border:1px solid var(--glass-border);color:var(--text-main);}
 .btn-secondary:hover{background:rgba(255,255,255,0.12);}
 .btn-full{width:100%;justify-content:center;}
+/* ── TYPE CARDS ── */
 .type-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:16px;}
 .type-card{padding:28px 20px;border-radius:18px;cursor:pointer;border:2px solid transparent;transition:all 0.3s;text-align:center;background:var(--glass);backdrop-filter:blur(18px);position:relative;overflow:hidden;}
 .type-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.3s;}
-.type-card.green::before{background:radial-gradient(circle at 50% 0%,rgba(74,222,128,0.12),transparent 70%);}
-.type-card.sky::before{background:radial-gradient(circle at 50% 0%,rgba(56,189,248,0.12),transparent 70%);}
-.type-card.pink::before{background:radial-gradient(circle at 50% 0%,rgba(244,114,182,0.12),transparent 70%);}
-.type-card:hover::before,.type-card:hover{opacity:1;transform:translateY(-4px);}
+.type-card.green::before{background:radial-gradient(circle at 50% 0%,rgba(74,222,128,0.15),transparent 70%);}
+.type-card.sky::before{background:radial-gradient(circle at 50% 0%,rgba(56,189,248,0.15),transparent 70%);}
+.type-card.pink::before{background:radial-gradient(circle at 50% 0%,rgba(244,114,182,0.15),transparent 70%);}
+.type-card:hover::before{opacity:1;}
+.type-card:hover{transform:translateY(-4px);}
 .type-card.green:hover{border-color:rgba(74,222,128,0.5);box-shadow:0 0 30px rgba(74,222,128,0.2);}
 .type-card.sky:hover{border-color:rgba(56,189,248,0.5);box-shadow:0 0 30px rgba(56,189,248,0.2);}
 .type-card.pink:hover{border-color:rgba(244,114,182,0.5);box-shadow:0 0 30px rgba(244,114,182,0.2);}
@@ -67,10 +79,12 @@ h1,h2,h3,h4{font-family:'Baloo 2',cursive;}
 .badge-green{background:rgba(74,222,128,0.15);color:var(--glow-green);border:1px solid rgba(74,222,128,0.3);}
 .badge-sky{background:rgba(56,189,248,0.15);color:var(--glow-sky);border:1px solid rgba(56,189,248,0.3);}
 .badge-pink{background:rgba(244,114,182,0.15);color:var(--glow-pink);border:1px solid rgba(244,114,182,0.3);}
+/* ── SECTION HEAD ── */
 .section-head{margin-bottom:24px;}
 .section-head h2{font-size:1.6rem;font-weight:800;}
 .section-head p{color:var(--text-muted);font-size:0.9rem;margin-top:4px;}
 .step-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:20px;font-size:0.78rem;font-weight:700;background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.25);color:var(--glow-sky);margin-bottom:10px;}
+/* ── FORM ── */
 .form-group{margin-bottom:18px;}
 label{display:block;font-size:0.82rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
 input,select,textarea{width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:12px;color:var(--text-main);font-family:'Nunito',sans-serif;font-size:0.95rem;transition:border 0.25s,box-shadow 0.25s;outline:none;}
@@ -82,7 +96,8 @@ textarea{resize:none;line-height:1.6;}
 @media(max-width:520px){.form-row{grid-template-columns:1fr;}}
 .error-msg{color:#f87171;font-size:0.78rem;margin-top:4px;display:none;}
 .error-msg.show{display:block;}
-.course-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:6px;}
+/* ── COURSE CARDS ── */
+.course-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin-top:6px;}
 .course-card{border-radius:14px;padding:18px 16px;cursor:pointer;border:2px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);transition:all 0.25s;position:relative;overflow:hidden;}
 .course-card:hover{border-color:rgba(74,222,128,0.4);background:rgba(74,222,128,0.05);}
 .course-card.selected{border-color:var(--glow-green);background:rgba(74,222,128,0.1);box-shadow:0 0 20px rgba(74,222,128,0.15);}
@@ -98,17 +113,21 @@ textarea{resize:none;line-height:1.6;}
 .course-card .c-price{margin-top:10px;font-weight:700;font-size:0.85rem;color:var(--glow-green);}
 .course-card.premium .c-price{color:var(--glow-amber);}
 .premium-label{display:inline-block;padding:2px 8px;border-radius:8px;font-size:0.7rem;font-weight:700;background:rgba(251,191,36,0.15);color:var(--glow-amber);border:1px solid rgba(251,191,36,0.3);margin-bottom:6px;}
+/* ── DISCOUNT BANNER ── */
 .discount-banner{padding:16px 20px;border-radius:14px;margin-bottom:18px;background:linear-gradient(135deg,rgba(74,222,128,0.1),rgba(56,189,248,0.1));border:1px solid rgba(74,222,128,0.25);}
 .discount-banner h4{color:var(--glow-green);font-size:1rem;margin-bottom:4px;}
-.discount-banner p{font-size:0.85rem;color:var(--text-muted);}
+.discount-banner p{font-size:0.85rem;color:var(--text-muted);line-height:1.6;}
+/* ── INFO ROWS ── */
 .info-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:0.9rem;}
 .info-row:last-child{border-bottom:none;}
-.info-row .label{color:var(--text-muted);}
+.info-row .lbl{color:var(--text-muted);}
 .info-row .val{font-weight:700;color:var(--text-main);}
+/* ── CONSENT ── */
 .consent-box{padding:20px;border-radius:14px;border:1px solid rgba(251,191,36,0.3);background:rgba(251,191,36,0.05);}
 .consent-check-row{display:flex;align-items:flex-start;gap:14px;margin-top:14px;}
 .consent-check-row input[type=checkbox]{width:22px;height:22px;flex-shrink:0;margin-top:2px;accent-color:var(--glow-green);cursor:pointer;}
 .consent-check-row label{font-size:0.88rem;color:#c8dff5;line-height:1.6;cursor:pointer;text-transform:none;letter-spacing:normal;font-weight:400;}
+/* ── REVIEW ── */
 .review-section{margin-bottom:20px;}
 .review-section h4{font-size:0.9rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--glow-sky);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(56,189,248,0.2);}
 .review-row{display:flex;justify-content:space-between;padding:7px 0;font-size:0.88rem;border-bottom:1px solid rgba(255,255,255,0.04);}
@@ -118,51 +137,71 @@ textarea{resize:none;line-height:1.6;}
 .total-box .total-label{font-size:0.85rem;color:var(--text-muted);}
 .total-box .total-amount{font-size:2.2rem;font-family:'Baloo 2',cursive;font-weight:800;color:var(--glow-green);}
 .total-box .discount-note{font-size:0.8rem;color:var(--glow-amber);margin-top:4px;}
+/* ── COUNT SELECTOR ── */
 .count-selector{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;}
 .count-btn{width:52px;height:52px;border-radius:12px;border:2px solid rgba(255,255,255,0.1);background:var(--glass);font-family:'Baloo 2',cursive;font-size:1.3rem;font-weight:700;color:var(--text-main);cursor:pointer;transition:all 0.2s;}
 .count-btn:hover{border-color:rgba(56,189,248,0.5);background:rgba(56,189,248,0.1);}
 .count-btn.active{border-color:var(--glow-sky);background:rgba(56,189,248,0.15);color:var(--glow-sky);}
+/* ── NAV BAR ── */
 .nav-bar{display:flex;gap:12px;margin-top:28px;justify-content:flex-end;}
 .nav-bar .btn-secondary{min-width:100px;}
+/* ── PROGRESS ── */
 .progress-strip{height:4px;background:rgba(255,255,255,0.07);border-radius:2px;margin-bottom:28px;overflow:hidden;}
 .progress-fill{height:100%;border-radius:2px;transition:width 0.5s ease;background:linear-gradient(90deg,var(--glow-green),var(--glow-sky));}
+/* ── OVERLAY ── */
 .overlay{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.7);backdrop-filter:blur(10px);align-items:center;justify-content:center;}
 .overlay.show{display:flex;}
 .overlay-box{max-width:380px;width:90%;padding:36px;border-radius:24px;text-align:center;}
 .overlay-box .ov-icon{font-size:3.5rem;margin-bottom:14px;}
 .overlay-box h3{font-size:1.4rem;font-weight:800;margin-bottom:10px;}
 .overlay-box p{font-size:0.9rem;color:var(--text-muted);line-height:1.6;}
+/* ── SUCCESS ── */
 .success-page{text-align:center;padding:48px 24px;}
-.success-page .s-icon{font-size:5rem;animation:pop 0.6s ease both;}
-@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+.success-page .s-icon{font-size:5rem;animation:popIn 0.6s ease both;}
+@keyframes popIn{0%{transform:scale(0)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
 .success-page h2{font-size:2rem;font-weight:800;margin:16px 0 8px;}
 .success-page p{color:var(--text-muted);font-size:0.95rem;line-height:1.7;}
-.confetti-emoji{font-size:1.5rem;}
+/* ── TABS ── */
 .child-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
 .child-tab{padding:8px 16px;border-radius:20px;font-size:0.83rem;font-weight:700;border:1.5px solid rgba(255,255,255,0.12);background:var(--glass);cursor:pointer;transition:all 0.2s;color:var(--text-muted);}
 .child-tab.active{border-color:var(--glow-sky);color:var(--glow-sky);background:rgba(56,189,248,0.1);}
+/* ── MISC ── */
 .divider{height:1px;background:rgba(255,255,255,0.08);margin:20px 0;}
 .mt-8{margin-top:8px;}
 small{font-size:0.78rem;color:var(--text-muted);}
 .whatsapp-row{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:12px;margin-top:10px;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.3);font-size:0.88rem;color:#4ade80;text-decoration:none;}
+/* ── PER-CHILD DISCOUNT TABLE ── */
+.child-disc-table{width:100%;border-collapse:collapse;font-size:0.82rem;margin-top:8px;}
+.child-disc-table th{color:var(--text-muted);font-weight:700;text-align:left;padding:6px 10px;border-bottom:1px solid rgba(255,255,255,0.1);}
+.child-disc-table td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,0.05);}
+.child-disc-table tr:last-child td{border-bottom:none;}
+.tag-eb{color:var(--glow-amber);font-weight:700;}
+.tag-sib{color:var(--glow-sky);font-weight:700;}
+.tag-grp{color:var(--glow-pink);font-weight:700;}
+.tag-none{color:var(--text-muted);}
 </style>
 </head>
 <body>
+<!-- Background canvas -->
 <canvas id="bg-canvas"></canvas>
+<!-- Confetti canvas -->
+<canvas id="confetti-canvas"></canvas>
 
+<!-- Offline overlay -->
 <div class="overlay" id="offline-overlay">
   <div class="glass overlay-box">
     <div class="ov-icon">📡</div>
     <h3>Connection Required</h3>
-    <p>Please connect to the internet before continuing. This ensures your form is submitted successfully.</p>
+    <p>Please connect to the internet before continuing. This ensures your registration is submitted successfully.</p>
     <button class="btn btn-secondary mt-8" onclick="document.getElementById('offline-overlay').classList.remove('show')">Dismiss</button>
   </div>
 </div>
 
 <div id="app">
+  <!-- TOP BAR -->
   <div class="glass top-bar">
     <span class="logo-text">🌸 Little Flowers Camp 2026</span>
-    <span id="early-bird-badge">🌟 <span id="eb-count">8</span> Early Bird Slots Left!</span>
+    <span id="early-bird-badge">🌟 <span id="eb-count">6</span> Early Bird Slots Left!</span>
   </div>
   <div class="progress-strip"><div class="progress-fill" id="progress-fill" style="width:5%"></div></div>
 
@@ -177,11 +216,11 @@ small{font-size:0.78rem;color:var(--text-muted);}
         <p id="quote-author"></p>
       </div>
       <button class="btn btn-primary" onclick="handleBegin()"><span>Let's Begin</span><span>🚀</span></button>
-      <p style="font-size:0.78rem;color:var(--text-muted);margin-top:14px;">📍 Krishnanagar Society, Gozaria &nbsp;·&nbsp; April May 2026</p>
+      <p style="font-size:0.78rem;color:var(--text-muted);margin-top:14px;">📍 Krishnanagar Society, Gozaria &nbsp;·&nbsp; April-May 2026</p>
     </div>
   </div>
 
-  <!-- PAGE 1: REGISTRATION TYPE -->
+  <!-- PAGE 1: TYPE -->
   <div class="page glass" id="page-type" style="padding:28px 24px;">
     <div class="section-head">
       <div class="step-pill">Step 1 of 7</div>
@@ -207,12 +246,12 @@ small{font-size:0.78rem;color:var(--text-muted);}
     </div>
   </div>
 
-  <!-- PAGE 2: COUNT SELECTOR -->
+  <!-- PAGE 2: COUNT -->
   <div class="page glass" id="page-count" style="padding:28px 24px;">
     <div class="section-head">
       <div class="step-pill">Step 2</div>
       <h2 id="count-title">How many siblings?</h2>
-      <p id="count-sub">Select the number of children you are registering together.</p>
+      <p id="count-sub">Select the number of children.</p>
     </div>
     <div class="count-selector" id="count-selector"></div>
     <div class="nav-bar">
@@ -250,12 +289,12 @@ small{font-size:0.78rem;color:var(--text-muted);}
     </div>
   </div>
 
-  <!-- PAGE 5: GROUP COMBINED FORM -->
+  <!-- PAGE 5: GROUP FORM -->
   <div class="page glass" id="page-group" style="padding:28px 24px;">
     <div class="section-head">
       <div class="step-pill">Step 2</div>
       <h2>Student Details</h2>
-      <p>Fill in each student's child details, parent details & course selection.</p>
+      <p>Fill in each student's child details, parent details &amp; course selection.</p>
     </div>
     <div class="child-tabs" id="group-tabs"></div>
     <div id="group-forms-container"></div>
@@ -265,12 +304,12 @@ small{font-size:0.78rem;color:var(--text-muted);}
     </div>
   </div>
 
-  <!-- PAGE 6: COURSE SELECTION -->
+  <!-- PAGE 6: COURSES -->
   <div class="page glass" id="page-courses" style="padding:28px 24px;">
     <div class="section-head">
       <div class="step-pill" id="course-step-pill">Step 4</div>
       <h2>Course Selection</h2>
-      <p>Pick at least one course for each child. Prices are per child for the full camp duration.</p>
+      <p>Pick at least one course per child. Prices are per child for the full camp duration.</p>
     </div>
     <div class="child-tabs" id="course-child-tabs"></div>
     <div id="course-forms-container"></div>
@@ -284,17 +323,17 @@ small{font-size:0.78rem;color:var(--text-muted);}
   <div class="page glass" id="page-info" style="padding:28px 24px;">
     <div class="section-head">
       <div class="step-pill">Step 5 of 7</div>
-      <h2>Info & Offers</h2>
-      <p>Review applicable discounts and camp details.</p>
+      <h2>Info &amp; Offers</h2>
+      <p>Review your applicable discounts and camp schedule.</p>
     </div>
     <div id="discount-container"></div>
     <div class="glass" style="padding:16px 20px;border-radius:14px;margin-bottom:18px;">
       <h4 style="color:var(--glow-sky);margin-bottom:10px;">📅 Schedule</h4>
-      <div class="info-row"><span class="label">Days</span><span class="val">Mon – Sat (Sunday Off)</span></div>
-      <div class="info-row"><span class="label">Timings</span><span class="val">Via WhatsApp / Call</span></div>
-      <div class="info-row"><span class="label">Location</span><span class="val">Krishnanagar Society, Gozaria</span></div>
-      <div class="info-row"><span class="label">Age Group</span><span class="val">5 – 14 Years</span></div>
-      <a class="whatsapp-row" href="https://wa.me/917715896031" target="_blank"><span>📲</span> WhatsApp for Timings & Details</a>
+      <div class="info-row"><span class="lbl">Days</span><span class="val">Mon – Sat (Sunday Off)</span></div>
+      <div class="info-row"><span class="lbl">Timings</span><span class="val">Via WhatsApp / Call</span></div>
+      <div class="info-row"><span class="lbl">Location</span><span class="val">Krishnanagar Society, Gozaria</span></div>
+      <div class="info-row"><span class="lbl">Age Group</span><span class="val">5 – 14 Years</span></div>
+      <a class="whatsapp-row" href="https://wa.me/917715896031" target="_blank">📲 WhatsApp for Timings &amp; Details</a>
     </div>
     <div class="form-group">
       <label>Special Requests (Optional)</label>
@@ -306,11 +345,11 @@ small{font-size:0.78rem;color:var(--text-muted);}
     </div>
   </div>
 
-  <!-- PAGE 8: ACKNOWLEDGEMENT -->
+  <!-- PAGE 8: ACK -->
   <div class="page glass" id="page-ack" style="padding:28px 24px;">
     <div class="section-head">
       <div class="step-pill">Step 6 of 7</div>
-      <h2>Consent & Acknowledgement</h2>
+      <h2>Consent &amp; Acknowledgement</h2>
       <p>Please read and accept the following before proceeding.</p>
     </div>
     <div class="consent-box">
@@ -320,11 +359,11 @@ small{font-size:0.78rem;color:var(--text-muted);}
         ✦ I give consent for the child(ren) to participate in all camp activities.<br>
         ✦ I understand that fees, once paid, are non-refundable.<br>
         ✦ I grant permission for photographs/videos taken at camp to be used for promotional purposes.<br>
-        ✦ I will notify the coordinator immediately of any changes in medical conditions.
+        ✦ I will notify the coordinator of any changes in medical conditions.
       </p>
       <div class="consent-check-row">
         <input type="checkbox" id="consent-checkbox">
-        <label for="consent-checkbox">I have read, understood, and agree to the above terms and conditions for Little Flowers Summer Camp 2026.</label>
+        <label for="consent-checkbox">I have read, understood, and agree to the terms and conditions for Little Flowers Summer Camp 2026.</label>
       </div>
     </div>
     <div class="nav-bar">
@@ -333,17 +372,17 @@ small{font-size:0.78rem;color:var(--text-muted);}
     </div>
   </div>
 
-  <!-- PAGE 9: REVIEW & SUBMIT -->
+  <!-- PAGE 9: REVIEW -->
   <div class="page glass" id="page-review" style="padding:28px 24px;">
     <div class="section-head">
       <div class="step-pill">Step 7 of 7</div>
-      <h2>Review & Submit</h2>
+      <h2>Review &amp; Submit</h2>
       <p>Please verify all details before submitting.</p>
     </div>
     <div id="review-content"></div>
     <div style="margin-top:20px;">
-      <button type="button" class="btn btn-primary btn-full" style="font-size:1.1rem;padding:16px;" onclick="submitRegistration()">
-        🎉 Confirm & Submit Registration
+      <button type="button" id="submit-btn" class="btn btn-primary btn-full" style="font-size:1.1rem;padding:16px;" onclick="submitRegistration()">
+        🎉 Confirm &amp; Submit Registration
       </button>
     </div>
     <div class="nav-bar">
@@ -358,47 +397,204 @@ small{font-size:0.78rem;color:var(--text-muted);}
       <h2>You're Registered!</h2>
       <p>Thank you for registering with Little Flowers Summer Camp 2026.<br>
       We'll contact you shortly via WhatsApp or phone with confirmed timings and further instructions.</p>
-      <p style="margin-top:16px;">
-        <span class="confetti-emoji">🌸</span><span class="confetti-emoji">🌻</span>
-        <span class="confetti-emoji">🌺</span><span class="confetti-emoji">🌼</span><span class="confetti-emoji">🌷</span>
-      </p>
-      <button class="btn btn-secondary mt-8" onclick="location.reload()">Register Another</button>
+      <p style="margin-top:18px;font-size:1.8rem;letter-spacing:4px;">🌸 🌻 🌺 🌼 🌷</p>
+      <button class="btn btn-secondary mt-8" onclick="location.reload()">Register Another Child</button>
     </div>
   </div>
-</div>
+
+</div><!-- /app -->
 
 <script>
-/* ══════════════════════════════════════════
-   BACKGROUND CANVAS
-══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   BACKGROUND CANVAS — flowers, leaves, geometric shapes,
+   art/music/drawing symbols, all falling and floating
+═══════════════════════════════════════════════════════════ */
 (function(){
-  const canvas = document.getElementById('bg-canvas');
-  const ctx = canvas.getContext('2d');
-  let W, H, shapes = [], petals = [];
+  var canvas = document.getElementById('bg-canvas');
+  var ctx = canvas.getContext('2d');
+  var W, H;
+
   function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
   resize();
   window.addEventListener('resize', resize);
-  const COLS = ['rgba(74,222,128,','rgba(56,189,248,','rgba(244,114,182,','rgba(251,191,36,'];
-  for(let i=0;i<18;i++) shapes.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:20+Math.random()*60,col:COLS[i%4],alpha:0.04+Math.random()*0.06,vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,rot:Math.random()*Math.PI*2,vrot:(Math.random()-0.5)*0.005,sides:[3,4,6,8][Math.floor(Math.random()*4)]});
-  for(let i=0;i<30;i++) petals.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:4+Math.random()*8,alpha:0.06+Math.random()*0.1,vy:0.2+Math.random()*0.5,vx:(Math.random()-0.5)*0.3,rot:Math.random()*Math.PI*2,vrot:(Math.random()-0.5)*0.02,col:COLS[i%4]});
-  function polygon(cx,cy,r,sides,rot){ctx.beginPath();for(let i=0;i<sides;i++){const a=rot+(i/sides)*Math.PI*2;i===0?ctx.moveTo(cx+r*Math.cos(a),cy+r*Math.sin(a)):ctx.lineTo(cx+r*Math.cos(a),cy+r*Math.sin(a));}ctx.closePath();}
+
+  var COLS = ['rgba(74,222,128,','rgba(56,189,248,','rgba(244,114,182,','rgba(251,191,36,','rgba(167,139,250,'];
+
+  /* ── GEOMETRIC SHAPES ── */
+  var shapes = [];
+  for(var i=0;i<22;i++){
+    shapes.push({
+      x:Math.random()*3000, y:Math.random()*2000,
+      r:15+Math.random()*55,
+      col:COLS[i%5], alpha:0.03+Math.random()*0.06,
+      vx:(Math.random()-0.5)*0.4, vy:(Math.random()-0.5)*0.4,
+      rot:Math.random()*Math.PI*2, vrot:(Math.random()-0.5)*0.008,
+      sides:[3,4,5,6,8][Math.floor(Math.random()*5)]
+    });
+  }
+
+  /* ── FALLING PARTICLES: flowers, leaves, notes, shapes ── */
+  var EMOJIS = ['🌸','🌺','🌼','🌻','🍃','🍀','🎵','🎶','✏️','🖌️','📐','⭐','💫','🔷','🔸'];
+  var particles = [];
+  for(var i=0;i<55;i++){
+    particles.push({
+      x:Math.random()*3000, y:Math.random()*2000,
+      emoji:EMOJIS[Math.floor(Math.random()*EMOJIS.length)],
+      size:12+Math.random()*18,
+      vy:0.3+Math.random()*0.7,
+      vx:(Math.random()-0.5)*0.5,
+      rot:Math.random()*Math.PI*2,
+      vrot:(Math.random()-0.5)*0.025,
+      alpha:0.15+Math.random()*0.35,
+      wobble:Math.random()*Math.PI*2,
+      wobbleSpeed:0.01+Math.random()*0.02
+    });
+  }
+
+  /* ── GLOWING ORBS ── */
+  var orbs = [];
+  for(var i=0;i<8;i++){
+    orbs.push({
+      x:Math.random()*3000, y:Math.random()*2000,
+      r:40+Math.random()*80,
+      col:COLS[i%5], alpha:0.025+Math.random()*0.04,
+      vx:(Math.random()-0.5)*0.2, vy:(Math.random()-0.5)*0.2
+    });
+  }
+
+  function polygon(cx,cy,r,sides,rot){
+    ctx.beginPath();
+    for(var j=0;j<sides;j++){
+      var a=rot+(j/sides)*Math.PI*2;
+      j===0?ctx.moveTo(cx+r*Math.cos(a),cy+r*Math.sin(a)):ctx.lineTo(cx+r*Math.cos(a),cy+r*Math.sin(a));
+    }
+    ctx.closePath();
+  }
+
   function draw(){
     ctx.clearRect(0,0,W,H);
-    const g=ctx.createRadialGradient(W*0.3,H*0.2,0,W*0.7,H*0.8,Math.max(W,H));
-    g.addColorStop(0,'rgba(0,30,60,0.8)');g.addColorStop(1,'rgba(5,13,26,0.95)');
-    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
-    shapes.forEach(s=>{s.x+=s.vx;s.y+=s.vy;s.rot+=s.vrot;if(s.x<-80)s.x=W+80;if(s.x>W+80)s.x=-80;if(s.y<-80)s.y=H+80;if(s.y>H+80)s.y=-80;polygon(s.x,s.y,s.r,s.sides,s.rot);ctx.strokeStyle=s.col+s.alpha+')';ctx.lineWidth=1.5;ctx.stroke();});
-    petals.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.rot+=p.vrot;if(p.y>H+20){p.y=-20;p.x=Math.random()*W;}ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.beginPath();ctx.ellipse(0,-p.r,p.r*0.5,p.r,0,0,Math.PI*2);ctx.fillStyle=p.col+p.alpha+')';ctx.fill();ctx.restore();});
+
+    /* deep gradient bg */
+    var grd=ctx.createRadialGradient(W*0.25,H*0.2,0,W*0.75,H*0.8,Math.max(W,H));
+    grd.addColorStop(0,'rgba(2,18,46,0.92)');
+    grd.addColorStop(0.5,'rgba(5,13,26,0.95)');
+    grd.addColorStop(1,'rgba(8,5,20,0.98)');
+    ctx.fillStyle=grd; ctx.fillRect(0,0,W,H);
+
+    /* orbs */
+    orbs.forEach(function(o){
+      o.x+=o.vx; o.y+=o.vy;
+      if(o.x<-100)o.x=W+100; if(o.x>W+100)o.x=-100;
+      if(o.y<-100)o.y=H+100; if(o.y>H+100)o.y=-100;
+      var rg=ctx.createRadialGradient(o.x,o.y,0,o.x,o.y,o.r);
+      rg.addColorStop(0,o.col+o.alpha+')');
+      rg.addColorStop(1,o.col+'0)');
+      ctx.beginPath(); ctx.arc(o.x,o.y,o.r,0,Math.PI*2);
+      ctx.fillStyle=rg; ctx.fill();
+    });
+
+    /* geometric shapes */
+    shapes.forEach(function(s){
+      s.x+=s.vx; s.y+=s.vy; s.rot+=s.vrot;
+      if(s.x<-80)s.x=W+80; if(s.x>W+80)s.x=-80;
+      if(s.y<-80)s.y=H+80; if(s.y>H+80)s.y=-80;
+      polygon(s.x,s.y,s.r,s.sides,s.rot);
+      ctx.strokeStyle=s.col+s.alpha+')'; ctx.lineWidth=1.5; ctx.stroke();
+    });
+
+    /* emoji particles */
+    particles.forEach(function(p){
+      p.wobble+=p.wobbleSpeed;
+      p.x+=p.vx+Math.sin(p.wobble)*0.4;
+      p.y+=p.vy;
+      p.rot+=p.vrot;
+      if(p.y>H+30){ p.y=-30; p.x=Math.random()*W; }
+      if(p.x<-30) p.x=W+30;
+      if(p.x>W+30) p.x=-30;
+      ctx.save();
+      ctx.globalAlpha=p.alpha;
+      ctx.translate(p.x,p.y);
+      ctx.rotate(p.rot);
+      ctx.font=p.size+'px serif';
+      ctx.textAlign='center';
+      ctx.textBaseline='middle';
+      ctx.fillText(p.emoji,0,0);
+      ctx.restore();
+    });
+
     requestAnimationFrame(draw);
   }
   draw();
 })();
 
-/* ══════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════
+   CONFETTI BLAST
+═══════════════════════════════════════════════════════════ */
+function launchConfetti(){
+  var cc = document.getElementById('confetti-canvas');
+  cc.style.display = 'block';
+  var ctx = cc.getContext('2d');
+  cc.width = window.innerWidth;
+  cc.height = window.innerHeight;
+
+  var pieces = [];
+  var CONFETTI_COLORS = ['#4ade80','#38bdf8','#f472b6','#fbbf24','#a78bfa','#fb923c','#fff','#f9fafb'];
+  var SHAPES = ['rect','circle','triangle'];
+
+  for(var i=0;i<220;i++){
+    pieces.push({
+      x: Math.random()*cc.width,
+      y: -Math.random()*cc.height*0.5,
+      w: 6+Math.random()*10,
+      h: 4+Math.random()*8,
+      color: CONFETTI_COLORS[Math.floor(Math.random()*CONFETTI_COLORS.length)],
+      shape: SHAPES[Math.floor(Math.random()*3)],
+      vy: 2+Math.random()*4,
+      vx: (Math.random()-0.5)*3,
+      rot: Math.random()*Math.PI*2,
+      vrot: (Math.random()-0.5)*0.2,
+      alpha: 0.9+Math.random()*0.1
+    });
+  }
+
+  var startTime = Date.now();
+  function animateConfetti(){
+    var elapsed = Date.now()-startTime;
+    ctx.clearRect(0,0,cc.width,cc.height);
+    var allGone = true;
+    pieces.forEach(function(p){
+      if(p.y < cc.height+20) allGone = false;
+      p.x+=p.vx; p.y+=p.vy; p.rot+=p.vrot; p.vy+=0.05;
+      if(elapsed>2500) p.alpha = Math.max(0, p.alpha-0.012);
+      ctx.save();
+      ctx.globalAlpha = p.alpha;
+      ctx.translate(p.x,p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      if(p.shape==='rect'){
+        ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      } else if(p.shape==='circle'){
+        ctx.beginPath(); ctx.arc(0,0,p.w/2,0,Math.PI*2); ctx.fill();
+      } else {
+        ctx.beginPath(); ctx.moveTo(0,-p.h); ctx.lineTo(p.w/2,p.h/2); ctx.lineTo(-p.w/2,p.h/2); ctx.closePath(); ctx.fill();
+      }
+      ctx.restore();
+    });
+    if(!allGone && elapsed<6000){
+      requestAnimationFrame(animateConfetti);
+    } else {
+      cc.style.display='none';
+      ctx.clearRect(0,0,cc.width,cc.height);
+    }
+  }
+  animateConfetti();
+}
+
+/* ═══════════════════════════════════════════════════════════
    QUOTES
-══════════════════════════════════════════ */
-const QUOTES=[
-  {text:"Children are like buds in a garden and should be carefully and lovingly nurtured, as they are the future of the nation and the citizens of tomorrow.",author:"— Jawaharlal Nehru"},
+═══════════════════════════════════════════════════════════ */
+var QUOTES=[
+  {text:"Children are like buds in a garden and should be carefully and lovingly nurtured, as they are the future of the nation and citizens of tomorrow.",author:"— Jawaharlal Nehru"},
   {text:"Your children are not your children. They are the sons and daughters of Life's longing for itself.",author:"— Kahlil Gibran"},
   {text:"Play is the highest form of research.",author:"— Albert Einstein"},
   {text:"Children must be taught how to think, not what to think.",author:"— Margaret Mead"},
@@ -411,74 +607,71 @@ const QUOTES=[
   {text:"The soul is healed by being with children.",author:"— Fyodor Dostoyevsky"},
   {text:"Children need models rather than critics.",author:"— Joseph Joubert"}
 ];
-(function(){const q=QUOTES[Math.floor(Math.random()*QUOTES.length)];document.getElementById('quote-text').textContent=q.text;document.getElementById('quote-author').textContent=q.author;})();
-
-/* ══════════════════════════════════════════
-   EARLY BIRD  — 8 slots, stored in localStorage
-   Decrements on every successful form submission.
-   When 0: badge changes to "Full", EB 20% discount
-   is no longer applied, siblings/group 10% kicks in.
-══════════════════════════════════════════ */
-const EB_MAX = 8;
-let earlyBirdSlots = EB_MAX; // default
 (function(){
-  const stored = localStorage.getItem('lf_eb_slots');
-  // If key exists and is a valid number, use it; otherwise start fresh at EB_MAX
-  if(stored !== null && !isNaN(parseInt(stored))){
-    earlyBirdSlots = Math.max(0, Math.min(EB_MAX, parseInt(stored)));
+  var q=QUOTES[Math.floor(Math.random()*QUOTES.length)];
+  document.getElementById('quote-text').textContent=q.text;
+  document.getElementById('quote-author').textContent=q.author;
+})();
+
+/* ═══════════════════════════════════════════════════════════
+   EARLY BIRD SLOTS
+   — 6 slots remaining (2 already used from 8)
+   — Counts per STUDENT, not per registration
+   — On submit: decrement by number of students in this registration
+═══════════════════════════════════════════════════════════ */
+var EB_MAX = 6; // starting count for this deployment
+var earlyBirdSlots;
+(function(){
+  var stored = localStorage.getItem('lf_eb_v3');
+  if(stored !== null && !isNaN(parseInt(stored,10))){
+    earlyBirdSlots = Math.max(0, Math.min(EB_MAX, parseInt(stored,10)));
   } else {
     earlyBirdSlots = EB_MAX;
-    localStorage.setItem('lf_eb_slots', String(EB_MAX));
+    localStorage.setItem('lf_eb_v3', String(EB_MAX));
   }
 })();
 
 function updateEB(){
-  const badge = document.getElementById('early-bird-badge');
-  const countEl = document.getElementById('eb-count');
+  var badge = document.getElementById('early-bird-badge');
   if(earlyBirdSlots > 0){
-    // Make sure badge is styled as amber/active
-    badge.style.background = 'linear-gradient(135deg,rgba(251,191,36,0.2),rgba(244,114,182,0.2))';
-    badge.style.borderColor = 'rgba(251,191,36,0.4)';
-    badge.style.color = 'var(--glow-amber)';
-    badge.innerHTML = '🌟 <span id="eb-count">' + earlyBirdSlots + '</span> Early Bird Slots Left!';
+    badge.style.cssText = 'font-size:0.82rem;font-weight:700;padding:6px 14px;background:linear-gradient(135deg,rgba(251,191,36,0.2),rgba(244,114,182,0.2));border:1px solid rgba(251,191,36,0.4);border-radius:30px;color:#fbbf24;white-space:nowrap;transition:all 0.3s;';
+    badge.innerHTML = '🌟 <span id="eb-count">'+earlyBirdSlots+'</span> Early Bird Slots Left!';
   } else {
-    badge.style.background = 'rgba(255,255,255,0.05)';
-    badge.style.borderColor = 'rgba(255,255,255,0.15)';
-    badge.style.color = 'var(--text-muted)';
+    badge.style.cssText = 'font-size:0.82rem;font-weight:700;padding:6px 14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:30px;color:#8aabcc;white-space:nowrap;transition:all 0.3s;';
     badge.innerHTML = '🔒 Early Bird Full';
   }
 }
 updateEB();
 
-/* ══════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════
    STATE
-══════════════════════════════════════════ */
-let state = {
-  type: '', count: 1,
-  children: [], parents: [], courses: [],
-  currentChildDetails: 0,
-  currentCourseChild: 0,
-  currentGroupStudent: 0,
-  pageHistory: [],
-  activePage: 'page-welcome',
-  specialRequest: '',
-  consentGiven: false,
+═══════════════════════════════════════════════════════════ */
+var state = {
+  type:'', count:1,
+  children:[], parents:[], courses:[],
+  currentChildDetails:0,
+  currentCourseChild:0,
+  currentGroupStudent:0,
+  pageHistory:[],
+  activePage:'page-welcome',
+  specialRequest:'',
+  consentGiven:false
 };
 
-const COURSES = [
+var COURSES = [
   {id:'handwriting',name:'Handwriting',icon:'✍️',price:1000,premium:false,desc:'Improves penmanship through proper grip techniques and rhythmic stroke flow to build speed and legibility.'},
   {id:'vedic',name:'Vedic Maths',icon:'🔢',price:1000,premium:false,desc:'An ancient system of mental mathematics enabling students to perform complex calculations with speed and accuracy.'},
   {id:'spoken',name:'Spoken English',icon:'🎤',price:1000,premium:false,desc:'Builds public speaking confidence, improves pronunciation, and expands vocabulary for fluency.'},
   {id:'drawing',name:'Drawing',icon:'🎨',price:1000,premium:false,desc:'Exploration of visual art — fundamental sketching, shading techniques, and creative composition.'},
-  {id:'craft',name:'Craft',icon:'🛠️',price:1000,premium:false,desc:'Hands-on engineering class where kids use various materials to build 3D models and creative functional objects.'},
+  {id:'craft',name:'Craft',icon:'🛠️',price:1000,premium:false,desc:'Hands-on class where kids build 3D models and creative functional objects using various materials.'},
   {id:'dance',name:'Dance',icon:'💃',price:1000,premium:false,desc:'High-energy session focused on rhythm, body coordination, and choreography across popular styles.'},
   {id:'flower',name:'Flower Making',icon:'🌸',price:1200,premium:true,desc:'Teaches students to design intricate and realistic floral arrangements. All craft materials included.'},
-  {id:'glass',name:'Glass Painting',icon:'🪟',price:1200,premium:true,desc:'Introduces precision work on transparent glass surfaces. All professional glass paints and materials included.'},
+  {id:'glass',name:'Glass Painting',icon:'🪟',price:1200,premium:true,desc:'Introduces precision work on transparent glass surfaces. All professional paints and materials included.'}
 ];
 
-/* ══════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════
    NAVIGATION
-══════════════════════════════════════════ */
+═══════════════════════════════════════════════════════════ */
 function goToPage(id, progress){
   document.getElementById(state.activePage).classList.remove('active');
   state.pageHistory.push(state.activePage);
@@ -490,7 +683,7 @@ function goToPage(id, progress){
 function goBack(){
   if(!state.pageHistory.length) return;
   document.getElementById(state.activePage).classList.remove('active');
-  const prev = state.pageHistory.pop();
+  var prev = state.pageHistory.pop();
   state.activePage = prev;
   document.getElementById(prev).classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
@@ -500,521 +693,480 @@ function handleBegin(){
   goToPage('page-type',10);
 }
 
-/* ══════════════════════════════════════════
-   FORM HTML BUILDERS  (always DOM id suffix _0)
-══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   FORM BUILDERS (always DOM suffix _0 — single panel at a time)
+═══════════════════════════════════════════════════════════ */
 function childFormHTML(){
-  return `
-  <div class="child-form-panel">
-    <div class="form-row">
-      <div class="form-group">
-        <label>Full Name *</label>
-        <input type="text" id="c_name_0" placeholder="Child's full name">
-        <div class="error-msg" id="err_c_name_0">Name is required.</div>
-      </div>
-      <div class="form-group">
-        <label>Gender *</label>
-        <select id="c_gender_0">
-          <option value="">Select</option>
-          <option>Male</option><option>Female</option><option>Other</option>
-        </select>
-        <div class="error-msg" id="err_c_gender_0">Please select gender.</div>
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label>School Name *</label>
-        <input type="text" id="c_school_0" placeholder="Current school">
-        <div class="error-msg" id="err_c_school_0">School is required.</div>
-      </div>
-      <div class="form-group">
-        <label>Age *</label>
-        <select id="c_age_0">
-          <option value="">Select Age</option>
-          ${[5,6,7,8,9,10,11,12,13,14].map(a=>`<option>${a}</option>`).join('')}
-        </select>
-        <div class="error-msg" id="err_c_age_0">Age must be 5–14.</div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Medical Conditions / Allergies <small>(optional)</small></label>
-      <textarea id="c_medical_0" rows="2" placeholder="Any known medical conditions or allergies…" style="resize:none;"></textarea>
-    </div>
-  </div>`;
+  var ages=[5,6,7,8,9,10,11,12,13,14];
+  return '<div class="child-form-panel">'+
+    '<div class="form-row">'+
+      '<div class="form-group"><label>Full Name *</label>'+
+        '<input type="text" id="c_name_0" placeholder="Child\'s full name">'+
+        '<div class="error-msg" id="err_c_name_0">Name is required.</div></div>'+
+      '<div class="form-group"><label>Gender *</label>'+
+        '<select id="c_gender_0"><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select>'+
+        '<div class="error-msg" id="err_c_gender_0">Please select gender.</div></div>'+
+    '</div>'+
+    '<div class="form-row">'+
+      '<div class="form-group"><label>School Name *</label>'+
+        '<input type="text" id="c_school_0" placeholder="Current school">'+
+        '<div class="error-msg" id="err_c_school_0">School is required.</div></div>'+
+      '<div class="form-group"><label>Age *</label>'+
+        '<select id="c_age_0"><option value="">Select Age</option>'+ages.map(function(a){return '<option>'+a+'</option>';}).join('')+'</select>'+
+        '<div class="error-msg" id="err_c_age_0">Age must be 5–14.</div></div>'+
+    '</div>'+
+    '<div class="form-group"><label>Medical Conditions / Allergies <small>(optional)</small></label>'+
+      '<textarea id="c_medical_0" rows="2" placeholder="Any known medical conditions or allergies…" style="resize:none;"></textarea></div>'+
+  '</div>';
 }
 
 function parentFormHTML(){
-  return `
-  <div class="parent-form-panel">
-    <div class="form-row">
-      <div class="form-group">
-        <label>Mother's Full Name *</label>
-        <input type="text" id="p_mother_0" placeholder="Mother's name">
-        <div class="error-msg" id="err_p_mother_0">Required.</div>
-      </div>
-      <div class="form-group">
-        <label>Father's Full Name *</label>
-        <input type="text" id="p_father_0" placeholder="Father's name">
-        <div class="error-msg" id="err_p_father_0">Required.</div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Home Address *</label>
-      <textarea id="p_address_0" rows="2" placeholder="Full residential address" style="resize:none;"></textarea>
-      <div class="error-msg" id="err_p_address_0">Address is required.</div>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label>Primary Phone *</label>
-        <input type="tel" id="p_phone1_0" placeholder="10-digit mobile">
-        <div class="error-msg" id="err_p_phone1_0">Valid 10-digit number required.</div>
-      </div>
-      <div class="form-group">
-        <label>Alternate Phone *</label>
-        <input type="tel" id="p_phone2_0" placeholder="10-digit mobile">
-        <div class="error-msg" id="err_p_phone2_0">Valid 10-digit number required.</div>
-      </div>
-    </div>
-  </div>`;
+  return '<div class="parent-form-panel">'+
+    '<div class="form-row">'+
+      '<div class="form-group"><label>Mother\'s Full Name *</label>'+
+        '<input type="text" id="p_mother_0" placeholder="Mother\'s name">'+
+        '<div class="error-msg" id="err_p_mother_0">Required.</div></div>'+
+      '<div class="form-group"><label>Father\'s Full Name *</label>'+
+        '<input type="text" id="p_father_0" placeholder="Father\'s name">'+
+        '<div class="error-msg" id="err_p_father_0">Required.</div></div>'+
+    '</div>'+
+    '<div class="form-group"><label>Home Address *</label>'+
+      '<textarea id="p_address_0" rows="2" placeholder="Full residential address" style="resize:none;"></textarea>'+
+      '<div class="error-msg" id="err_p_address_0">Address is required.</div></div>'+
+    '<div class="form-row">'+
+      '<div class="form-group"><label>Primary Phone *</label>'+
+        '<input type="tel" id="p_phone1_0" placeholder="10-digit mobile">'+
+        '<div class="error-msg" id="err_p_phone1_0">Valid 10-digit number required.</div></div>'+
+      '<div class="form-group"><label>Alternate Phone *</label>'+
+        '<input type="tel" id="p_phone2_0" placeholder="10-digit mobile">'+
+        '<div class="error-msg" id="err_p_phone2_0">Valid 10-digit number required.</div></div>'+
+    '</div>'+
+  '</div>';
 }
 
 function courseFormHTML(){
-  const std = COURSES.filter(c=>!c.premium);
-  const prem = COURSES.filter(c=>c.premium);
-  return `
-  <div class="course-form-panel">
-    <p style="font-size:0.82rem;color:var(--glow-green);font-weight:700;margin-bottom:10px;">Standard Courses — ₹1,000 each</p>
-    <div class="course-grid">
-      ${std.map(c=>`
-        <div class="course-card" id="cc_0_${c.id}" onclick="toggleCourse('${c.id}')">
-          <div class="check">✓</div>
-          <div class="c-icon">${c.icon}</div>
-          <div class="c-name">${c.name}</div>
-          <div class="c-desc">${c.desc}</div>
-          <div class="c-price">₹${c.price.toLocaleString()}</div>
-        </div>`).join('')}
-    </div>
-    <p style="font-size:0.82rem;color:var(--glow-amber);font-weight:700;margin:16px 0 10px;">Premium Courses — ₹1,200 each (Materials Included)</p>
-    <div class="course-grid">
-      ${prem.map(c=>`
-        <div class="course-card premium" id="cc_0_${c.id}" onclick="toggleCourse('${c.id}')">
-          <div class="check">✓</div>
-          <div class="premium-label">★ Premium</div>
-          <div class="c-icon">${c.icon}</div>
-          <div class="c-name">${c.name}</div>
-          <div class="c-desc">${c.desc}</div>
-          <div class="c-price">₹${c.price.toLocaleString()} ✦ Materials Incl.</div>
-        </div>`).join('')}
-    </div>
-    <div class="error-msg" id="err_course_0" style="margin-top:8px;">Please select at least one course.</div>
-  </div>`;
+  var std=COURSES.filter(function(c){return !c.premium;});
+  var prem=COURSES.filter(function(c){return c.premium;});
+  var html='<div class="course-form-panel">';
+  html+='<p style="font-size:0.82rem;color:var(--glow-green);font-weight:700;margin-bottom:10px;">Standard Courses — ₹1,000 each</p>';
+  html+='<div class="course-grid">';
+  std.forEach(function(c){
+    html+='<div class="course-card" id="cc_0_'+c.id+'" onclick="toggleCourse(\''+c.id+'\')">'+
+      '<div class="check">✓</div>'+
+      '<div class="c-icon">'+c.icon+'</div>'+
+      '<div class="c-name">'+c.name+'</div>'+
+      '<div class="c-desc">'+c.desc+'</div>'+
+      '<div class="c-price">₹'+c.price.toLocaleString()+'</div>'+
+    '</div>';
+  });
+  html+='</div>';
+  html+='<p style="font-size:0.82rem;color:var(--glow-amber);font-weight:700;margin:16px 0 10px;">Premium Courses — ₹1,200 each (Materials Included)</p>';
+  html+='<div class="course-grid">';
+  prem.forEach(function(c){
+    html+='<div class="course-card premium" id="cc_0_'+c.id+'" onclick="toggleCourse(\''+c.id+'\')">'+
+      '<div class="check">✓</div>'+
+      '<div class="premium-label">★ Premium</div>'+
+      '<div class="c-icon">'+c.icon+'</div>'+
+      '<div class="c-name">'+c.name+'</div>'+
+      '<div class="c-desc">'+c.desc+'</div>'+
+      '<div class="c-price">₹'+c.price.toLocaleString()+' ✦ Materials Incl.</div>'+
+    '</div>';
+  });
+  html+='</div>';
+  html+='<div class="error-msg" id="err_course_0" style="margin-top:8px;">Please select at least one course.</div>';
+  html+='</div>';
+  return html;
 }
 
-/* ══════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════
    TABS
-══════════════════════════════════════════ */
+═══════════════════════════════════════════════════════════ */
 function buildTabs(containerId, count, onClickFn){
-  const c = document.getElementById(containerId);
-  c.innerHTML = '';
-  for(let i=0;i<count;i++){
-    const btn = document.createElement('button');
-    btn.className = 'child-tab'+(i===0?' active':'');
-    btn.textContent = `Child ${i+1}`;
-    btn.onclick = ()=>onClickFn(i);
+  var c=document.getElementById(containerId);
+  c.innerHTML='';
+  for(var i=0;i<count;i++){
+    var btn=document.createElement('button');
+    btn.className='child-tab'+(i===0?' active':'');
+    btn.textContent='Child '+(i+1);
+    (function(idx){btn.onclick=function(){onClickFn(idx);};})(i);
     c.appendChild(btn);
   }
 }
 function setActiveTab(containerId, idx){
-  Array.from(document.getElementById(containerId).children)
-    .forEach((t,i)=>t.classList.toggle('active',i===idx));
+  var tabs=document.getElementById(containerId).children;
+  for(var i=0;i<tabs.length;i++) tabs[i].classList.toggle('active',i===idx);
 }
 
-/* ══════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════
    TYPE SELECTION
-══════════════════════════════════════════ */
+═══════════════════════════════════════════════════════════ */
 function selectType(type){
-  state.type = type;
+  state.type=type;
   if(type==='single'){
-    state.count=1;
-    initState(1);
-    buildChildPage(0);
-    goToPage('page-child',20);
+    state.count=1; initState(1); buildChildPage(0); goToPage('page-child',20);
   } else if(type==='siblings'){
-    buildCountPage(2,5,'siblings');
-    goToPage('page-count',15);
+    buildCountPage(2,5,'siblings'); goToPage('page-count',15);
   } else {
-    buildCountPage(3,9,'group');
-    goToPage('page-count',15);
+    buildCountPage(3,9,'group'); goToPage('page-count',15);
   }
 }
-
 function buildCountPage(min,max,mode){
-  document.getElementById('count-title').textContent = mode==='siblings'?'How many siblings?':'How many students in the group?';
-  document.getElementById('count-sub').textContent = mode==='siblings'?'Select the number of siblings (2–5).':'Select the number of students (3–9).';
-  const c = document.getElementById('count-selector');
+  document.getElementById('count-title').textContent=mode==='siblings'?'How many siblings?':'How many students in the group?';
+  document.getElementById('count-sub').textContent=mode==='siblings'?'Select the number of siblings (2–5).':'Select the number of students (3–9).';
+  var c=document.getElementById('count-selector');
   c.innerHTML='';
-  for(let i=min;i<=max;i++){
-    const b=document.createElement('button');
-    b.className='count-btn';b.textContent=i;
-    const n=i;
-    b.onclick=()=>{document.querySelectorAll('.count-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.count=n;};
+  for(var i=min;i<=max;i++){
+    var b=document.createElement('button');
+    b.className='count-btn'; b.textContent=i;
+    (function(n){b.onclick=function(){
+      var btns=document.querySelectorAll('.count-btn');
+      for(var j=0;j<btns.length;j++) btns[j].classList.remove('active');
+      b.classList.add('active'); state.count=n;
+    };})(i);
     c.appendChild(b);
   }
   c.querySelector('.count-btn').classList.add('active');
   state.count=min;
 }
-
 function confirmCount(){
   initState(state.count);
-  if(state.type==='siblings'){
-    buildChildPage(0);
-    goToPage('page-child',20);
-  } else {
-    buildGroupPage();
-    goToPage('page-group',20);
-  }
+  if(state.type==='siblings'){ buildChildPage(0); goToPage('page-child',20); }
+  else { buildGroupPage(); goToPage('page-group',20); }
 }
-
 function initState(n){
-  state.children = Array.from({length:n},()=>({name:'',gender:'',school:'',age:'',medical:''}));
-  state.parents  = Array.from({length:state.type==='group'?n:1},()=>({motherName:'',fatherName:'',address:'',phone1:'',phone2:''}));
-  state.courses  = Array.from({length:n},()=>({selected:[]}));
+  state.children=[];state.parents=[];state.courses=[];
+  for(var i=0;i<n;i++){
+    state.children.push({name:'',gender:'',school:'',age:'',medical:''});
+    state.courses.push({selected:[]});
+  }
+  var pCount = state.type==='group' ? n : 1;
+  for(var i=0;i<pCount;i++) state.parents.push({motherName:'',fatherName:'',address:'',phone1:'',phone2:''});
 }
 
-/* ══════════════════════════════════════════
-   CHILD DETAILS — one child at a time
-══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   CHILD DETAILS — sequential, one at a time
+═══════════════════════════════════════════════════════════ */
 function buildChildPage(idx){
-  idx = idx||0;
-  state.currentChildDetails = idx;
-  const n = state.count;
-  const steps = state.type==='single'?7:8;
-  document.getElementById('child-step-pill').textContent = n===1?`Step 2 of ${steps}`:`Child ${idx+1} of ${n}`;
-  document.getElementById('child-page-title').textContent = n===1?'Child Details':`Child ${idx+1} Details`;
-  document.getElementById('child-page-sub').textContent = n===1?"Fill in the child's details below.":`Details for Child ${idx+1} of ${n}. Use tabs to navigate.`;
-  const tabsEl = document.getElementById('child-tabs');
+  idx=idx||0; state.currentChildDetails=idx;
+  var n=state.count;
+  var steps=state.type==='single'?7:8;
+  document.getElementById('child-step-pill').textContent=n===1?('Step 2 of '+steps):('Child '+(idx+1)+' of '+n);
+  document.getElementById('child-page-title').textContent=n===1?'Child Details':'Child '+(idx+1)+' Details';
+  document.getElementById('child-page-sub').textContent=n===1?"Fill in the child's details below.":'Details for Child '+(idx+1)+' of '+n+'. Use tabs to navigate.';
+  var tabsEl=document.getElementById('child-tabs');
   if(n===1){ tabsEl.style.display='none'; }
   else {
     tabsEl.style.display='flex';
-    buildTabs('child-tabs',n,(i)=>{
+    buildTabs('child-tabs',n,function(i){
       saveChildForm(state.currentChildDetails);
       state.currentChildDetails=i;
       loadChildForm(i);
       setActiveTab('child-tabs',i);
-      document.getElementById('child-step-pill').textContent=`Child ${i+1} of ${n}`;
-      document.getElementById('child-page-title').textContent=`Child ${i+1} Details`;
+      document.getElementById('child-step-pill').textContent='Child '+(i+1)+' of '+n;
+      document.getElementById('child-page-title').textContent='Child '+(i+1)+' Details';
     });
     setActiveTab('child-tabs',idx);
   }
-  document.getElementById('child-forms-container').innerHTML = childFormHTML();
+  document.getElementById('child-forms-container').innerHTML=childFormHTML();
   loadChildForm(idx);
 }
-
 function saveChildForm(idx){
   if(idx===undefined||idx===null) return;
-  state.children[idx]={
-    name:(document.getElementById('c_name_0')||{value:''}).value.trim(),
-    gender:(document.getElementById('c_gender_0')||{value:''}).value,
-    school:(document.getElementById('c_school_0')||{value:''}).value.trim(),
-    age:(document.getElementById('c_age_0')||{value:''}).value,
-    medical:(document.getElementById('c_medical_0')||{value:''}).value.trim()
-  };
+  var g=function(id){var e=document.getElementById(id);return e?e.value:'';};
+  state.children[idx]={name:g('c_name_0').trim(),gender:g('c_gender_0'),school:g('c_school_0').trim(),age:g('c_age_0'),medical:g('c_medical_0').trim()};
 }
-
 function loadChildForm(idx){
-  const ch=state.children[idx]||{};
-  const sv=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v||'';};
+  var ch=state.children[idx]||{};
+  var sv=function(id,v){var e=document.getElementById(id);if(e)e.value=v||'';};
   sv('c_name_0',ch.name);sv('c_gender_0',ch.gender);sv('c_school_0',ch.school);sv('c_age_0',ch.age);sv('c_medical_0',ch.medical);
-  ['c_name_0','c_gender_0','c_school_0','c_age_0'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('error');});
-  ['err_c_name_0','err_c_gender_0','err_c_school_0','err_c_age_0'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('show');});
+  ['c_name_0','c_gender_0','c_school_0','c_age_0'].forEach(function(id){var e=document.getElementById(id);if(e)e.classList.remove('error');});
+  ['err_c_name_0','err_c_gender_0','err_c_school_0','err_c_age_0'].forEach(function(id){var e=document.getElementById(id);if(e)e.classList.remove('show');});
 }
-
 function nextFromChildDetails(){
-  const idx = state.currentChildDetails||0;
-  const checks=[
-    ['c_name_0','err_c_name_0',v=>v.trim().length>1],
-    ['c_gender_0','err_c_gender_0',v=>v!==''],
-    ['c_school_0','err_c_school_0',v=>v.trim().length>1],
-    ['c_age_0','err_c_age_0',v=>v!==''],
+  var idx=state.currentChildDetails||0;
+  var checks=[
+    ['c_name_0','err_c_name_0',function(v){return v.trim().length>1;}],
+    ['c_gender_0','err_c_gender_0',function(v){return v!=='';}],
+    ['c_school_0','err_c_school_0',function(v){return v.trim().length>1;}],
+    ['c_age_0','err_c_age_0',function(v){return v!=='';}]
   ];
-  let ok=true;
-  checks.forEach(([id,eid,fn])=>{
-    const el=document.getElementById(id);
-    const valid=fn(el.value);
+  var ok=true;
+  checks.forEach(function(arr){
+    var el=document.getElementById(arr[0]);
+    var valid=arr[2](el.value);
     el.classList.toggle('error',!valid);
-    document.getElementById(eid).classList.toggle('show',!valid);
-    if(!valid)ok=false;
+    document.getElementById(arr[1]).classList.toggle('show',!valid);
+    if(!valid) ok=false;
   });
-  if(!ok)return;
+  if(!ok) return;
   saveChildForm(idx);
-  const n=state.count;
+  var n=state.count;
   if(idx<n-1){
-    const next=idx+1;
-    state.currentChildDetails=next;
-    loadChildForm(next);
-    setActiveTab('child-tabs',next);
-    document.getElementById('child-step-pill').textContent=`Child ${next+1} of ${n}`;
-    document.getElementById('child-page-title').textContent=`Child ${next+1} Details`;
-    document.getElementById('child-page-sub').textContent=`Details for Child ${next+1} of ${n}.`;
+    var next=idx+1; state.currentChildDetails=next;
+    loadChildForm(next); setActiveTab('child-tabs',next);
+    document.getElementById('child-step-pill').textContent='Child '+(next+1)+' of '+n;
+    document.getElementById('child-page-title').textContent='Child '+(next+1)+' Details';
+    document.getElementById('child-page-sub').textContent='Details for Child '+(next+1)+' of '+n+'.';
     window.scrollTo({top:0,behavior:'smooth'});
   } else {
-    buildParentPage();
-    goToPage('page-parent',35);
+    buildParentPage(); goToPage('page-parent',35);
   }
 }
 
-/* ══════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════
    PARENT DETAILS
-══════════════════════════════════════════ */
+═══════════════════════════════════════════════════════════ */
 function buildParentPage(){
-  document.getElementById('parent-step-pill').textContent = state.type==='single'?'Step 3 of 7':'Step 3 of 8';
-  document.getElementById('parent-form-container').innerHTML = parentFormHTML();
-  const par=state.parents[0]||{};
-  const pv=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v||'';};
-  pv('p_mother_0',par.motherName);pv('p_father_0',par.fatherName);pv('p_address_0',par.address);pv('p_phone1_0',par.phone1);pv('p_phone2_0',par.phone2);
+  document.getElementById('parent-step-pill').textContent=state.type==='single'?'Step 3 of 7':'Step 3 of 8';
+  document.getElementById('parent-form-container').innerHTML=parentFormHTML();
+  var par=state.parents[0]||{};
+  var sv=function(id,v){var e=document.getElementById(id);if(e)e.value=v||'';};
+  sv('p_mother_0',par.motherName);sv('p_father_0',par.fatherName);sv('p_address_0',par.address);sv('p_phone1_0',par.phone1);sv('p_phone2_0',par.phone2);
 }
-
 function validateParentDOM(){
-  let ok=true;
-  const checks=[
-    ['p_mother_0','err_p_mother_0',v=>v.trim().length>1],
-    ['p_father_0','err_p_father_0',v=>v.trim().length>1],
-    ['p_address_0','err_p_address_0',v=>v.trim().length>4],
-    ['p_phone1_0','err_p_phone1_0',v=>/^\d{10}$/.test(v.trim())],
-    ['p_phone2_0','err_p_phone2_0',v=>/^\d{10}$/.test(v.trim())],
+  var ok=true;
+  var checks=[
+    ['p_mother_0','err_p_mother_0',function(v){return v.trim().length>1;}],
+    ['p_father_0','err_p_father_0',function(v){return v.trim().length>1;}],
+    ['p_address_0','err_p_address_0',function(v){return v.trim().length>4;}],
+    ['p_phone1_0','err_p_phone1_0',function(v){return /^\d{10}$/.test(v.trim());}],
+    ['p_phone2_0','err_p_phone2_0',function(v){return /^\d{10}$/.test(v.trim());}]
   ];
-  checks.forEach(([id,eid,fn])=>{
-    const el=document.getElementById(id);
-    const valid=fn(el.value);
+  checks.forEach(function(arr){
+    var el=document.getElementById(arr[0]);
+    var valid=arr[2](el.value);
     el.classList.toggle('error',!valid);
-    document.getElementById(eid).classList.toggle('show',!valid);
-    if(!valid)ok=false;
+    document.getElementById(arr[1]).classList.toggle('show',!valid);
+    if(!valid) ok=false;
   });
   return ok;
 }
-
 function saveParentDOM(idx){
-  state.parents[idx]={
-    motherName:document.getElementById('p_mother_0').value.trim(),
-    fatherName:document.getElementById('p_father_0').value.trim(),
-    address:document.getElementById('p_address_0').value.trim(),
-    phone1:document.getElementById('p_phone1_0').value.trim(),
-    phone2:document.getElementById('p_phone2_0').value.trim()
-  };
+  var g=function(id){var e=document.getElementById(id);return e?e.value.trim():'';};
+  state.parents[idx]={motherName:g('p_mother_0'),fatherName:g('p_father_0'),address:g('p_address_0'),phone1:g('p_phone1_0'),phone2:g('p_phone2_0')};
 }
-
 function nextFromParent(){
-  if(!validateParentDOM())return;
+  if(!validateParentDOM()) return;
   saveParentDOM(0);
   buildCoursePage(0);
   goToPage('page-courses',50);
 }
 
-/* ══════════════════════════════════════════
-   COURSE SELECTION — one child at a time
-══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   COURSE SELECTION — sequential, one child at a time
+═══════════════════════════════════════════════════════════ */
 function buildCoursePage(idx){
-  idx=idx||0;
-  state.currentCourseChild=idx;
-  const n=state.count;
-  document.getElementById('course-step-pill').textContent = n===1?(state.type==='single'?'Step 4 of 7':'Step 4 of 8'):`Courses: Child ${idx+1} of ${n}`;
-  const tabsEl=document.getElementById('course-child-tabs');
-  const cont=document.getElementById('course-forms-container');
+  idx=idx||0; state.currentCourseChild=idx;
+  var n=state.count;
+  document.getElementById('course-step-pill').textContent=n===1?(state.type==='single'?'Step 4 of 7':'Step 4 of 8'):('Courses: Child '+(idx+1)+' of '+n);
+  var tabsEl=document.getElementById('course-child-tabs');
+  var cont=document.getElementById('course-forms-container');
   if(n===1){ tabsEl.style.display='none'; }
   else {
     tabsEl.style.display='flex';
-    buildTabs('course-child-tabs',n,(i)=>{
+    buildTabs('course-child-tabs',n,function(i){
       state.currentCourseChild=i;
-      cont.innerHTML=courseFormHTML();
-      restoreCourses(i);
+      cont.innerHTML=courseFormHTML(); restoreCourses(i);
       setActiveTab('course-child-tabs',i);
-      document.getElementById('course-step-pill').textContent=`Courses: Child ${i+1} of ${n}`;
+      document.getElementById('course-step-pill').textContent='Courses: Child '+(i+1)+' of '+n;
     });
     setActiveTab('course-child-tabs',idx);
   }
-  cont.innerHTML=courseFormHTML();
-  restoreCourses(idx);
+  cont.innerHTML=courseFormHTML(); restoreCourses(idx);
 }
-
 function restoreCourses(idx){
-  const sel=(state.courses[idx]||{selected:[]}).selected;
-  COURSES.forEach(c=>{
-    const el=document.getElementById(`cc_0_${c.id}`);
-    if(el)el.classList.toggle('selected',sel.includes(c.id));
+  var sel=(state.courses[idx]||{selected:[]}).selected;
+  COURSES.forEach(function(c){
+    var el=document.getElementById('cc_0_'+c.id);
+    if(el) el.classList.toggle('selected',sel.indexOf(c.id)>-1);
   });
 }
-
 function toggleCourse(courseId){
-  const idx=state.currentCourseChild||0;
-  const sel=state.courses[idx].selected;
-  const i=sel.indexOf(courseId);
-  if(i>-1)sel.splice(i,1);else sel.push(courseId);
-  const el=document.getElementById(`cc_0_${courseId}`);
-  if(el)el.classList.toggle('selected',sel.includes(courseId));
+  var idx=state.currentCourseChild||0;
+  var sel=state.courses[idx].selected;
+  var i=sel.indexOf(courseId);
+  if(i>-1) sel.splice(i,1); else sel.push(courseId);
+  var el=document.getElementById('cc_0_'+courseId);
+  if(el) el.classList.toggle('selected',sel.indexOf(courseId)>-1);
 }
-
 function nextFromCourses(){
-  const idx=state.currentCourseChild||0;
-  const n=state.count;
-  const valid=state.courses[idx].selected.length>0;
-  const errEl=document.getElementById('err_course_0');
-  if(errEl)errEl.classList.toggle('show',!valid);
-  if(!valid)return;
+  var idx=state.currentCourseChild||0;
+  var n=state.count;
+  var valid=state.courses[idx].selected.length>0;
+  var errEl=document.getElementById('err_course_0');
+  if(errEl) errEl.classList.toggle('show',!valid);
+  if(!valid) return;
   if(idx<n-1){
-    const next=idx+1;
-    state.currentCourseChild=next;
-    const cont=document.getElementById('course-forms-container');
-    cont.innerHTML=courseFormHTML();
-    restoreCourses(next);
+    var next=idx+1; state.currentCourseChild=next;
+    var cont=document.getElementById('course-forms-container');
+    cont.innerHTML=courseFormHTML(); restoreCourses(next);
     setActiveTab('course-child-tabs',next);
-    document.getElementById('course-step-pill').textContent=`Courses: Child ${next+1} of ${n}`;
+    document.getElementById('course-step-pill').textContent='Courses: Child '+(next+1)+' of '+n;
     window.scrollTo({top:0,behavior:'smooth'});
   } else {
-    buildInfoPage();
-    goToPage('page-info',62);
+    buildInfoPage(); goToPage('page-info',62);
   }
 }
 
-/* ══════════════════════════════════════════
-   GROUP COMBINED FORM
-══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   GROUP FORM
+═══════════════════════════════════════════════════════════ */
 function buildGroupPage(){
   state.currentGroupStudent=0;
-  buildTabs('group-tabs',state.count,(i)=>{
+  buildTabs('group-tabs',state.count,function(i){
     saveGroupStudent(state.currentGroupStudent);
-    state.currentGroupStudent=i;
-    state.currentCourseChild=i;
-    renderGroupPanel(i);
-    setActiveTab('group-tabs',i);
+    state.currentGroupStudent=i; state.currentCourseChild=i;
+    renderGroupPanel(i); setActiveTab('group-tabs',i);
   });
   renderGroupPanel(0);
 }
-
 function renderGroupPanel(idx){
-  document.getElementById('group-forms-container').innerHTML=`
-    <h4 style="font-family:'Baloo 2',cursive;color:var(--glow-sky);margin-bottom:16px;">Student ${idx+1} — Child Info</h4>
-    ${childFormHTML()}
-    <div class="divider"></div>
-    <h4 style="font-family:'Baloo 2',cursive;color:var(--glow-pink);margin-bottom:16px;">Student ${idx+1} — Parent Info</h4>
-    ${parentFormHTML()}
-    <div class="divider"></div>
-    <h4 style="font-family:'Baloo 2',cursive;color:var(--glow-green);margin-bottom:16px;">Student ${idx+1} — Courses</h4>
-    ${courseFormHTML()}
-  `;
-  const ch=state.children[idx]||{};
-  const sv=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v||'';};
+  document.getElementById('group-forms-container').innerHTML=
+    '<h4 style="font-family:\'Baloo 2\',cursive;color:var(--glow-sky);margin-bottom:16px;">Student '+(idx+1)+' — Child Info</h4>'+
+    childFormHTML()+
+    '<div class="divider"></div>'+
+    '<h4 style="font-family:\'Baloo 2\',cursive;color:var(--glow-pink);margin-bottom:16px;">Student '+(idx+1)+' — Parent Info</h4>'+
+    parentFormHTML()+
+    '<div class="divider"></div>'+
+    '<h4 style="font-family:\'Baloo 2\',cursive;color:var(--glow-green);margin-bottom:16px;">Student '+(idx+1)+' — Courses</h4>'+
+    courseFormHTML();
+
+  var ch=state.children[idx]||{};
+  var par=state.parents[idx]||{};
+  var sv=function(id,v){var e=document.getElementById(id);if(e)e.value=v||'';};
   sv('c_name_0',ch.name);sv('c_gender_0',ch.gender);sv('c_school_0',ch.school);sv('c_age_0',ch.age);sv('c_medical_0',ch.medical);
-  const par=state.parents[idx]||{};
   sv('p_mother_0',par.motherName);sv('p_father_0',par.fatherName);sv('p_address_0',par.address);sv('p_phone1_0',par.phone1);sv('p_phone2_0',par.phone2);
-  const sel=(state.courses[idx]||{selected:[]}).selected;
-  COURSES.forEach(c=>{const el=document.getElementById(`cc_0_${c.id}`);if(el)el.classList.toggle('selected',sel.includes(c.id));});
+  restoreCourses(idx);
   state.currentCourseChild=idx;
 }
-
 function saveGroupStudent(idx){
-  if(idx===undefined||idx===null)return;
-  state.children[idx]={
-    name:(document.getElementById('c_name_0')||{value:''}).value.trim(),
-    gender:(document.getElementById('c_gender_0')||{value:''}).value,
-    school:(document.getElementById('c_school_0')||{value:''}).value.trim(),
-    age:(document.getElementById('c_age_0')||{value:''}).value,
-    medical:(document.getElementById('c_medical_0')||{value:''}).value.trim()
-  };
-  state.parents[idx]={
-    motherName:(document.getElementById('p_mother_0')||{value:''}).value.trim(),
-    fatherName:(document.getElementById('p_father_0')||{value:''}).value.trim(),
-    address:(document.getElementById('p_address_0')||{value:''}).value.trim(),
-    phone1:(document.getElementById('p_phone1_0')||{value:''}).value.trim(),
-    phone2:(document.getElementById('p_phone2_0')||{value:''}).value.trim()
-  };
+  if(idx===undefined||idx===null) return;
+  var g=function(id){var e=document.getElementById(id);return e?e.value.trim():'';};
+  var gv=function(id){var e=document.getElementById(id);return e?e.value:'';};
+  state.children[idx]={name:g('c_name_0'),gender:gv('c_gender_0'),school:g('c_school_0'),age:gv('c_age_0'),medical:g('c_medical_0')};
+  state.parents[idx]={motherName:g('p_mother_0'),fatherName:g('p_father_0'),address:g('p_address_0'),phone1:g('p_phone1_0'),phone2:g('p_phone2_0')};
 }
-
 function nextFromGroup(){
   saveGroupStudent(state.currentGroupStudent);
-  let ok=true,failIdx=-1;
-  for(let i=0;i<state.count;i++){
-    const ch=state.children[i]||{};
-    const par=state.parents[i]||{};
+  var ok=true; var failIdx=-1;
+  for(var i=0;i<state.count;i++){
+    var ch=state.children[i]||{};
+    var par=state.parents[i]||{};
     if(!ch.name||ch.name.length<2||!ch.gender||!ch.school||ch.school.length<2||!ch.age){ok=false;if(failIdx<0)failIdx=i;}
-    if(!par.motherName||par.motherName.length<2||!par.fatherName||par.fatherName.length<2||!par.address||par.address.length<5||!/^\d{10}$/.test(par.phone1||'')||!/^\d{10}$/.test(par.phone2||'')){ok=false;if(failIdx<0)failIdx=i;}
+    if(!par.motherName||par.motherName.length<2||!par.fatherName||par.fatherName.length<2){ok=false;if(failIdx<0)failIdx=i;}
+    if(!par.address||par.address.length<5||!/^\d{10}$/.test(par.phone1||'')||!/^\d{10}$/.test(par.phone2||'')){ok=false;if(failIdx<0)failIdx=i;}
     if((state.courses[i]||{selected:[]}).selected.length===0){ok=false;if(failIdx<0)failIdx=i;}
   }
   if(!ok){
     if(failIdx>=0){
-      state.currentGroupStudent=failIdx;state.currentCourseChild=failIdx;
-      renderGroupPanel(failIdx);setActiveTab('group-tabs',failIdx);
-      // Highlight errors
-      const ch=state.children[failIdx]||{},par=state.parents[failIdx]||{};
-      const te=(id,bad)=>{const el=document.getElementById(id);if(el)el.classList.toggle('error',bad);};
-      const em=(id,bad)=>{const el=document.getElementById(id);if(el)el.classList.toggle('show',bad);};
+      state.currentGroupStudent=failIdx; state.currentCourseChild=failIdx;
+      renderGroupPanel(failIdx); setActiveTab('group-tabs',failIdx);
+      var ch=state.children[failIdx]||{};
+      var par=state.parents[failIdx]||{};
+      var te=function(id,bad){var e=document.getElementById(id);if(e)e.classList.toggle('error',bad);};
+      var em=function(id,bad){var e=document.getElementById(id);if(e)e.classList.toggle('show',bad);};
       te('c_name_0',!ch.name||ch.name.length<2);em('err_c_name_0',!ch.name||ch.name.length<2);
       te('c_gender_0',!ch.gender);em('err_c_gender_0',!ch.gender);
       te('c_school_0',!ch.school||ch.school.length<2);em('err_c_school_0',!ch.school||ch.school.length<2);
       te('c_age_0',!ch.age);em('err_c_age_0',!ch.age);
-      const pm=par.motherName||'';te('p_mother_0',pm.length<2);em('err_p_mother_0',pm.length<2);
-      const pf=par.fatherName||'';te('p_father_0',pf.length<2);em('err_p_father_0',pf.length<2);
-      const pa=par.address||'';te('p_address_0',pa.length<5);em('err_p_address_0',pa.length<5);
-      const bp1=!/^\d{10}$/.test(par.phone1||'');te('p_phone1_0',bp1);em('err_p_phone1_0',bp1);
-      const bp2=!/^\d{10}$/.test(par.phone2||'');te('p_phone2_0',bp2);em('err_p_phone2_0',bp2);
-      const cok=(state.courses[failIdx]||{selected:[]}).selected.length>0;
-      const ce=document.getElementById('err_course_0');if(ce)ce.classList.toggle('show',!cok);
+      var pm=par.motherName||'';te('p_mother_0',pm.length<2);em('err_p_mother_0',pm.length<2);
+      var pf=par.fatherName||'';te('p_father_0',pf.length<2);em('err_p_father_0',pf.length<2);
+      var pa=par.address||'';te('p_address_0',pa.length<5);em('err_p_address_0',pa.length<5);
+      var bp1=!/^\d{10}$/.test(par.phone1||'');te('p_phone1_0',bp1);em('err_p_phone1_0',bp1);
+      var bp2=!/^\d{10}$/.test(par.phone2||'');te('p_phone2_0',bp2);em('err_p_phone2_0',bp2);
+      var cok=(state.courses[failIdx]||{selected:[]}).selected.length>0;
+      var ce=document.getElementById('err_course_0');if(ce)ce.classList.toggle('show',!cok);
     }
     return;
   }
-  buildInfoPage();
-  goToPage('page-info',62);
+  buildInfoPage(); goToPage('page-info',62);
 }
 
-/* ══════════════════════════════════════════
-   PRICING — strict one-discount rule
-   Priority: Early Bird 20% > Siblings/Group 10%
-   No stacking.
-══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   PRICING — per-student Early Bird logic
+
+   Rules:
+   - EB_MAX slots total across ALL students (not registrations)
+   - Priority per student: EB (20%) first, then siblings/group (10%)
+   - For siblings: EB covers as many students as slots allow (20% each),
+     remaining siblings get 10% siblings discount each
+   - For group: same — EB for first N students, remaining get 10% group
+   - For single: EB if slots>0 else no discount
+   - We do NOT consume slots until successful submit
+═══════════════════════════════════════════════════════════ */
 function calcTotal(){
-  let raw=0;
-  for(let i=0;i<state.count;i++){
-    (state.courses[i]||{selected:[]}).selected.forEach(cid=>{
-      const c=COURSES.find(x=>x.id===cid);if(c)raw+=c.price;
+  var n = state.count;
+
+  // Course fees per child
+  var childFees = [];
+  for(var i=0;i<n;i++){
+    var fee=0;
+    var sel=(state.courses[i]||{selected:[]}).selected;
+    sel.forEach(function(cid){
+      var c=COURSES.find(function(x){return x.id===cid;});
+      if(c) fee+=c.price;
     });
+    childFees.push(fee);
   }
-  let discRate=0,discLabel='';
-  if(earlyBirdSlots>0){
-    discRate=0.20;discLabel='⭐ Early Bird Discount (20%)';
-  } else if(state.type==='siblings'){
-    discRate=0.10;discLabel='👫 Siblings Discount (10%)';
-  } else if(state.type==='group'){
-    discRate=0.10;discLabel='👨‍👩‍👧‍👦 Group Discount (10%)';
+
+  var raw = childFees.reduce(function(a,b){return a+b;},0);
+
+  // Discount per child
+  var childDiscounts = []; // {rate, label, amount}
+  var ebAvailable = earlyBirdSlots; // don't modify real counter yet
+
+  for(var i=0;i<n;i++){
+    var rate=0, label='';
+    if(ebAvailable > 0){
+      rate=0.20; label='⭐ Early Bird (20%)';
+      ebAvailable--;
+    } else if(state.type==='siblings'){
+      rate=0.10; label='👫 Siblings (10%)';
+    } else if(state.type==='group'){
+      rate=0.10; label='👨‍👩‍👧‍👦 Group (10%)';
+    }
+    var discAmt = Math.round(childFees[i]*rate);
+    childDiscounts.push({rate:rate, label:label, amount:discAmt, fee:childFees[i], net:childFees[i]-discAmt});
   }
-  const disc=Math.round(raw*discRate);
-  return {raw,disc,discLabel,discRate,final:raw-disc};
+
+  var totalDisc = childDiscounts.reduce(function(a,b){return a+b.amount;},0);
+  return {raw:raw, totalDisc:totalDisc, final:raw-totalDisc, childDiscounts:childDiscounts, childFees:childFees};
 }
 
+/* ═══════════════════════════════════════════════════════════
+   INFO PAGE
+═══════════════════════════════════════════════════════════ */
 function buildInfoPage(){
-  const p=calcTotal();
-  const c=document.getElementById('discount-container');
-  let html='';
-  if(p.disc>0){
-    html+=`<div class="discount-banner"><h4>🎉 Discount Applied!</h4><p>✅ ${p.discLabel}: −₹${p.disc.toLocaleString()}</p></div>`;
-  } else if(earlyBirdSlots<=0&&state.type==='single'){
-    html+=`<div class="discount-banner" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);">
-      <h4 style="color:var(--text-muted);">No Discount Applicable</h4>
-      <p>Early Bird slots are full. Register siblings or a group to avail 10% off.</p></div>`;
+  var p = calcTotal();
+  var n = state.count;
+  var c = document.getElementById('discount-container');
+  var html = '';
+
+  if(p.totalDisc > 0){
+    html += '<div class="discount-banner"><h4>🎉 Discounts Applied!</h4>';
+    html += '<table class="child-disc-table"><thead><tr><th>Child</th><th>Course Fee</th><th>Discount</th><th>Payable</th></tr></thead><tbody>';
+    p.childDiscounts.forEach(function(d,i){
+      var tagClass = d.rate===0.20?'tag-eb':(d.rate===0.10?(state.type==='siblings'?'tag-sib':'tag-grp'):'tag-none');
+      var labelHtml = d.label ? ('<span class="'+tagClass+'">'+d.label+'</span>') : '<span class="tag-none">—</span>';
+      html += '<tr><td>Child '+(i+1)+'</td><td>₹'+d.fee.toLocaleString()+'</td><td>'+labelHtml+(d.amount>0?' <strong>−₹'+d.amount.toLocaleString()+'</strong>':'')+'</td><td>₹'+d.net.toLocaleString()+'</td></tr>';
+    });
+    html += '</tbody></table></div>';
+  } else {
+    html += '<div class="discount-banner" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.12);"><h4 style="color:var(--text-muted);">No Discount Available</h4><p>Early Bird slots are full. Siblings/Group discount applies to sibling or group registrations only.</p></div>';
   }
-  html+=`<div class="glass" style="padding:16px 20px;border-radius:14px;margin-bottom:18px;">
-    <h4 style="color:var(--glow-sky);margin-bottom:10px;">💰 Fee Summary</h4>
-    <div class="info-row"><span class="label">Subtotal</span><span class="val">₹${p.raw.toLocaleString()}</span></div>
-    ${p.disc>0?`<div class="info-row"><span class="label">${p.discLabel}</span><span class="val" style="color:#4ade80;">−₹${p.disc.toLocaleString()}</span></div>`:''}
-    <div class="info-row" style="border-top:1px solid rgba(255,255,255,0.1);margin-top:8px;padding-top:12px;">
-      <span class="label" style="font-weight:700;color:#fff;">Total Payable</span>
-      <span class="val" style="color:var(--glow-green);font-size:1.1rem;">₹${p.final.toLocaleString()}</span>
-    </div>
-  </div>`;
-  c.innerHTML=html;
+
+  html += '<div class="glass" style="padding:16px 20px;border-radius:14px;margin-bottom:18px;">';
+  html += '<h4 style="color:var(--glow-sky);margin-bottom:10px;">💰 Fee Summary</h4>';
+  html += '<div class="info-row"><span class="lbl">Course Fees Total</span><span class="val">₹'+p.raw.toLocaleString()+'</span></div>';
+  if(p.totalDisc>0) html += '<div class="info-row"><span class="lbl">Total Discount</span><span class="val" style="color:var(--glow-green);">−₹'+p.totalDisc.toLocaleString()+'</span></div>';
+  html += '<div class="info-row" style="border-top:1px solid rgba(255,255,255,0.1);margin-top:8px;padding-top:12px;"><span class="lbl" style="font-weight:700;color:#fff;">Total Payable</span><span class="val" style="color:var(--glow-green);font-size:1.1rem;">₹'+p.final.toLocaleString()+'</span></div>';
+  html += '</div>';
+  c.innerHTML = html;
 }
 
-/* ══════════════════════════════════════════
-   ACKNOWLEDGEMENT
-══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   ACKNOWLEDGEMENT → REVIEW
+═══════════════════════════════════════════════════════════ */
 function goToReview(){
   if(!document.getElementById('consent-checkbox').checked){
     alert('Please check the consent box to proceed.');return;
@@ -1025,125 +1177,142 @@ function goToReview(){
   goToPage('page-review',90);
 }
 
-/* ══════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════
    REVIEW PAGE
-══════════════════════════════════════════ */
+═══════════════════════════════════════════════════════════ */
 function buildReviewPage(){
-  const p=calcTotal();
-  let html='';
-  html+=`<div class="review-section">
-    <h4>Registration Info</h4>
-    <div class="review-row"><span class="rk">Type</span><span class="rv">${state.type.charAt(0).toUpperCase()+state.type.slice(1)}</span></div>
-    <div class="review-row"><span class="rk">Children</span><span class="rv">${state.count}</span></div>
-  </div>`;
-  for(let i=0;i<state.count;i++){
-    const ch=state.children[i];
-    const par=state.type==='group'?state.parents[i]:state.parents[0];
-    const sel=state.courses[i].selected.map(id=>{const c=COURSES.find(x=>x.id===id);return c?`${c.icon} ${c.name} (₹${c.price})`:id;});
-    html+=`<div class="review-section">
-      <h4>Child ${i+1}: ${ch.name}</h4>
-      <div class="review-row"><span class="rk">Gender</span><span class="rv">${ch.gender}</span></div>
-      <div class="review-row"><span class="rk">Age</span><span class="rv">${ch.age} yrs</span></div>
-      <div class="review-row"><span class="rk">School</span><span class="rv">${ch.school}</span></div>
-      ${ch.medical?`<div class="review-row"><span class="rk">Medical</span><span class="rv">${ch.medical}</span></div>`:''}
-      <div class="review-row"><span class="rk">Mother</span><span class="rv">${par.motherName}</span></div>
-      <div class="review-row"><span class="rk">Father</span><span class="rv">${par.fatherName}</span></div>
-      <div class="review-row"><span class="rk">Phone 1</span><span class="rv">${par.phone1}</span></div>
-      <div class="review-row"><span class="rk">Phone 2</span><span class="rv">${par.phone2}</span></div>
-      <div class="review-row"><span class="rk">Address</span><span class="rv">${par.address}</span></div>
-      <div class="review-row"><span class="rk">Courses</span><span class="rv">${sel.join(', ')}</span></div>
-    </div>`;
+  var p=calcTotal();
+  var html='';
+  html+='<div class="review-section"><h4>Registration Info</h4>'+
+    '<div class="review-row"><span class="rk">Type</span><span class="rv">'+state.type.charAt(0).toUpperCase()+state.type.slice(1)+'</span></div>'+
+    '<div class="review-row"><span class="rk">Children</span><span class="rv">'+state.count+'</span></div></div>';
+
+  for(var i=0;i<state.count;i++){
+    var ch=state.children[i];
+    var par=state.type==='group'?state.parents[i]:state.parents[0];
+    var sel=state.courses[i].selected.map(function(id){
+      var c=COURSES.find(function(x){return x.id===id;}); return c?(c.icon+' '+c.name+' (₹'+c.price+')'):id;
+    });
+    var d=p.childDiscounts[i];
+    html+='<div class="review-section"><h4>Child '+(i+1)+': '+ch.name+'</h4>'+
+      '<div class="review-row"><span class="rk">Gender</span><span class="rv">'+ch.gender+'</span></div>'+
+      '<div class="review-row"><span class="rk">Age</span><span class="rv">'+ch.age+' yrs</span></div>'+
+      '<div class="review-row"><span class="rk">School</span><span class="rv">'+ch.school+'</span></div>'+
+      (ch.medical?'<div class="review-row"><span class="rk">Medical</span><span class="rv">'+ch.medical+'</span></div>':'')+
+      '<div class="review-row"><span class="rk">Mother</span><span class="rv">'+par.motherName+'</span></div>'+
+      '<div class="review-row"><span class="rk">Father</span><span class="rv">'+par.fatherName+'</span></div>'+
+      '<div class="review-row"><span class="rk">Phone 1</span><span class="rv">'+par.phone1+'</span></div>'+
+      '<div class="review-row"><span class="rk">Phone 2</span><span class="rv">'+par.phone2+'</span></div>'+
+      '<div class="review-row"><span class="rk">Address</span><span class="rv">'+par.address+'</span></div>'+
+      '<div class="review-row"><span class="rk">Courses</span><span class="rv">'+sel.join(', ')+'</span></div>'+
+      '<div class="review-row"><span class="rk">Course Fee</span><span class="rv">₹'+d.fee.toLocaleString()+'</span></div>'+
+      (d.amount>0?'<div class="review-row"><span class="rk">'+d.label+'</span><span class="rv" style="color:var(--glow-green);">−₹'+d.amount.toLocaleString()+'</span></div>':'')+
+      '<div class="review-row"><span class="rk" style="font-weight:700;">Payable (Child '+(i+1)+')</span><span class="rv" style="font-weight:800;color:var(--glow-green);">₹'+d.net.toLocaleString()+'</span></div>'+
+    '</div>';
   }
-  html+=`<div class="total-box">
-    <div class="total-label">Total Payable Amount</div>
-    <div class="total-amount">₹${p.final.toLocaleString()}</div>
-    ${p.disc>0?`<div class="discount-note">You saved ₹${p.disc.toLocaleString()} 🎉</div>`:''}
-  </div>`;
-  if(state.specialRequest){
-    html+=`<div class="review-section"><h4>Special Requests</h4><p style="font-size:0.88rem;color:var(--text-muted);">${state.specialRequest}</p></div>`;
-  }
+
+  html+='<div class="total-box">'+
+    '<div class="total-label">Total Payable Amount</div>'+
+    '<div class="total-amount">₹'+p.final.toLocaleString()+'</div>'+
+    (p.totalDisc>0?'<div class="discount-note">You saved ₹'+p.totalDisc.toLocaleString()+' 🎉</div>':'')+
+  '</div>';
+
+  if(state.specialRequest) html+='<div class="review-section"><h4>Special Requests</h4><p style="font-size:0.88rem;color:var(--text-muted);">'+state.specialRequest+'</p></div>';
+
   document.getElementById('review-content').innerHTML=html;
 }
 
-/* ══════════════════════════════════════════
-   SUBMIT — fetch to Formspree, then decrement EB
-══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   SUBMIT — fetch to Formspree, then decrement EB per student
+═══════════════════════════════════════════════════════════ */
 function submitRegistration(){
-  const btn = document.querySelector('#page-review .btn-primary');
-  btn.disabled = true;
-  btn.textContent = '⏳ Submitting…';
+  var btn=document.getElementById('submit-btn');
+  btn.disabled=true;
+  btn.textContent='⏳ Submitting…';
 
-  const formData = new FormData();
+  var formData=new FormData();
   formData.append('Registration_Summary', buildSummaryString());
-  formData.append('_subject', '🌸 New Camp Registration – Little Flowers 2026');
+  formData.append('_subject','🌸 New Camp Registration – Little Flowers 2026');
 
-  fetch('https://formspree.io/f/mgoprplj', {
-    method: 'POST',
-    body: formData,
-    headers: { 'Accept': 'application/json' }
+  fetch('https://formspree.io/f/mgoprplj',{
+    method:'POST',
+    body:formData,
+    headers:{'Accept':'application/json'}
   })
   .then(function(response){
     if(response.ok){
-      // SUCCESS — now decrement the early bird slot
-      if(earlyBirdSlots > 0){
-        earlyBirdSlots--;
-        localStorage.setItem('lf_eb_slots', String(earlyBirdSlots));
+      // Count how many students got EB discount in this registration
+      var p=calcTotal();
+      var ebUsed=0;
+      p.childDiscounts.forEach(function(d){if(d.rate===0.20) ebUsed++;});
+      // Decrement slots by number of students who used EB
+      if(ebUsed>0){
+        earlyBirdSlots=Math.max(0, earlyBirdSlots-ebUsed);
+        localStorage.setItem('lf_eb_v3', String(earlyBirdSlots));
         updateEB();
       }
-      goToPage('page-success', 100);
+      goToPage('page-success',100);
+      // Launch confetti after a short delay so page transition completes
+      setTimeout(function(){ launchConfetti(); }, 300);
     } else {
-      btn.disabled = false;
-      btn.innerHTML = '🎉 Confirm & Submit Registration';
-      alert('Submission failed. Please check your internet connection and try again.');
+      btn.disabled=false;
+      btn.textContent='🎉 Confirm & Submit Registration';
+      alert('Submission failed. Please check your connection and try again.');
     }
   })
   .catch(function(){
-    btn.disabled = false;
-    btn.innerHTML = '🎉 Confirm & Submit Registration';
+    btn.disabled=false;
+    btn.textContent='🎉 Confirm & Submit Registration';
     alert('Network error. Please try again.');
   });
 }
 
-/* ══════════════════════════════════════════
-   SUMMARY STRING
-══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   SUMMARY STRING (for Formspree email)
+═══════════════════════════════════════════════════════════ */
 function buildSummaryString(){
-  const p=calcTotal();
-  const hr='─'.repeat(56);
-  const row=(k,v)=>`│ ${k.padEnd(22)} │ ${String(v).padEnd(29)} │`;
-  let s='LITTLE FLOWERS SUMMER CAMP 2026 — REGISTRATION\n';
+  var p=calcTotal();
+  var hr='────────────────────────────────────────────────────────';
+  var row=function(k,v){return '│ '+(k+'                      ').slice(0,22)+' │ '+(String(v)+'                             ').slice(0,29)+' │';};
+  var s='LITTLE FLOWERS SUMMER CAMP 2026 — REGISTRATION\n';
   s+='Krishnanagar Society, Gozaria, Gujarat\n';
-  s+=`${hr}\n`;
-  s+=`│ REGISTRATION TYPE       │ ${state.type.toUpperCase().padEnd(29)} │\n`;
-  s+=`│ NUMBER OF CHILDREN      │ ${String(state.count).padEnd(29)} │\n`;
-  s+=`${hr}\n`;
-  for(let i=0;i<state.count;i++){
-    const ch=state.children[i];
-    const par=state.type==='group'?state.parents[i]:state.parents[0];
-    const sel=state.courses[i].selected.map(id=>{const c=COURSES.find(x=>x.id===id);return c?`${c.name} (Rs.${c.price})`:id;}).join(', ');
-    s+=`\nCHILD ${i+1}\n${hr}\n`;
+  s+=hr+'\n';
+  s+=row('REGISTRATION TYPE',state.type.toUpperCase())+'\n';
+  s+=row('NUMBER OF CHILDREN',String(state.count))+'\n';
+  s+=hr+'\n';
+  for(var i=0;i<state.count;i++){
+    var ch=state.children[i];
+    var par=state.type==='group'?state.parents[i]:state.parents[0];
+    var sel=state.courses[i].selected.map(function(id){
+      var c=COURSES.find(function(x){return x.id===id;});return c?(c.name+' (Rs.'+c.price+')'):id;
+    }).join(', ');
+    var d=p.childDiscounts[i];
+    s+='\nCHILD '+(i+1)+'\n'+hr+'\n';
     s+=row('Name',ch.name)+'\n';
     s+=row('Gender',ch.gender)+'\n';
     s+=row('Age',ch.age+' yrs')+'\n';
     s+=row('School',ch.school)+'\n';
-    if(ch.medical)s+=row('Medical Notes',ch.medical)+'\n';
+    if(ch.medical) s+=row('Medical Notes',ch.medical)+'\n';
     s+=row("Mother's Name",par.motherName)+'\n';
     s+=row("Father's Name",par.fatherName)+'\n';
     s+=row('Primary Phone',par.phone1)+'\n';
     s+=row('Alternate Phone',par.phone2)+'\n';
     s+=row('Address',par.address)+'\n';
     s+=row('Courses Selected',sel)+'\n';
-    s+=`${hr}\n`;
+    s+=row('Course Fee','Rs.'+d.fee.toLocaleString())+'\n';
+    if(d.amount>0) s+=row('Discount ('+d.label+')','-Rs.'+d.amount.toLocaleString())+'\n';
+    s+=row('Payable','Rs.'+d.net.toLocaleString())+'\n';
+    s+=hr+'\n';
   }
-  s+=`\nFEE SUMMARY\n${hr}\n`;
+  s+='\nFEE SUMMARY\n'+hr+'\n';
   s+=row('Subtotal','Rs.'+p.raw.toLocaleString())+'\n';
-  if(p.disc>0)s+=row('Discount Applied','-Rs.'+p.disc.toLocaleString())+'\n';
+  if(p.totalDisc>0) s+=row('Total Discount','-Rs.'+p.totalDisc.toLocaleString())+'\n';
   s+=row('TOTAL PAYABLE','Rs.'+p.final.toLocaleString())+'\n';
-  s+=`${hr}\n`;
-  if(state.specialRequest)s+=`\nSPECIAL REQUESTS:\n${state.specialRequest}\n`;
-  s+=`\nEarly Bird Slots Remaining: ${earlyBirdSlots}\n`;
-  s+=`Consent Given: YES\n`;
-  s+=`Submitted: ${new Date().toLocaleString('en-IN')}\n`;
+  s+=hr+'\n';
+  if(state.specialRequest) s+='\nSPECIAL REQUESTS:\n'+state.specialRequest+'\n';
+  s+='\nEarly Bird Slots Remaining After This Reg: '+(earlyBirdSlots)+'\n';
+  s+='Consent Given: YES\n';
+  s+='Submitted: '+new Date().toLocaleString('en-IN')+'\n';
   return s;
 }
 </script>
