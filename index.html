@@ -750,9 +750,23 @@ const QUOTES = [
 /* ═══════════════════════════════════════════════════════
    EARLY BIRD
 ═══════════════════════════════════════════════════════ */
-let earlyBirdSlots = parseInt(localStorage.getItem('eb_slots') ?? '8');
+const EB_MAX = 8;
+let earlyBirdSlots = Math.min(
+  parseInt(localStorage.getItem('eb_slots_v2') ?? String(EB_MAX)),
+  EB_MAX
+);
 function updateEB(){
-  document.getElementById('eb-count').textContent = earlyBirdSlots;
+  const badge = document.getElementById('early-bird-badge');
+  const countEl = document.getElementById('eb-count');
+  if(earlyBirdSlots > 0){
+    countEl.textContent = earlyBirdSlots;
+    badge.style.display = '';
+  } else {
+    badge.textContent = '🔒 Early Bird Full';
+    badge.style.background = 'rgba(255,255,255,0.05)';
+    badge.style.borderColor = 'rgba(255,255,255,0.15)';
+    badge.style.color = 'var(--text-muted)';
+  }
 }
 updateEB();
 
@@ -1539,15 +1553,33 @@ function buildReviewPage(){
   html += `<div class="total-box">
     <div class="total-label">Total Payable Amount</div>
     <div class="total-amount">₹${p.final.toLocaleString()}</div>
-    ${p.disc>0?`<div class="discount-note">You saved ₹${p.disc.toLocaleString()} 🎉</div>`:''}
-  </div>`;
+    // Formspree submit → intercept, decrement EB, then POST via fetch
+  document.getElementById('formspree-form').onsubmit = function(e){
+    e.preventDefault();
 
-  if(state.specialRequest){
-    html += `<div class="review-section">
-      <h4>Special Requests</h4>
-      <p style="font-size:0.88rem;color:var(--text-muted);">${state.specialRequest}</p>
-    </div>`;
-  }
+    // Decrement EB slot on every successful registration
+    if(earlyBirdSlots > 0){
+      earlyBirdSlots--;
+      localStorage.setItem('eb_slots_v2', earlyBirdSlots);
+      updateEB();
+    }
+
+    document.getElementById('hidden-summary').value = buildSummaryString();
+
+    const form = document.getElementById('formspree-form');
+    const data = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(r => {
+      if(r.ok){ goToPage('page-success', 100); }
+      else { alert('Submission failed. Please check your connection and try again.'); }
+    })
+    .catch(()=>{ alert('Network error. Please try again.'); });
+  };
 
   document.getElementById('review-content').innerHTML = html;
   document.getElementById('hidden-summary').value = buildSummaryString();
