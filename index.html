@@ -6,7 +6,6 @@
 <title>Little Flowers Summer Camp 2026 – Gozaria</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-/* ───── VARIABLES ───── */
 :root {
   --bg-deep: #050d1a;
   --bg-mid:  #071428;
@@ -22,127 +21,38 @@
   --radius: 20px;
   --card-shadow: 0 8px 40px rgba(0,0,0,0.4);
 }
-
-/* ───── RESET ───── */
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  font-family:'Nunito',sans-serif;
-  background:var(--bg-deep);
-  color:var(--text-main);
-  min-height:100vh;
-  overflow-x:hidden;
-}
+body{font-family:'Nunito',sans-serif;background:var(--bg-deep);color:var(--text-main);min-height:100vh;overflow-x:hidden;}
 h1,h2,h3,h4{font-family:'Baloo 2',cursive;}
-
-/* ───── CANVAS BACKGROUND ───── */
-#bg-canvas{
-  position:fixed;top:0;left:0;width:100%;height:100%;
-  z-index:0;pointer-events:none;
-}
-
-/* ───── LAYOUT ───── */
-#app{
-  position:relative;z-index:1;
-  max-width:860px;margin:0 auto;
-  padding:20px 16px 60px;
-}
-
-/* ───── PAGES ───── */
+#bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+#app{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:20px 16px 60px;}
 .page{display:none;animation:fadeUp 0.5s ease both}
 .page.active{display:block}
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(28px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-/* ───── GLASS CARD ───── */
-.glass{
-  background:var(--glass);
-  border:1px solid var(--glass-border);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  border-radius:var(--radius);
-  box-shadow:var(--card-shadow);
-}
-
-/* ───── HEADER BADGE ───── */
-.top-bar{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:14px 22px;margin-bottom:24px;
-}
-.logo-text{font-family:'Baloo 2',cursive;font-size:1.15rem;font-weight:800;
-  background:linear-gradient(135deg,var(--glow-green),var(--glow-sky));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-#early-bird-badge{
-  font-size:0.82rem;font-weight:700;padding:6px 14px;
-  background:linear-gradient(135deg,rgba(251,191,36,0.2),rgba(244,114,182,0.2));
-  border:1px solid rgba(251,191,36,0.4);border-radius:30px;
-  color:var(--glow-amber);cursor:pointer;white-space:nowrap;
-  transition:all 0.3s;
-}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.glass{background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:var(--radius);box-shadow:var(--card-shadow);}
+.top-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;margin-bottom:24px;}
+.logo-text{font-family:'Baloo 2',cursive;font-size:1.15rem;font-weight:800;background:linear-gradient(135deg,var(--glow-green),var(--glow-sky));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+#early-bird-badge{font-size:0.82rem;font-weight:700;padding:6px 14px;background:linear-gradient(135deg,rgba(251,191,36,0.2),rgba(244,114,182,0.2));border:1px solid rgba(251,191,36,0.4);border-radius:30px;color:var(--glow-amber);cursor:pointer;white-space:nowrap;transition:all 0.3s;}
 #early-bird-badge:hover{background:rgba(251,191,36,0.25)}
-
-/* ───── HERO ───── */
 .hero{text-align:center;padding:48px 24px 36px;}
-.hero-icon{font-size:4.5rem;margin-bottom:12px;
-  filter:drop-shadow(0 0 20px rgba(74,222,128,0.6));
-  animation:float 4s ease-in-out infinite;
-}
+.hero-icon{font-size:4.5rem;margin-bottom:12px;filter:drop-shadow(0 0 20px rgba(74,222,128,0.6));animation:float 4s ease-in-out infinite;}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.15;margin-bottom:8px;
-  background:linear-gradient(135deg,#fff 30%,var(--glow-sky));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
+.hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.15;margin-bottom:8px;background:linear-gradient(135deg,#fff 30%,var(--glow-sky));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .hero .sub{font-size:1rem;color:var(--text-muted);margin-bottom:28px;}
-.quote-block{
-  max-width:540px;margin:0 auto 32px;
-  padding:20px 24px;border-radius:16px;
-  background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.2);
-  position:relative;
-}
-.quote-block::before{content:'\201C';font-size:4rem;line-height:1;
-  position:absolute;top:-8px;left:14px;
-  font-family:'Baloo 2',cursive;
-  color:rgba(56,189,248,0.3);
-}
+.quote-block{max-width:540px;margin:0 auto 32px;padding:20px 24px;border-radius:16px;background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.2);position:relative;}
+.quote-block::before{content:'\201C';font-size:4rem;line-height:1;position:absolute;top:-8px;left:14px;font-family:'Baloo 2',cursive;color:rgba(56,189,248,0.3);}
 #quote-text{font-size:0.97rem;font-style:italic;color:#c8dff5;line-height:1.7;}
 #quote-author{font-size:0.8rem;color:var(--text-muted);margin-top:8px;text-align:right;}
-
-/* ───── BUTTONS ───── */
-.btn{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:13px 30px;border:none;border-radius:50px;
-  font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;
-  cursor:pointer;transition:all 0.3s;text-decoration:none;
-}
-.btn-primary{
-  background:linear-gradient(135deg,var(--glow-green),#22c55e);
-  color:#062010;box-shadow:0 0 24px rgba(74,222,128,0.4);
-}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border:none;border-radius:50px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:all 0.3s;text-decoration:none;}
+.btn-primary{background:linear-gradient(135deg,var(--glow-green),#22c55e);color:#062010;box-shadow:0 0 24px rgba(74,222,128,0.4);}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(74,222,128,0.6);}
-.btn-secondary{
-  background:var(--glass);border:1px solid var(--glass-border);
-  color:var(--text-main);
-}
+.btn-secondary{background:var(--glass);border:1px solid var(--glass-border);color:var(--text-main);}
 .btn-secondary:hover{background:rgba(255,255,255,0.12);}
-.btn-danger{background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.4);color:#fca5a5;}
-.btn-sm{padding:9px 20px;font-size:0.88rem;}
 .btn-full{width:100%;justify-content:center;}
-
-/* ───── TYPE CARDS ───── */
 .type-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:16px;}
-.type-card{
-  padding:28px 20px;border-radius:18px;cursor:pointer;
-  border:2px solid transparent;transition:all 0.3s;text-align:center;
-  background:var(--glass);backdrop-filter:blur(18px);
-  position:relative;overflow:hidden;
-}
-.type-card::before{
-  content:'';position:absolute;inset:0;opacity:0;
-  transition:opacity 0.3s;
-}
+.type-card{padding:28px 20px;border-radius:18px;cursor:pointer;border:2px solid transparent;transition:all 0.3s;text-align:center;background:var(--glass);backdrop-filter:blur(18px);position:relative;overflow:hidden;}
+.type-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.3s;}
 .type-card.green::before{background:radial-gradient(circle at 50% 0%,rgba(74,222,128,0.12),transparent 70%);}
 .type-card.sky::before{background:radial-gradient(circle at 50% 0%,rgba(56,189,248,0.12),transparent 70%);}
 .type-card.pink::before{background:radial-gradient(circle at 50% 0%,rgba(244,114,182,0.12),transparent 70%);}
@@ -153,42 +63,18 @@ h1,h2,h3,h4{font-family:'Baloo 2',cursive;}
 .type-card .icon{font-size:2.8rem;margin-bottom:10px;}
 .type-card h3{font-size:1.15rem;font-weight:700;margin-bottom:6px;}
 .type-card p{font-size:0.82rem;color:var(--text-muted);line-height:1.5;}
-.type-card .badge{
-  display:inline-block;margin-top:10px;padding:3px 12px;border-radius:20px;
-  font-size:0.75rem;font-weight:700;
-}
+.type-card .badge{display:inline-block;margin-top:10px;padding:3px 12px;border-radius:20px;font-size:0.75rem;font-weight:700;}
 .badge-green{background:rgba(74,222,128,0.15);color:var(--glow-green);border:1px solid rgba(74,222,128,0.3);}
 .badge-sky{background:rgba(56,189,248,0.15);color:var(--glow-sky);border:1px solid rgba(56,189,248,0.3);}
 .badge-pink{background:rgba(244,114,182,0.15);color:var(--glow-pink);border:1px solid rgba(244,114,182,0.3);}
-
-/* ───── SECTION TITLE ───── */
 .section-head{margin-bottom:24px;}
 .section-head h2{font-size:1.6rem;font-weight:800;}
 .section-head p{color:var(--text-muted);font-size:0.9rem;margin-top:4px;}
-.step-pill{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:4px 14px;border-radius:20px;font-size:0.78rem;font-weight:700;
-  background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.25);
-  color:var(--glow-sky);margin-bottom:10px;
-}
-
-/* ───── FORM ───── */
+.step-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:20px;font-size:0.78rem;font-weight:700;background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.25);color:var(--glow-sky);margin-bottom:10px;}
 .form-group{margin-bottom:18px;}
-label{display:block;font-size:0.82rem;font-weight:700;color:var(--text-muted);
-  text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
-input,select,textarea{
-  width:100%;padding:12px 16px;
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.12);
-  border-radius:12px;color:var(--text-main);
-  font-family:'Nunito',sans-serif;font-size:0.95rem;
-  transition:border 0.25s,box-shadow 0.25s;
-  outline:none;
-}
-input:focus,select:focus,textarea:focus{
-  border-color:rgba(56,189,248,0.5);
-  box-shadow:0 0 0 3px rgba(56,189,248,0.1);
-}
+label{display:block;font-size:0.82rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+input,select,textarea{width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:12px;color:var(--text-main);font-family:'Nunito',sans-serif;font-size:0.95rem;transition:border 0.25s,box-shadow 0.25s;outline:none;}
+input:focus,select:focus,textarea:focus{border-color:rgba(56,189,248,0.5);box-shadow:0 0 0 3px rgba(56,189,248,0.1);}
 input.error,select.error,textarea.error{border-color:rgba(239,68,68,0.6)!important;}
 select option{background:#0d1f38;}
 textarea{resize:none;line-height:1.6;}
@@ -196,217 +82,106 @@ textarea{resize:none;line-height:1.6;}
 @media(max-width:520px){.form-row{grid-template-columns:1fr;}}
 .error-msg{color:#f87171;font-size:0.78rem;margin-top:4px;display:none;}
 .error-msg.show{display:block;}
-
-/* ───── COURSE CARDS ───── */
 .course-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:6px;}
-.course-card{
-  border-radius:14px;padding:18px 16px;cursor:pointer;
-  border:2px solid rgba(255,255,255,0.1);
-  background:rgba(255,255,255,0.04);
-  transition:all 0.25s;position:relative;overflow:hidden;
-}
+.course-card{border-radius:14px;padding:18px 16px;cursor:pointer;border:2px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);transition:all 0.25s;position:relative;overflow:hidden;}
 .course-card:hover{border-color:rgba(74,222,128,0.4);background:rgba(74,222,128,0.05);}
-.course-card.selected{
-  border-color:var(--glow-green);
-  background:rgba(74,222,128,0.1);
-  box-shadow:0 0 20px rgba(74,222,128,0.15);
-}
+.course-card.selected{border-color:var(--glow-green);background:rgba(74,222,128,0.1);box-shadow:0 0 20px rgba(74,222,128,0.15);}
 .course-card.premium{border-color:rgba(251,191,36,0.25);}
 .course-card.premium:hover{border-color:rgba(251,191,36,0.5);background:rgba(251,191,36,0.06);}
-.course-card.premium.selected{
-  border-color:var(--glow-amber);background:rgba(251,191,36,0.1);
-  box-shadow:0 0 20px rgba(251,191,36,0.15);
-}
-.course-card .check{
-  position:absolute;top:10px;right:10px;
-  width:22px;height:22px;border-radius:50%;
-  background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,255,255,0.2);
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.75rem;transition:all 0.2s;
-}
+.course-card.premium.selected{border-color:var(--glow-amber);background:rgba(251,191,36,0.1);box-shadow:0 0 20px rgba(251,191,36,0.15);}
+.course-card .check{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:0.75rem;transition:all 0.2s;}
 .course-card.selected .check{background:var(--glow-green);border-color:var(--glow-green);color:#042010;}
 .course-card.premium.selected .check{background:var(--glow-amber);border-color:var(--glow-amber);color:#1a0c00;}
 .course-card .c-icon{font-size:2rem;margin-bottom:8px;}
 .course-card .c-name{font-family:'Baloo 2',cursive;font-weight:700;font-size:0.95rem;margin-bottom:4px;}
 .course-card .c-desc{font-size:0.74rem;color:var(--text-muted);line-height:1.5;}
-.course-card .c-price{
-  margin-top:10px;font-weight:700;font-size:0.85rem;
-  color:var(--glow-green);
-}
+.course-card .c-price{margin-top:10px;font-weight:700;font-size:0.85rem;color:var(--glow-green);}
 .course-card.premium .c-price{color:var(--glow-amber);}
-.premium-label{
-  display:inline-block;padding:2px 8px;border-radius:8px;font-size:0.7rem;font-weight:700;
-  background:rgba(251,191,36,0.15);color:var(--glow-amber);border:1px solid rgba(251,191,36,0.3);
-  margin-bottom:6px;
-}
-
-/* ───── INFO PAGE ───── */
-.discount-banner{
-  padding:16px 20px;border-radius:14px;margin-bottom:18px;
-  background:linear-gradient(135deg,rgba(74,222,128,0.1),rgba(56,189,248,0.1));
-  border:1px solid rgba(74,222,128,0.25);
-}
+.premium-label{display:inline-block;padding:2px 8px;border-radius:8px;font-size:0.7rem;font-weight:700;background:rgba(251,191,36,0.15);color:var(--glow-amber);border:1px solid rgba(251,191,36,0.3);margin-bottom:6px;}
+.discount-banner{padding:16px 20px;border-radius:14px;margin-bottom:18px;background:linear-gradient(135deg,rgba(74,222,128,0.1),rgba(56,189,248,0.1));border:1px solid rgba(74,222,128,0.25);}
 .discount-banner h4{color:var(--glow-green);font-size:1rem;margin-bottom:4px;}
 .discount-banner p{font-size:0.85rem;color:var(--text-muted);}
-.info-row{display:flex;justify-content:space-between;padding:10px 0;
-  border-bottom:1px solid rgba(255,255,255,0.06);font-size:0.9rem;}
+.info-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:0.9rem;}
 .info-row:last-child{border-bottom:none;}
 .info-row .label{color:var(--text-muted);}
 .info-row .val{font-weight:700;color:var(--text-main);}
-
-/* ───── ACKNOWLEDGE ───── */
-.consent-box{
-  padding:20px;border-radius:14px;border:1px solid rgba(251,191,36,0.3);
-  background:rgba(251,191,36,0.05);
-}
+.consent-box{padding:20px;border-radius:14px;border:1px solid rgba(251,191,36,0.3);background:rgba(251,191,36,0.05);}
 .consent-check-row{display:flex;align-items:flex-start;gap:14px;margin-top:14px;}
-.consent-check-row input[type=checkbox]{
-  width:22px;height:22px;flex-shrink:0;margin-top:2px;
-  accent-color:var(--glow-green);cursor:pointer;
-}
-.consent-check-row label{font-size:0.88rem;color:#c8dff5;line-height:1.6;cursor:pointer;
-  text-transform:none;letter-spacing:normal;font-weight:400;}
-
-/* ───── REVIEW PAGE ───── */
+.consent-check-row input[type=checkbox]{width:22px;height:22px;flex-shrink:0;margin-top:2px;accent-color:var(--glow-green);cursor:pointer;}
+.consent-check-row label{font-size:0.88rem;color:#c8dff5;line-height:1.6;cursor:pointer;text-transform:none;letter-spacing:normal;font-weight:400;}
 .review-section{margin-bottom:20px;}
-.review-section h4{font-size:0.9rem;text-transform:uppercase;letter-spacing:0.08em;
-  color:var(--glow-sky);margin-bottom:10px;padding-bottom:6px;
-  border-bottom:1px solid rgba(56,189,248,0.2);}
-.review-row{display:flex;justify-content:space-between;padding:7px 0;
-  font-size:0.88rem;border-bottom:1px solid rgba(255,255,255,0.04);}
+.review-section h4{font-size:0.9rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--glow-sky);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(56,189,248,0.2);}
+.review-row{display:flex;justify-content:space-between;padding:7px 0;font-size:0.88rem;border-bottom:1px solid rgba(255,255,255,0.04);}
 .review-row .rk{color:var(--text-muted);}
 .review-row .rv{font-weight:600;text-align:right;max-width:60%;}
-.total-box{
-  padding:18px;border-radius:14px;text-align:center;
-  background:linear-gradient(135deg,rgba(74,222,128,0.12),rgba(56,189,248,0.08));
-  border:1px solid rgba(74,222,128,0.3);margin:20px 0;
-}
+.total-box{padding:18px;border-radius:14px;text-align:center;background:linear-gradient(135deg,rgba(74,222,128,0.12),rgba(56,189,248,0.08));border:1px solid rgba(74,222,128,0.3);margin:20px 0;}
 .total-box .total-label{font-size:0.85rem;color:var(--text-muted);}
-.total-box .total-amount{font-size:2.2rem;font-family:'Baloo 2',cursive;font-weight:800;
-  color:var(--glow-green);}
+.total-box .total-amount{font-size:2.2rem;font-family:'Baloo 2',cursive;font-weight:800;color:var(--glow-green);}
 .total-box .discount-note{font-size:0.8rem;color:var(--glow-amber);margin-top:4px;}
-
-/* ───── COUNT SELECTOR ───── */
 .count-selector{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;}
-.count-btn{
-  width:52px;height:52px;border-radius:12px;border:2px solid rgba(255,255,255,0.1);
-  background:var(--glass);font-family:'Baloo 2',cursive;font-size:1.3rem;font-weight:700;
-  color:var(--text-main);cursor:pointer;transition:all 0.2s;
-}
+.count-btn{width:52px;height:52px;border-radius:12px;border:2px solid rgba(255,255,255,0.1);background:var(--glass);font-family:'Baloo 2',cursive;font-size:1.3rem;font-weight:700;color:var(--text-main);cursor:pointer;transition:all 0.2s;}
 .count-btn:hover{border-color:rgba(56,189,248,0.5);background:rgba(56,189,248,0.1);}
 .count-btn.active{border-color:var(--glow-sky);background:rgba(56,189,248,0.15);color:var(--glow-sky);}
-
-/* ───── NAV BUTTONS ───── */
 .nav-bar{display:flex;gap:12px;margin-top:28px;justify-content:flex-end;}
 .nav-bar .btn-secondary{min-width:100px;}
-
-/* ───── PROGRESS ───── */
-.progress-strip{
-  height:4px;background:rgba(255,255,255,0.07);border-radius:2px;
-  margin-bottom:28px;overflow:hidden;
-}
-.progress-fill{height:100%;border-radius:2px;transition:width 0.5s ease;
-  background:linear-gradient(90deg,var(--glow-green),var(--glow-sky));}
-
-/* ───── OVERLAY ───── */
-.overlay{
-  display:none;position:fixed;inset:0;z-index:100;
-  background:rgba(0,0,0,0.7);backdrop-filter:blur(10px);
-  align-items:center;justify-content:center;
-}
+.progress-strip{height:4px;background:rgba(255,255,255,0.07);border-radius:2px;margin-bottom:28px;overflow:hidden;}
+.progress-fill{height:100%;border-radius:2px;transition:width 0.5s ease;background:linear-gradient(90deg,var(--glow-green),var(--glow-sky));}
+.overlay{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.7);backdrop-filter:blur(10px);align-items:center;justify-content:center;}
 .overlay.show{display:flex;}
-.overlay-box{
-  max-width:380px;width:90%;padding:36px;border-radius:24px;text-align:center;
-}
+.overlay-box{max-width:380px;width:90%;padding:36px;border-radius:24px;text-align:center;}
 .overlay-box .ov-icon{font-size:3.5rem;margin-bottom:14px;}
 .overlay-box h3{font-size:1.4rem;font-weight:800;margin-bottom:10px;}
 .overlay-box p{font-size:0.9rem;color:var(--text-muted);line-height:1.6;}
-
-/* ───── SUCCESS ───── */
 .success-page{text-align:center;padding:48px 24px;}
 .success-page .s-icon{font-size:5rem;animation:pop 0.6s ease both;}
 @keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
 .success-page h2{font-size:2rem;font-weight:800;margin:16px 0 8px;}
 .success-page p{color:var(--text-muted);font-size:0.95rem;line-height:1.7;}
 .confetti-emoji{font-size:1.5rem;}
-
-/* ───── CHILD TAB ───── */
 .child-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
-.child-tab{
-  padding:8px 16px;border-radius:20px;font-size:0.83rem;font-weight:700;
-  border:1.5px solid rgba(255,255,255,0.12);background:var(--glass);
-  cursor:pointer;transition:all 0.2s;color:var(--text-muted);
-}
+.child-tab{padding:8px 16px;border-radius:20px;font-size:0.83rem;font-weight:700;border:1.5px solid rgba(255,255,255,0.12);background:var(--glass);cursor:pointer;transition:all 0.2s;color:var(--text-muted);}
 .child-tab.active{border-color:var(--glow-sky);color:var(--glow-sky);background:rgba(56,189,248,0.1);}
-
-/* ───── MISC ───── */
 .divider{height:1px;background:rgba(255,255,255,0.08);margin:20px 0;}
-.text-center{text-align:center;}
 .mt-8{margin-top:8px;}
-.mt-16{margin-top:16px;}
-.mb-4{margin-bottom:4px;}
 small{font-size:0.78rem;color:var(--text-muted);}
-.whatsapp-row{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:12px 20px;border-radius:12px;margin-top:10px;
-  background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.3);
-  font-size:0.88rem;color:#4ade80;text-decoration:none;
-}
+.whatsapp-row{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:12px;margin-top:10px;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.3);font-size:0.88rem;color:#4ade80;text-decoration:none;}
 </style>
 </head>
 <body>
-
-<!-- Background Canvas -->
 <canvas id="bg-canvas"></canvas>
 
-<!-- Offline Overlay -->
 <div class="overlay" id="offline-overlay">
   <div class="glass overlay-box">
     <div class="ov-icon">📡</div>
     <h3>Connection Required</h3>
-    <p>Please connect to the internet before continuing with your registration. This ensures your form is submitted successfully.</p>
+    <p>Please connect to the internet before continuing. This ensures your form is submitted successfully.</p>
     <button class="btn btn-secondary mt-8" onclick="document.getElementById('offline-overlay').classList.remove('show')">Dismiss</button>
   </div>
 </div>
 
-<!-- Main App -->
 <div id="app">
-
-  <!-- TOP BAR -->
   <div class="glass top-bar">
     <span class="logo-text">🌸 Little Flowers Camp 2026</span>
     <span id="early-bird-badge">🌟 <span id="eb-count">8</span> Early Bird Slots Left!</span>
   </div>
-
-  <!-- PROGRESS BAR -->
   <div class="progress-strip"><div class="progress-fill" id="progress-fill" style="width:5%"></div></div>
 
-  <!-- ══════════════════════════════════════════════════════ -->
   <!-- PAGE 0: WELCOME -->
-  <!-- ══════════════════════════════════════════════════════ -->
   <div class="page active glass" id="page-welcome" style="padding:0;overflow:hidden;">
     <div class="hero">
       <div class="hero-icon">🌻</div>
       <h1>Little Flowers<br>Summer Camp 2026</h1>
       <p class="sub">Gozaria, Gujarat &nbsp;·&nbsp; Ages 5–14 &nbsp;·&nbsp; Mon–Sat</p>
-
       <div class="quote-block">
         <p id="quote-text">Loading…</p>
         <p id="quote-author"></p>
       </div>
-
-      <button class="btn btn-primary" id="begin-btn" onclick="handleBegin()">
-        <span>Let's Begin</span> <span>🚀</span>
-      </button>
-      <p style="font-size:0.78rem;color:var(--text-muted);margin-top:14px;">
-        📍 Krishnanagar Society, Gozaria &nbsp;·&nbsp; 2026
-      </p>
+      <button class="btn btn-primary" onclick="handleBegin()"><span>Let's Begin</span><span>🚀</span></button>
+      <p style="font-size:0.78rem;color:var(--text-muted);margin-top:14px;">📍 Krishnanagar Society, Gozaria &nbsp;·&nbsp; 🗓 June 2026</p>
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════ -->
   <!-- PAGE 1: REGISTRATION TYPE -->
-  <!-- ══════════════════════════════════════════════════════ -->
   <div class="page glass" id="page-type" style="padding:28px 24px;">
     <div class="section-head">
       <div class="step-pill">Step 1 of 7</div>
@@ -415,29 +190,24 @@ small{font-size:0.78rem;color:var(--text-muted);}
     </div>
     <div class="type-grid">
       <div class="type-card green" onclick="selectType('single')">
-        <div class="icon">👦</div>
-        <h3>Single Child</h3>
+        <div class="icon">👦</div><h3>Single Child</h3>
         <p>Registering one child for this summer's adventures.</p>
         <span class="badge badge-green">1 Child</span>
       </div>
       <div class="type-card sky" onclick="selectType('siblings')">
-        <div class="icon">👫</div>
-        <h3>Siblings</h3>
+        <div class="icon">👫</div><h3>Siblings</h3>
         <p>Two to five siblings from the same family.</p>
         <span class="badge badge-sky">2–5 · 10% Off</span>
       </div>
       <div class="type-card pink" onclick="selectType('group')">
-        <div class="icon">👨‍👩‍👧‍👦</div>
-        <h3>Group</h3>
+        <div class="icon">👨‍👩‍👧‍👦</div><h3>Group</h3>
         <p>A group of students from school, colony, or society.</p>
         <span class="badge badge-pink">3–9 · 10% Off</span>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════ -->
-  <!-- PAGE 2: COUNT SELECTOR (Siblings / Group) -->
-  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- PAGE 2: COUNT SELECTOR -->
   <div class="page glass" id="page-count" style="padding:28px 24px;">
     <div class="section-head">
       <div class="step-pill">Step 2</div>
@@ -451,9 +221,7 @@ small{font-size:0.78rem;color:var(--text-muted);}
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════ -->
-  <!-- PAGE 3: CHILD DETAILS (Single / Siblings) -->
-  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- PAGE 3: CHILD DETAILS -->
   <div class="page glass" id="page-child" style="padding:28px 24px;">
     <div class="section-head">
       <div class="step-pill" id="child-step-pill">Step 2</div>
@@ -468,9 +236,7 @@ small{font-size:0.78rem;color:var(--text-muted);}
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════ -->
-  <!-- PAGE 4: PARENT DETAILS (Single / Siblings) -->
-  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- PAGE 4: PARENT DETAILS -->
   <div class="page glass" id="page-parent" style="padding:28px 24px;">
     <div class="section-head">
       <div class="step-pill" id="parent-step-pill">Step 3</div>
@@ -484,9 +250,7 @@ small{font-size:0.78rem;color:var(--text-muted);}
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════ -->
   <!-- PAGE 5: GROUP COMBINED FORM -->
-  <!-- ══════════════════════════════════════════════════════ -->
   <div class="page glass" id="page-group" style="padding:28px 24px;">
     <div class="section-head">
       <div class="step-pill">Step 2</div>
@@ -501,9 +265,7 @@ small{font-size:0.78rem;color:var(--text-muted);}
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════ -->
-  <!-- PAGE 6: COURSE SELECTION (Single / Siblings) -->
-  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- PAGE 6: COURSE SELECTION -->
   <div class="page glass" id="page-courses" style="padding:28px 24px;">
     <div class="section-head">
       <div class="step-pill" id="course-step-pill">Step 4</div>
@@ -518,9 +280,7 @@ small{font-size:0.78rem;color:var(--text-muted);}
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════ -->
   <!-- PAGE 7: INFO & OFFERS -->
-  <!-- ══════════════════════════════════════════════════════ -->
   <div class="page glass" id="page-info" style="padding:28px 24px;">
     <div class="section-head">
       <div class="step-pill">Step 5 of 7</div>
@@ -534,13 +294,11 @@ small{font-size:0.78rem;color:var(--text-muted);}
       <div class="info-row"><span class="label">Timings</span><span class="val">Via WhatsApp / Call</span></div>
       <div class="info-row"><span class="label">Location</span><span class="val">Krishnanagar Society, Gozaria</span></div>
       <div class="info-row"><span class="label">Age Group</span><span class="val">5 – 14 Years</span></div>
-      <a class="whatsapp-row" href="https://wa.me/917715896031" target="_blank">
-        <span>📲</span> WhatsApp for Timings & Details
-      </a>
+      <a class="whatsapp-row" href="https://wa.me/917715896031" target="_blank"><span>📲</span> WhatsApp for Timings & Details</a>
     </div>
     <div class="form-group">
       <label>Special Requests (Optional)</label>
-      <textarea id="special-request" rows="3" placeholder="Any special requests or messages for the coordinator…"></textarea>
+      <textarea id="special-request" rows="3" placeholder="Any special requests or messages for the coordinator…" style="resize:none;"></textarea>
     </div>
     <div class="nav-bar">
       <button class="btn btn-secondary" onclick="goBack()">← Back</button>
@@ -548,9 +306,7 @@ small{font-size:0.78rem;color:var(--text-muted);}
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════ -->
   <!-- PAGE 8: ACKNOWLEDGEMENT -->
-  <!-- ══════════════════════════════════════════════════════ -->
   <div class="page glass" id="page-ack" style="padding:28px 24px;">
     <div class="section-head">
       <div class="step-pill">Step 6 of 7</div>
@@ -577,9 +333,7 @@ small{font-size:0.78rem;color:var(--text-muted);}
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════ -->
   <!-- PAGE 9: REVIEW & SUBMIT -->
-  <!-- ══════════════════════════════════════════════════════ -->
   <div class="page glass" id="page-review" style="padding:28px 24px;">
     <div class="section-head">
       <div class="step-pill">Step 7 of 7</div>
@@ -587,199 +341,124 @@ small{font-size:0.78rem;color:var(--text-muted);}
       <p>Please verify all details before submitting.</p>
     </div>
     <div id="review-content"></div>
-    <form id="formspree-form" action="https://formspree.io/f/mgoprplj" method="POST" style="margin-top:20px;">
-      <input type="hidden" name="Registration_Summary" id="hidden-summary">
-      <input type="hidden" name="_subject" value="🌸 New Camp Registration – Little Flowers 2026">
-      <button type="submit" class="btn btn-primary btn-full" style="font-size:1.1rem;padding:16px;">
+    <div style="margin-top:20px;">
+      <button type="button" class="btn btn-primary btn-full" style="font-size:1.1rem;padding:16px;" onclick="submitRegistration()">
         🎉 Confirm & Submit Registration
       </button>
-    </form>
+    </div>
     <div class="nav-bar">
       <button class="btn btn-secondary" onclick="goBack()">← Edit</button>
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════ -->
   <!-- PAGE 10: SUCCESS -->
-  <!-- ══════════════════════════════════════════════════════ -->
   <div class="page glass" id="page-success" style="padding:20px;">
     <div class="success-page">
       <div class="s-icon">🎊</div>
       <h2>You're Registered!</h2>
       <p>Thank you for registering with Little Flowers Summer Camp 2026.<br>
-      We've received your details and will contact you shortly via WhatsApp or phone with confirmed timings and further instructions.</p>
+      We'll contact you shortly via WhatsApp or phone with confirmed timings and further instructions.</p>
       <p style="margin-top:16px;">
-        <span class="confetti-emoji">🌸</span>
-        <span class="confetti-emoji">🌻</span>
-        <span class="confetti-emoji">🌺</span>
-        <span class="confetti-emoji">🌼</span>
-        <span class="confetti-emoji">🌷</span>
+        <span class="confetti-emoji">🌸</span><span class="confetti-emoji">🌻</span>
+        <span class="confetti-emoji">🌺</span><span class="confetti-emoji">🌼</span><span class="confetti-emoji">🌷</span>
       </p>
       <button class="btn btn-secondary mt-8" onclick="location.reload()">Register Another</button>
     </div>
   </div>
-
-</div><!-- /app -->
+</div>
 
 <script>
-/* ═══════════════════════════════════════════════════════
-   BACKGROUND CANVAS ANIMATION
-═══════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════
+   BACKGROUND CANVAS
+══════════════════════════════════════════ */
 (function(){
   const canvas = document.getElementById('bg-canvas');
   const ctx = canvas.getContext('2d');
   let W, H, shapes = [], petals = [];
-
-  function resize(){
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
+  function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
   resize();
   window.addEventListener('resize', resize);
-
-  const SHAPE_COLORS = ['rgba(74,222,128,', 'rgba(56,189,248,', 'rgba(244,114,182,', 'rgba(251,191,36,'];
-
-  // Geometric shapes
-  for(let i=0;i<18;i++){
-    shapes.push({
-      x: Math.random()*window.innerWidth,
-      y: Math.random()*window.innerHeight,
-      r: 20 + Math.random()*60,
-      col: SHAPE_COLORS[i%4],
-      alpha: 0.04 + Math.random()*0.06,
-      vx: (Math.random()-0.5)*0.3,
-      vy: (Math.random()-0.5)*0.3,
-      rot: Math.random()*Math.PI*2,
-      vrot: (Math.random()-0.5)*0.005,
-      sides: [3,4,6,8][Math.floor(Math.random()*4)]
-    });
-  }
-
-  // Petals
-  for(let i=0;i<30;i++){
-    petals.push({
-      x: Math.random()*window.innerWidth,
-      y: Math.random()*window.innerHeight,
-      r: 4 + Math.random()*8,
-      alpha: 0.06 + Math.random()*0.1,
-      vy: 0.2 + Math.random()*0.5,
-      vx: (Math.random()-0.5)*0.3,
-      rot: Math.random()*Math.PI*2,
-      vrot: (Math.random()-0.5)*0.02,
-      col: SHAPE_COLORS[i%4]
-    });
-  }
-
-  function polygon(cx,cy,r,sides,rot){
-    ctx.beginPath();
-    for(let i=0;i<sides;i++){
-      const a = rot + (i/sides)*Math.PI*2;
-      i===0 ? ctx.moveTo(cx+r*Math.cos(a), cy+r*Math.sin(a))
-             : ctx.lineTo(cx+r*Math.cos(a), cy+r*Math.sin(a));
-    }
-    ctx.closePath();
-  }
-
-  function petal(cx,cy,r,rot){
-    ctx.save();
-    ctx.translate(cx,cy);
-    ctx.rotate(rot);
-    ctx.beginPath();
-    ctx.ellipse(0,-r,r*0.5,r,0,0,Math.PI*2);
-    ctx.restore();
-  }
-
+  const COLS = ['rgba(74,222,128,','rgba(56,189,248,','rgba(244,114,182,','rgba(251,191,36,'];
+  for(let i=0;i<18;i++) shapes.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:20+Math.random()*60,col:COLS[i%4],alpha:0.04+Math.random()*0.06,vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,rot:Math.random()*Math.PI*2,vrot:(Math.random()-0.5)*0.005,sides:[3,4,6,8][Math.floor(Math.random()*4)]});
+  for(let i=0;i<30;i++) petals.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:4+Math.random()*8,alpha:0.06+Math.random()*0.1,vy:0.2+Math.random()*0.5,vx:(Math.random()-0.5)*0.3,rot:Math.random()*Math.PI*2,vrot:(Math.random()-0.5)*0.02,col:COLS[i%4]});
+  function polygon(cx,cy,r,sides,rot){ctx.beginPath();for(let i=0;i<sides;i++){const a=rot+(i/sides)*Math.PI*2;i===0?ctx.moveTo(cx+r*Math.cos(a),cy+r*Math.sin(a)):ctx.lineTo(cx+r*Math.cos(a),cy+r*Math.sin(a));}ctx.closePath();}
   function draw(){
     ctx.clearRect(0,0,W,H);
-
-    // Gradient backdrop
-    const grd = ctx.createRadialGradient(W*0.3,H*0.2,0, W*0.7,H*0.8,Math.max(W,H));
-    grd.addColorStop(0,'rgba(0,30,60,0.8)');
-    grd.addColorStop(1,'rgba(5,13,26,0.95)');
-    ctx.fillStyle = grd;
-    ctx.fillRect(0,0,W,H);
-
-    shapes.forEach(s=>{
-      s.x += s.vx; s.y += s.vy; s.rot += s.vrot;
-      if(s.x < -80) s.x = W+80;
-      if(s.x > W+80) s.x = -80;
-      if(s.y < -80) s.y = H+80;
-      if(s.y > H+80) s.y = -80;
-      polygon(s.x,s.y,s.r,s.sides,s.rot);
-      ctx.strokeStyle = s.col + s.alpha + ')';
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
-    });
-
-    petals.forEach(p=>{
-      p.x += p.vx; p.y += p.vy; p.rot += p.vrot;
-      if(p.y > H+20){ p.y=-20; p.x=Math.random()*W; }
-      petal(p.x,p.y,p.r,p.rot);
-      ctx.fillStyle = p.col + p.alpha + ')';
-      ctx.fill();
-    });
-
+    const g=ctx.createRadialGradient(W*0.3,H*0.2,0,W*0.7,H*0.8,Math.max(W,H));
+    g.addColorStop(0,'rgba(0,30,60,0.8)');g.addColorStop(1,'rgba(5,13,26,0.95)');
+    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    shapes.forEach(s=>{s.x+=s.vx;s.y+=s.vy;s.rot+=s.vrot;if(s.x<-80)s.x=W+80;if(s.x>W+80)s.x=-80;if(s.y<-80)s.y=H+80;if(s.y>H+80)s.y=-80;polygon(s.x,s.y,s.r,s.sides,s.rot);ctx.strokeStyle=s.col+s.alpha+')';ctx.lineWidth=1.5;ctx.stroke();});
+    petals.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.rot+=p.vrot;if(p.y>H+20){p.y=-20;p.x=Math.random()*W;}ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.beginPath();ctx.ellipse(0,-p.r,p.r*0.5,p.r,0,0,Math.PI*2);ctx.fillStyle=p.col+p.alpha+')';ctx.fill();ctx.restore();});
     requestAnimationFrame(draw);
   }
   draw();
 })();
 
-/* ═══════════════════════════════════════════════════════
+/* ══════════════════════════════════════════
    QUOTES
-═══════════════════════════════════════════════════════ */
-const QUOTES = [
-  {text:"Children are like buds in a garden and should be carefully and lovingly nurtured, as they are the future of the nation and citizens of tomorrow.", author:"— Jawaharlal Nehru"},
-  {text:"Your children are not your children. They are the sons and daughters of Life's longing for itself.", author:"— Kahlil Gibran"},
-  {text:"Play is the highest form of research.", author:"— Albert Einstein"},
-  {text:"Children must be taught how to think, not what to think.", author:"— Margaret Mead"},
-  {text:"Every child is an artist. The problem is how to remain an artist once we grow up.", author:"— Pablo Picasso"},
-  {text:"The greatest gifts you can give your children are the roots of responsibility and the wings of independence.", author:"— Denis Waitley"},
-  {text:"Children see magic because they look for it.", author:"— Christopher Moore"},
-  {text:"A child who reads will be an adult who thinks.", author:"— Unknown"},
-  {text:"Education is not the filling of a pail but the lighting of a fire.", author:"— W.B. Yeats"},
-  {text:"It is easier to build strong children than to repair broken adults.", author:"— Frederick Douglass"},
-  {text:"The soul is healed by being with children.", author:"— Fyodor Dostoyevsky"},
-  {text:"Children need models rather than critics.", author:"— Joseph Joubert"}
+══════════════════════════════════════════ */
+const QUOTES=[
+  {text:"Children are like buds in a garden and should be carefully and lovingly nurtured, as they are the future of the nation and the citizens of tomorrow.",author:"— Jawaharlal Nehru"},
+  {text:"Your children are not your children. They are the sons and daughters of Life's longing for itself.",author:"— Kahlil Gibran"},
+  {text:"Play is the highest form of research.",author:"— Albert Einstein"},
+  {text:"Children must be taught how to think, not what to think.",author:"— Margaret Mead"},
+  {text:"Every child is an artist. The problem is how to remain an artist once we grow up.",author:"— Pablo Picasso"},
+  {text:"The greatest gifts you can give your children are the roots of responsibility and the wings of independence.",author:"— Denis Waitley"},
+  {text:"Children see magic because they look for it.",author:"— Christopher Moore"},
+  {text:"A child who reads will be an adult who thinks.",author:"— Unknown"},
+  {text:"Education is not the filling of a pail but the lighting of a fire.",author:"— W.B. Yeats"},
+  {text:"It is easier to build strong children than to repair broken adults.",author:"— Frederick Douglass"},
+  {text:"The soul is healed by being with children.",author:"— Fyodor Dostoyevsky"},
+  {text:"Children need models rather than critics.",author:"— Joseph Joubert"}
 ];
+(function(){const q=QUOTES[Math.floor(Math.random()*QUOTES.length)];document.getElementById('quote-text').textContent=q.text;document.getElementById('quote-author').textContent=q.author;})();
+
+/* ══════════════════════════════════════════
+   EARLY BIRD  — 8 slots, stored in localStorage
+   Decrements on every successful form submission.
+   When 0: badge changes to "Full", EB 20% discount
+   is no longer applied, siblings/group 10% kicks in.
+══════════════════════════════════════════ */
+const EB_MAX = 8;
+let earlyBirdSlots = EB_MAX; // default
 (function(){
-  const q = QUOTES[Math.floor(Math.random()*QUOTES.length)];
-  document.getElementById('quote-text').textContent = q.text;
-  document.getElementById('quote-author').textContent = q.author;
+  const stored = localStorage.getItem('lf_eb_slots');
+  // If key exists and is a valid number, use it; otherwise start fresh at EB_MAX
+  if(stored !== null && !isNaN(parseInt(stored))){
+    earlyBirdSlots = Math.max(0, Math.min(EB_MAX, parseInt(stored)));
+  } else {
+    earlyBirdSlots = EB_MAX;
+    localStorage.setItem('lf_eb_slots', String(EB_MAX));
+  }
 })();
 
-/* ═══════════════════════════════════════════════════════
-   EARLY BIRD
-═══════════════════════════════════════════════════════ */
-const EB_MAX = 8;
-let earlyBirdSlots = Math.min(
-  parseInt(localStorage.getItem('eb_slots_v2') ?? String(EB_MAX)),
-  EB_MAX
-);
 function updateEB(){
   const badge = document.getElementById('early-bird-badge');
   const countEl = document.getElementById('eb-count');
   if(earlyBirdSlots > 0){
-    countEl.textContent = earlyBirdSlots;
-    badge.style.display = '';
+    // Make sure badge is styled as amber/active
+    badge.style.background = 'linear-gradient(135deg,rgba(251,191,36,0.2),rgba(244,114,182,0.2))';
+    badge.style.borderColor = 'rgba(251,191,36,0.4)';
+    badge.style.color = 'var(--glow-amber)';
+    badge.innerHTML = '🌟 <span id="eb-count">' + earlyBirdSlots + '</span> Early Bird Slots Left!';
   } else {
-    badge.textContent = '🔒 Early Bird Full';
     badge.style.background = 'rgba(255,255,255,0.05)';
     badge.style.borderColor = 'rgba(255,255,255,0.15)';
     badge.style.color = 'var(--text-muted)';
+    badge.innerHTML = '🔒 Early Bird Full';
   }
 }
 updateEB();
 
-/* ═══════════════════════════════════════════════════════
+/* ══════════════════════════════════════════
    STATE
-═══════════════════════════════════════════════════════ */
+══════════════════════════════════════════ */
 let state = {
-  type: '',        // 'single' | 'siblings' | 'group'
-  count: 1,        // number of children
-  children: [],    // [{name,gender,school,age,medical}, …]
-  parents: [],     // [{motherName,fatherName,address,phone1,phone2}, …]  length=1 for single/siblings, count for group
-  courses: [],     // [{selected:[…]}, …]  per child
-  currentChild: 0, // active child tab index
+  type: '', count: 1,
+  children: [], parents: [], courses: [],
+  currentChildDetails: 0,
+  currentCourseChild: 0,
+  currentGroupStudent: 0,
   pageHistory: [],
   activePage: 'page-welcome',
   specialRequest: '',
@@ -787,154 +466,127 @@ let state = {
 };
 
 const COURSES = [
-  {id:'handwriting', name:'Handwriting', icon:'✍️', price:1000, premium:false,
-   desc:'Improves penmanship through proper grip techniques and rhythmic stroke flow to build speed and legibility.'},
-  {id:'vedic', name:'Vedic Maths', icon:'🔢', price:1000, premium:false,
-   desc:'An ancient system of mental mathematics enabling students to perform complex calculations with speed and accuracy.'},
-  {id:'spoken', name:'Spoken English', icon:'🎤', price:1000, premium:false,
-   desc:'Builds public speaking confidence, improves pronunciation, and expands vocabulary for fluency.'},
-  {id:'drawing', name:'Drawing', icon:'🎨', price:1000, premium:false,
-   desc:'Exploration of visual art — fundamental sketching, shading techniques, and creative composition.'},
-  {id:'craft', name:'Craft', icon:'🛠️', price:1000, premium:false,
-   desc:'Hands-on engineering class where kids use various materials to build 3D models and creative functional objects.'},
-  {id:'dance', name:'Dance', icon:'💃', price:1000, premium:false,
-   desc:'High-energy session focused on rhythm, body coordination, and choreography across popular styles.'},
-  {id:'flower', name:'Flower Making', icon:'🌸', price:1200, premium:true,
-   desc:'Teaches students to design intricate and realistic floral arrangements. All craft materials included.'},
-  {id:'glass', name:'Glass Painting', icon:'🪟', price:1200, premium:true,
-   desc:'Introduces precision work on transparent glass surfaces. All professional glass paints and materials included.'},
+  {id:'handwriting',name:'Handwriting',icon:'✍️',price:1000,premium:false,desc:'Improves penmanship through proper grip techniques and rhythmic stroke flow to build speed and legibility.'},
+  {id:'vedic',name:'Vedic Maths',icon:'🔢',price:1000,premium:false,desc:'An ancient system of mental mathematics enabling students to perform complex calculations with speed and accuracy.'},
+  {id:'spoken',name:'Spoken English',icon:'🎤',price:1000,premium:false,desc:'Builds public speaking confidence, improves pronunciation, and expands vocabulary for fluency.'},
+  {id:'drawing',name:'Drawing',icon:'🎨',price:1000,premium:false,desc:'Exploration of visual art — fundamental sketching, shading techniques, and creative composition.'},
+  {id:'craft',name:'Craft',icon:'🛠️',price:1000,premium:false,desc:'Hands-on engineering class where kids use various materials to build 3D models and creative functional objects.'},
+  {id:'dance',name:'Dance',icon:'💃',price:1000,premium:false,desc:'High-energy session focused on rhythm, body coordination, and choreography across popular styles.'},
+  {id:'flower',name:'Flower Making',icon:'🌸',price:1200,premium:true,desc:'Teaches students to design intricate and realistic floral arrangements. All craft materials included.'},
+  {id:'glass',name:'Glass Painting',icon:'🪟',price:1200,premium:true,desc:'Introduces precision work on transparent glass surfaces. All professional glass paints and materials included.'},
 ];
 
-/* ═══════════════════════════════════════════════════════
-   NAVIGATION HELPERS
-═══════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════════ */
 function goToPage(id, progress){
-  const cur = document.getElementById(state.activePage);
-  if(cur) cur.classList.remove('active');
+  document.getElementById(state.activePage).classList.remove('active');
   state.pageHistory.push(state.activePage);
   state.activePage = id;
-  const next = document.getElementById(id);
-  if(next) next.classList.add('active');
+  document.getElementById(id).classList.add('active');
   document.getElementById('progress-fill').style.width = progress+'%';
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
 function goBack(){
   if(!state.pageHistory.length) return;
-  const cur = document.getElementById(state.activePage);
-  if(cur) cur.classList.remove('active');
+  document.getElementById(state.activePage).classList.remove('active');
   const prev = state.pageHistory.pop();
   state.activePage = prev;
-  const el = document.getElementById(prev);
-  if(el) el.classList.add('active');
+  document.getElementById(prev).classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
-/* ═══════════════════════════════════════════════════════
-   WELCOME → BEGIN
-═══════════════════════════════════════════════════════ */
 function handleBegin(){
-  if(!navigator.onLine){
-    document.getElementById('offline-overlay').classList.add('show');
-    return;
-  }
-  goToPage('page-type', 10);
+  if(!navigator.onLine){ document.getElementById('offline-overlay').classList.add('show'); return; }
+  goToPage('page-type',10);
 }
 
-/* ═══════════════════════════════════════════════════════
-   FORM BUILDER HELPERS
-═══════════════════════════════════════════════════════ */
-function childFormHTML(domIdx, label){
-  // Always renders with DOM id suffix _0; real child index tracked in state
-  const i = 0;
+/* ══════════════════════════════════════════
+   FORM HTML BUILDERS  (always DOM id suffix _0)
+══════════════════════════════════════════ */
+function childFormHTML(){
   return `
-  <div id="child-form-${i}" class="child-form-panel">
-    ${label ? `<p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:14px;">${label}</p>` : ''}
+  <div class="child-form-panel">
     <div class="form-row">
       <div class="form-group">
         <label>Full Name *</label>
-        <input type="text" id="c_name_${i}" placeholder="Child's full name">
-        <div class="error-msg" id="err_c_name_${i}">Name is required.</div>
+        <input type="text" id="c_name_0" placeholder="Child's full name">
+        <div class="error-msg" id="err_c_name_0">Name is required.</div>
       </div>
       <div class="form-group">
         <label>Gender *</label>
-        <select id="c_gender_${i}">
+        <select id="c_gender_0">
           <option value="">Select</option>
           <option>Male</option><option>Female</option><option>Other</option>
         </select>
-        <div class="error-msg" id="err_c_gender_${i}">Please select gender.</div>
+        <div class="error-msg" id="err_c_gender_0">Please select gender.</div>
       </div>
     </div>
     <div class="form-row">
       <div class="form-group">
         <label>School Name *</label>
-        <input type="text" id="c_school_${i}" placeholder="Current school">
-        <div class="error-msg" id="err_c_school_${i}">School is required.</div>
+        <input type="text" id="c_school_0" placeholder="Current school">
+        <div class="error-msg" id="err_c_school_0">School is required.</div>
       </div>
       <div class="form-group">
         <label>Age *</label>
-        <select id="c_age_${i}">
+        <select id="c_age_0">
           <option value="">Select Age</option>
           ${[5,6,7,8,9,10,11,12,13,14].map(a=>`<option>${a}</option>`).join('')}
         </select>
-        <div class="error-msg" id="err_c_age_${i}">Age must be 5–14.</div>
+        <div class="error-msg" id="err_c_age_0">Age must be 5–14.</div>
       </div>
     </div>
     <div class="form-group">
       <label>Medical Conditions / Allergies <small>(optional)</small></label>
-      <textarea id="c_medical_${i}" rows="2" placeholder="Any known medical conditions or allergies…" style="resize:none;"></textarea>
+      <textarea id="c_medical_0" rows="2" placeholder="Any known medical conditions or allergies…" style="resize:none;"></textarea>
     </div>
   </div>`;
 }
 
-function parentFormHTML(domIdx){
-  // Always DOM id suffix _0; real parent index tracked in state
-  const i = 0;
+function parentFormHTML(){
   return `
-  <div id="parent-form-${i}" class="parent-form-panel">
+  <div class="parent-form-panel">
     <div class="form-row">
       <div class="form-group">
         <label>Mother's Full Name *</label>
-        <input type="text" id="p_mother_${i}" placeholder="Mother's name">
-        <div class="error-msg" id="err_p_mother_${i}">Required.</div>
+        <input type="text" id="p_mother_0" placeholder="Mother's name">
+        <div class="error-msg" id="err_p_mother_0">Required.</div>
       </div>
       <div class="form-group">
         <label>Father's Full Name *</label>
-        <input type="text" id="p_father_${i}" placeholder="Father's name">
-        <div class="error-msg" id="err_p_father_${i}">Required.</div>
+        <input type="text" id="p_father_0" placeholder="Father's name">
+        <div class="error-msg" id="err_p_father_0">Required.</div>
       </div>
     </div>
     <div class="form-group">
       <label>Home Address *</label>
-      <textarea id="p_address_${i}" rows="2" placeholder="Full residential address" style="resize:none;"></textarea>
-      <div class="error-msg" id="err_p_address_${i}">Address is required.</div>
+      <textarea id="p_address_0" rows="2" placeholder="Full residential address" style="resize:none;"></textarea>
+      <div class="error-msg" id="err_p_address_0">Address is required.</div>
     </div>
     <div class="form-row">
       <div class="form-group">
         <label>Primary Phone *</label>
-        <input type="tel" id="p_phone1_${i}" placeholder="10-digit mobile">
-        <div class="error-msg" id="err_p_phone1_${i}">Valid 10-digit number required.</div>
+        <input type="tel" id="p_phone1_0" placeholder="10-digit mobile">
+        <div class="error-msg" id="err_p_phone1_0">Valid 10-digit number required.</div>
       </div>
       <div class="form-group">
         <label>Alternate Phone *</label>
-        <input type="tel" id="p_phone2_${i}" placeholder="10-digit mobile">
-        <div class="error-msg" id="err_p_phone2_${i}">Valid 10-digit number required.</div>
+        <input type="tel" id="p_phone2_0" placeholder="10-digit mobile">
+        <div class="error-msg" id="err_p_phone2_0">Valid 10-digit number required.</div>
       </div>
     </div>
   </div>`;
 }
 
-function courseFormHTML(domIdx){
-  // domIdx is always 0 — we render one panel at a time; real child index tracked in state
-  const idx = 0;
+function courseFormHTML(){
   const std = COURSES.filter(c=>!c.premium);
   const prem = COURSES.filter(c=>c.premium);
   return `
-  <div id="course-form-${idx}" class="course-form-panel">
+  <div class="course-form-panel">
     <p style="font-size:0.82rem;color:var(--glow-green);font-weight:700;margin-bottom:10px;">Standard Courses — ₹1,000 each</p>
-    <div class="course-grid" id="std-grid-${idx}">
+    <div class="course-grid">
       ${std.map(c=>`
-        <div class="course-card" id="cc_${idx}_${c.id}" onclick="toggleCourse(${idx},'${c.id}')">
+        <div class="course-card" id="cc_0_${c.id}" onclick="toggleCourse('${c.id}')">
           <div class="check">✓</div>
           <div class="c-icon">${c.icon}</div>
           <div class="c-name">${c.name}</div>
@@ -943,9 +595,9 @@ function courseFormHTML(domIdx){
         </div>`).join('')}
     </div>
     <p style="font-size:0.82rem;color:var(--glow-amber);font-weight:700;margin:16px 0 10px;">Premium Courses — ₹1,200 each (Materials Included)</p>
-    <div class="course-grid" id="prem-grid-${idx}">
+    <div class="course-grid">
       ${prem.map(c=>`
-        <div class="course-card premium" id="cc_${idx}_${c.id}" onclick="toggleCourse(${idx},'${c.id}')">
+        <div class="course-card premium" id="cc_0_${c.id}" onclick="toggleCourse('${c.id}')">
           <div class="check">✓</div>
           <div class="premium-label">★ Premium</div>
           <div class="c-icon">${c.icon}</div>
@@ -954,411 +606,313 @@ function courseFormHTML(domIdx){
           <div class="c-price">₹${c.price.toLocaleString()} ✦ Materials Incl.</div>
         </div>`).join('')}
     </div>
-    <div class="error-msg" id="err_course_${idx}" style="margin-top:8px;">Please select at least one course.</div>
+    <div class="error-msg" id="err_course_0" style="margin-top:8px;">Please select at least one course.</div>
   </div>`;
 }
 
-/* ═══════════════════════════════════════════════════════
-   TABS BUILDER  (scoped — uses parent container, not global class)
-═══════════════════════════════════════════════════════ */
-function buildTabs(containerId, count, labels, onClickFn){
+/* ══════════════════════════════════════════
+   TABS
+══════════════════════════════════════════ */
+function buildTabs(containerId, count, onClickFn){
   const c = document.getElementById(containerId);
   c.innerHTML = '';
   for(let i=0;i<count;i++){
     const btn = document.createElement('button');
-    btn.className = 'child-tab' + (i===0?' active':'');
-    btn.textContent = labels ? labels[i] : `Child ${i+1}`;
+    btn.className = 'child-tab'+(i===0?' active':'');
+    btn.textContent = `Child ${i+1}`;
     btn.onclick = ()=>onClickFn(i);
     c.appendChild(btn);
   }
 }
-
-/* Switch tabs SCOPED to a specific panels container element (not global class) */
-function switchTabScoped(idx, tabContainerId, panelsContainerId){
-  // Update tab buttons
-  const tabs = document.querySelectorAll(`#${tabContainerId} .child-tab`);
-  tabs.forEach((t,i)=>t.classList.toggle('active',i===idx));
-  // Show correct panel — scoped to direct children of the named container
-  const container = document.getElementById(panelsContainerId);
-  if(!container) return;
-  Array.from(container.children).forEach((p,i)=>{
-    p.style.display = i===idx ? 'block' : 'none';
-  });
+function setActiveTab(containerId, idx){
+  Array.from(document.getElementById(containerId).children)
+    .forEach((t,i)=>t.classList.toggle('active',i===idx));
 }
 
-/* ═══════════════════════════════════════════════════════
+/* ══════════════════════════════════════════
    TYPE SELECTION
-═══════════════════════════════════════════════════════ */
+══════════════════════════════════════════ */
 function selectType(type){
   state.type = type;
-  state.children = [];
-  state.parents = [];
-  state.courses = [];
-
-  if(type === 'single'){
-    state.count = 1;
-    buildChildrenState(1);
+  if(type==='single'){
+    state.count=1;
+    initState(1);
     buildChildPage(0);
-    buildParentPage();
-    goToPage('page-child', 20);
-  } else if(type === 'siblings'){
-    buildCountPage(2, 5, 'siblings');
-    goToPage('page-count', 15);
+    goToPage('page-child',20);
+  } else if(type==='siblings'){
+    buildCountPage(2,5,'siblings');
+    goToPage('page-count',15);
   } else {
-    buildCountPage(3, 9, 'group');
-    goToPage('page-count', 15);
+    buildCountPage(3,9,'group');
+    goToPage('page-count',15);
   }
 }
 
-function buildCountPage(min, max, mode){
-  document.getElementById('count-title').textContent =
-    mode==='siblings' ? 'How many siblings?' : 'How many students in the group?';
-  document.getElementById('count-sub').textContent =
-    mode==='siblings' ? 'Select the number of siblings (2–5).' : 'Select the number of students (3–9).';
+function buildCountPage(min,max,mode){
+  document.getElementById('count-title').textContent = mode==='siblings'?'How many siblings?':'How many students in the group?';
+  document.getElementById('count-sub').textContent = mode==='siblings'?'Select the number of siblings (2–5).':'Select the number of students (3–9).';
   const c = document.getElementById('count-selector');
-  c.innerHTML = '';
+  c.innerHTML='';
   for(let i=min;i<=max;i++){
-    const b = document.createElement('button');
-    b.className = 'count-btn';
-    b.textContent = i;
-    const n = i;
-    b.onclick = ()=>{
-      document.querySelectorAll('.count-btn').forEach(x=>x.classList.remove('active'));
-      b.classList.add('active');
-      state.count = n;
-    };
+    const b=document.createElement('button');
+    b.className='count-btn';b.textContent=i;
+    const n=i;
+    b.onclick=()=>{document.querySelectorAll('.count-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.count=n;};
     c.appendChild(b);
   }
-  // Default select first
   c.querySelector('.count-btn').classList.add('active');
-  state.count = min;
+  state.count=min;
 }
 
 function confirmCount(){
-  buildChildrenState(state.count);
-
-  if(state.type === 'siblings'){
+  initState(state.count);
+  if(state.type==='siblings'){
     buildChildPage(0);
-    buildParentPage();
-    goToPage('page-child', 20);
+    goToPage('page-child',20);
   } else {
     buildGroupPage();
-    goToPage('page-group', 20);
+    goToPage('page-group',20);
   }
 }
 
-function buildChildrenState(n){
-  state.children = Array.from({length:n}, ()=>({name:'',gender:'',school:'',age:'',medical:''}));
-  state.parents  = Array.from({length: state.type==='group'? n : 1}, ()=>
-    ({motherName:'',fatherName:'',address:'',phone1:'',phone2:''}));
-  state.courses  = Array.from({length:n}, ()=>({selected:[]}));
+function initState(n){
+  state.children = Array.from({length:n},()=>({name:'',gender:'',school:'',age:'',medical:''}));
+  state.parents  = Array.from({length:state.type==='group'?n:1},()=>({motherName:'',fatherName:'',address:'',phone1:'',phone2:''}));
+  state.courses  = Array.from({length:n},()=>({selected:[]}));
 }
 
-/* ═══════════════════════════════════════════════════════
-   CHILD DETAILS PAGE  — sequential one-child-at-a-time
-═══════════════════════════════════════════════════════ */
-function buildChildPage(childIdx){
+/* ══════════════════════════════════════════
+   CHILD DETAILS — one child at a time
+══════════════════════════════════════════ */
+function buildChildPage(idx){
+  idx = idx||0;
+  state.currentChildDetails = idx;
   const n = state.count;
-  childIdx = childIdx || 0;
-  state.currentChildDetails = childIdx;   // track which child we are editing
-
-  const totalSteps = state.type==='single' ? 7 : 8;
-  document.getElementById('child-step-pill').textContent =
-    n===1 ? `Step 2 of ${totalSteps}` : `Child ${childIdx+1} of ${n}`;
-  document.getElementById('child-page-title').textContent =
-    n===1 ? 'Child Details' : `Child ${childIdx+1} Details`;
-  document.getElementById('child-page-sub').textContent =
-    n===1 ? "Fill in the child's details below."
-          : `Filling details for Child ${childIdx+1} of ${n}. You can navigate between children using the tabs.`;
-
-  // Build tabs (for orientation — clicking a tab saves current & loads that child)
+  const steps = state.type==='single'?7:8;
+  document.getElementById('child-step-pill').textContent = n===1?`Step 2 of ${steps}`:`Child ${idx+1} of ${n}`;
+  document.getElementById('child-page-title').textContent = n===1?'Child Details':`Child ${idx+1} Details`;
+  document.getElementById('child-page-sub').textContent = n===1?"Fill in the child's details below.":`Details for Child ${idx+1} of ${n}. Use tabs to navigate.`;
   const tabsEl = document.getElementById('child-tabs');
   if(n===1){ tabsEl.style.display='none'; }
   else {
     tabsEl.style.display='flex';
-    buildTabs('child-tabs', n, null, (i)=>{
-      saveCurrentChildDetails(state.currentChildDetails);
-      loadChildDetailsIntoForm(i);
-      state.currentChildDetails = i;
-      // Update tab highlights
-      Array.from(tabsEl.children).forEach((t,ti)=>t.classList.toggle('active',ti===i));
+    buildTabs('child-tabs',n,(i)=>{
+      saveChildForm(state.currentChildDetails);
+      state.currentChildDetails=i;
+      loadChildForm(i);
+      setActiveTab('child-tabs',i);
+      document.getElementById('child-step-pill').textContent=`Child ${i+1} of ${n}`;
+      document.getElementById('child-page-title').textContent=`Child ${i+1} Details`;
     });
-    // Mark active tab
-    Array.from(tabsEl.children).forEach((t,ti)=>t.classList.toggle('active',ti===childIdx));
+    setActiveTab('child-tabs',idx);
   }
-
-  // Render single form panel (always just one visible)
-  const container = document.getElementById('child-forms-container');
-  container.innerHTML = childFormHTML(0, null);  // always use index 0 in DOM; state index tracked separately
-
-  // Load saved data for this child into the form
-  loadChildDetailsIntoForm(childIdx);
+  document.getElementById('child-forms-container').innerHTML = childFormHTML();
+  loadChildForm(idx);
 }
 
-/* Save whatever is typed in the DOM form into state.children[idx] */
-function saveCurrentChildDetails(idx){
-  if(idx === undefined || idx === null) return;
-  state.children[idx] = {
-    name:    (document.getElementById('c_name_0')   ||{value:''}).value.trim(),
-    gender:  (document.getElementById('c_gender_0') ||{value:''}).value,
-    school:  (document.getElementById('c_school_0') ||{value:''}).value.trim(),
-    age:     (document.getElementById('c_age_0')    ||{value:''}).value,
-    medical: (document.getElementById('c_medical_0')||{value:''}).value.trim()
+function saveChildForm(idx){
+  if(idx===undefined||idx===null) return;
+  state.children[idx]={
+    name:(document.getElementById('c_name_0')||{value:''}).value.trim(),
+    gender:(document.getElementById('c_gender_0')||{value:''}).value,
+    school:(document.getElementById('c_school_0')||{value:''}).value.trim(),
+    age:(document.getElementById('c_age_0')||{value:''}).value,
+    medical:(document.getElementById('c_medical_0')||{value:''}).value.trim()
   };
 }
 
-/* Populate the single DOM form from state.children[idx] */
-function loadChildDetailsIntoForm(idx){
-  const ch = state.children[idx] || {};
-  const setVal = (id, v) => { const el=document.getElementById(id); if(el) el.value = v||''; };
-  setVal('c_name_0',    ch.name);
-  setVal('c_gender_0',  ch.gender);
-  setVal('c_school_0',  ch.school);
-  setVal('c_age_0',     ch.age);
-  setVal('c_medical_0', ch.medical);
-  // Clear any validation errors
-  ['c_name_0','c_gender_0','c_school_0','c_age_0'].forEach(id=>{
-    const el=document.getElementById(id);
-    if(el) el.classList.remove('error');
-  });
-  ['err_c_name_0','err_c_gender_0','err_c_school_0','err_c_age_0'].forEach(id=>{
-    const el=document.getElementById(id);
-    if(el) el.classList.remove('show');
-  });
+function loadChildForm(idx){
+  const ch=state.children[idx]||{};
+  const sv=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v||'';};
+  sv('c_name_0',ch.name);sv('c_gender_0',ch.gender);sv('c_school_0',ch.school);sv('c_age_0',ch.age);sv('c_medical_0',ch.medical);
+  ['c_name_0','c_gender_0','c_school_0','c_age_0'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('error');});
+  ['err_c_name_0','err_c_gender_0','err_c_school_0','err_c_age_0'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('show');});
 }
 
 function nextFromChildDetails(){
-  // Validate the current child form
-  const idx = state.currentChildDetails || 0;
-  const nameEl   = document.getElementById('c_name_0');
-  const genderEl = document.getElementById('c_gender_0');
-  const schoolEl = document.getElementById('c_school_0');
-  const ageEl    = document.getElementById('c_age_0');
-  const flds = [
-    [nameEl,   'err_c_name_0',   v=>v.trim().length>1],
-    [genderEl, 'err_c_gender_0', v=>v!==''],
-    [schoolEl, 'err_c_school_0', v=>v.trim().length>1],
-    [ageEl,    'err_c_age_0',    v=>v!==''],
+  const idx = state.currentChildDetails||0;
+  const checks=[
+    ['c_name_0','err_c_name_0',v=>v.trim().length>1],
+    ['c_gender_0','err_c_gender_0',v=>v!==''],
+    ['c_school_0','err_c_school_0',v=>v.trim().length>1],
+    ['c_age_0','err_c_age_0',v=>v!==''],
   ];
-  let ok = true;
-  flds.forEach(([el,errId,fn])=>{
-    const valid = fn(el.value);
+  let ok=true;
+  checks.forEach(([id,eid,fn])=>{
+    const el=document.getElementById(id);
+    const valid=fn(el.value);
     el.classList.toggle('error',!valid);
-    document.getElementById(errId).classList.toggle('show',!valid);
-    if(!valid) ok=false;
+    document.getElementById(eid).classList.toggle('show',!valid);
+    if(!valid)ok=false;
   });
-  if(!ok) return;
-
-  // Save current child
-  saveCurrentChildDetails(idx);
-
-  const n = state.count;
-  if(idx < n-1){
-    // Move to next child
-    const nextIdx = idx+1;
-    state.currentChildDetails = nextIdx;
-    loadChildDetailsIntoForm(nextIdx);
-    // Update tab highlight
-    const tabsEl = document.getElementById('child-tabs');
-    Array.from(tabsEl.children).forEach((t,ti)=>t.classList.toggle('active',ti===nextIdx));
-    document.getElementById('child-step-pill').textContent = `Child ${nextIdx+1} of ${n}`;
-    document.getElementById('child-page-title').textContent = `Child ${nextIdx+1} Details`;
-    document.getElementById('child-page-sub').textContent = `Filling details for Child ${nextIdx+1} of ${n}.`;
+  if(!ok)return;
+  saveChildForm(idx);
+  const n=state.count;
+  if(idx<n-1){
+    const next=idx+1;
+    state.currentChildDetails=next;
+    loadChildForm(next);
+    setActiveTab('child-tabs',next);
+    document.getElementById('child-step-pill').textContent=`Child ${next+1} of ${n}`;
+    document.getElementById('child-page-title').textContent=`Child ${next+1} Details`;
+    document.getElementById('child-page-sub').textContent=`Details for Child ${next+1} of ${n}.`;
     window.scrollTo({top:0,behavior:'smooth'});
   } else {
-    // All children done — go to parent
-    goToPage('page-parent', 35);
+    buildParentPage();
+    goToPage('page-parent',35);
   }
 }
 
-/* ═══════════════════════════════════════════════════════
-   PARENT DETAILS PAGE (Single / Siblings = 1 parent record)
-═══════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════
+   PARENT DETAILS
+══════════════════════════════════════════ */
 function buildParentPage(){
-  document.getElementById('parent-step-pill').textContent =
-    state.type==='single' ? 'Step 3 of 7' : 'Step 3 of 8';
-  document.getElementById('parent-form-container').innerHTML = parentFormHTML(0);
-  // Restore saved parent data (for when user navigates back)
-  const par = state.parents[0]||{};
-  const pf=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v||'';};
-  pf('p_mother_0',par.motherName); pf('p_father_0',par.fatherName);
-  pf('p_address_0',par.address);   pf('p_phone1_0',par.phone1);
-  pf('p_phone2_0',par.phone2);
+  document.getElementById('parent-step-pill').textContent = state.type==='single'?'Step 3 of 7':'Step 3 of 8';
+  document.getElementById('parent-form-container').innerHTML = parentFormHTML();
+  const par=state.parents[0]||{};
+  const pv=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v||'';};
+  pv('p_mother_0',par.motherName);pv('p_father_0',par.fatherName);pv('p_address_0',par.address);pv('p_phone1_0',par.phone1);pv('p_phone2_0',par.phone2);
 }
 
-function nextFromParent(){
-  const ok = validateParentForm(0);
-  if(!ok) return;
-  state.parents[0] = {
-    motherName: document.getElementById('p_mother_0').value.trim(),
-    fatherName: document.getElementById('p_father_0').value.trim(),
-    address: document.getElementById('p_address_0').value.trim(),
-    phone1: document.getElementById('p_phone1_0').value.trim(),
-    phone2: document.getElementById('p_phone2_0').value.trim()
-  };
-  // Build course page freshly & restore any previously selected courses
-  buildCoursePage();
-  goToPage('page-courses', 50);
-}
-
-function validateParentForm(idx){
-  let ok = true;
-  const flds = [
-    [`p_mother_${idx}`, `err_p_mother_${idx}`, v=>v.trim().length>1],
-    [`p_father_${idx}`, `err_p_father_${idx}`, v=>v.trim().length>1],
-    [`p_address_${idx}`, `err_p_address_${idx}`, v=>v.trim().length>4],
-    [`p_phone1_${idx}`, `err_p_phone1_${idx}`, v=>/^\d{10}$/.test(v.trim())],
-    [`p_phone2_${idx}`, `err_p_phone2_${idx}`, v=>/^\d{10}$/.test(v.trim())],
+function validateParentDOM(){
+  let ok=true;
+  const checks=[
+    ['p_mother_0','err_p_mother_0',v=>v.trim().length>1],
+    ['p_father_0','err_p_father_0',v=>v.trim().length>1],
+    ['p_address_0','err_p_address_0',v=>v.trim().length>4],
+    ['p_phone1_0','err_p_phone1_0',v=>/^\d{10}$/.test(v.trim())],
+    ['p_phone2_0','err_p_phone2_0',v=>/^\d{10}$/.test(v.trim())],
   ];
-  flds.forEach(([id, errId, fn])=>{
-    const el = document.getElementById(id);
-    const valid = fn(el.value);
+  checks.forEach(([id,eid,fn])=>{
+    const el=document.getElementById(id);
+    const valid=fn(el.value);
     el.classList.toggle('error',!valid);
-    document.getElementById(errId).classList.toggle('show',!valid);
-    if(!valid) ok=false;
+    document.getElementById(eid).classList.toggle('show',!valid);
+    if(!valid)ok=false;
   });
   return ok;
 }
 
-/* ═══════════════════════════════════════════════════════
-   COURSE SELECTION (Single / Siblings) — sequential + persistent
-═══════════════════════════════════════════════════════ */
-function buildCoursePage(childIdx){
-  childIdx = childIdx || 0;
-  state.currentCourseChild = childIdx;
-  const n = state.count;
+function saveParentDOM(idx){
+  state.parents[idx]={
+    motherName:document.getElementById('p_mother_0').value.trim(),
+    fatherName:document.getElementById('p_father_0').value.trim(),
+    address:document.getElementById('p_address_0').value.trim(),
+    phone1:document.getElementById('p_phone1_0').value.trim(),
+    phone2:document.getElementById('p_phone2_0').value.trim()
+  };
+}
 
-  document.getElementById('course-step-pill').textContent =
-    n===1 ? (state.type==='single' ? 'Step 4 of 7' : 'Step 4 of 8')
-          : `Courses: Child ${childIdx+1} of ${n}`;
+function nextFromParent(){
+  if(!validateParentDOM())return;
+  saveParentDOM(0);
+  buildCoursePage(0);
+  goToPage('page-courses',50);
+}
 
-  // Build scoped tabs
-  const tabsEl = document.getElementById('course-child-tabs');
-  const container = document.getElementById('course-forms-container');
+/* ══════════════════════════════════════════
+   COURSE SELECTION — one child at a time
+══════════════════════════════════════════ */
+function buildCoursePage(idx){
+  idx=idx||0;
+  state.currentCourseChild=idx;
+  const n=state.count;
+  document.getElementById('course-step-pill').textContent = n===1?(state.type==='single'?'Step 4 of 7':'Step 4 of 8'):`Courses: Child ${idx+1} of ${n}`;
+  const tabsEl=document.getElementById('course-child-tabs');
+  const cont=document.getElementById('course-forms-container');
   if(n===1){ tabsEl.style.display='none'; }
   else {
     tabsEl.style.display='flex';
-    buildTabs('course-child-tabs', n, null, (i)=>{
-      // When switching tabs: re-render course panel for child i, restoring selections
-      state.currentCourseChild = i;
-      container.innerHTML = courseFormHTML(0);   // single panel in DOM
-      restoreCoursesIntoForm(i);
-      // Update tab highlight
-      Array.from(tabsEl.children).forEach((t,ti)=>t.classList.toggle('active',ti===i));
-      document.getElementById('course-step-pill').textContent = `Courses: Child ${i+1} of ${n}`;
+    buildTabs('course-child-tabs',n,(i)=>{
+      state.currentCourseChild=i;
+      cont.innerHTML=courseFormHTML();
+      restoreCourses(i);
+      setActiveTab('course-child-tabs',i);
+      document.getElementById('course-step-pill').textContent=`Courses: Child ${i+1} of ${n}`;
     });
-    Array.from(tabsEl.children).forEach((t,ti)=>t.classList.toggle('active',ti===childIdx));
+    setActiveTab('course-child-tabs',idx);
   }
-
-  // Render course panel for current child, restoring saved selections
-  container.innerHTML = courseFormHTML(0);
-  restoreCoursesIntoForm(childIdx);
+  cont.innerHTML=courseFormHTML();
+  restoreCourses(idx);
 }
 
-/* Re-apply .selected CSS class to cards based on state.courses[idx].selected */
-function restoreCoursesIntoForm(childIdx){
-  const sel = (state.courses[childIdx] || {selected:[]}).selected;
+function restoreCourses(idx){
+  const sel=(state.courses[idx]||{selected:[]}).selected;
   COURSES.forEach(c=>{
-    const el = document.getElementById(`cc_0_${c.id}`);
-    if(el) el.classList.toggle('selected', sel.includes(c.id));
+    const el=document.getElementById(`cc_0_${c.id}`);
+    if(el)el.classList.toggle('selected',sel.includes(c.id));
   });
 }
 
-function toggleCourse(domIdx, courseId){
-  // domIdx is always 0 (single panel); use state.currentCourseChild for real index
-  const realIdx = (state.currentCourseChild !== undefined) ? state.currentCourseChild : domIdx;
-  const sel = state.courses[realIdx].selected;
-  const i = sel.indexOf(courseId);
-  if(i>-1) sel.splice(i,1); else sel.push(courseId);
-  const el = document.getElementById(`cc_0_${courseId}`);
-  if(el) el.classList.toggle('selected', sel.includes(courseId));
+function toggleCourse(courseId){
+  const idx=state.currentCourseChild||0;
+  const sel=state.courses[idx].selected;
+  const i=sel.indexOf(courseId);
+  if(i>-1)sel.splice(i,1);else sel.push(courseId);
+  const el=document.getElementById(`cc_0_${courseId}`);
+  if(el)el.classList.toggle('selected',sel.includes(courseId));
 }
 
 function nextFromCourses(){
-  const n = state.count;
-  const idx = state.currentCourseChild !== undefined ? state.currentCourseChild : 0;
-
-  // Validate current child has at least one course
-  const valid = (state.courses[idx].selected.length > 0);
-  const errEl = document.getElementById('err_course_0');
-  if(errEl) errEl.classList.toggle('show', !valid);
-  if(!valid) return;
-
-  if(idx < n-1){
-    // Move to next child's courses
-    const nextIdx = idx+1;
-    state.currentCourseChild = nextIdx;
-    const tabsEl = document.getElementById('course-child-tabs');
-    Array.from(tabsEl.children).forEach((t,ti)=>t.classList.toggle('active',ti===nextIdx));
-    document.getElementById('course-step-pill').textContent = `Courses: Child ${nextIdx+1} of ${n}`;
-    const container = document.getElementById('course-forms-container');
-    container.innerHTML = courseFormHTML(0);
-    restoreCoursesIntoForm(nextIdx);
+  const idx=state.currentCourseChild||0;
+  const n=state.count;
+  const valid=state.courses[idx].selected.length>0;
+  const errEl=document.getElementById('err_course_0');
+  if(errEl)errEl.classList.toggle('show',!valid);
+  if(!valid)return;
+  if(idx<n-1){
+    const next=idx+1;
+    state.currentCourseChild=next;
+    const cont=document.getElementById('course-forms-container');
+    cont.innerHTML=courseFormHTML();
+    restoreCourses(next);
+    setActiveTab('course-child-tabs',next);
+    document.getElementById('course-step-pill').textContent=`Courses: Child ${next+1} of ${n}`;
     window.scrollTo({top:0,behavior:'smooth'});
   } else {
     buildInfoPage();
-    goToPage('page-info', 62);
+    goToPage('page-info',62);
   }
 }
 
-/* ═══════════════════════════════════════════════════════
+/* ══════════════════════════════════════════
    GROUP COMBINED FORM
-═══════════════════════════════════════════════════════ */
+══════════════════════════════════════════ */
 function buildGroupPage(){
-  const n = state.count;
-  state.currentGroupStudent = 0;
-
-  buildTabs('group-tabs', n, null, (i)=>{
-    // Save current student data before switching
-    saveGroupStudentData(state.currentGroupStudent);
-    state.currentGroupStudent = i;
-    // Re-render single panel with new student data
+  state.currentGroupStudent=0;
+  buildTabs('group-tabs',state.count,(i)=>{
+    saveGroupStudent(state.currentGroupStudent);
+    state.currentGroupStudent=i;
+    state.currentCourseChild=i;
     renderGroupPanel(i);
-    // Update tab highlight
-    const tabsEl = document.getElementById('group-tabs');
-    Array.from(tabsEl.children).forEach((t,ti)=>t.classList.toggle('active',ti===i));
+    setActiveTab('group-tabs',i);
   });
-
   renderGroupPanel(0);
 }
 
 function renderGroupPanel(idx){
-  const container = document.getElementById('group-forms-container');
-  container.innerHTML = `
+  document.getElementById('group-forms-container').innerHTML=`
     <h4 style="font-family:'Baloo 2',cursive;color:var(--glow-sky);margin-bottom:16px;">Student ${idx+1} — Child Info</h4>
-    ${childFormHTML(0, null)}
+    ${childFormHTML()}
     <div class="divider"></div>
     <h4 style="font-family:'Baloo 2',cursive;color:var(--glow-pink);margin-bottom:16px;">Student ${idx+1} — Parent Info</h4>
-    ${parentFormHTML(0)}
+    ${parentFormHTML()}
     <div class="divider"></div>
     <h4 style="font-family:'Baloo 2',cursive;color:var(--glow-green);margin-bottom:16px;">Student ${idx+1} — Courses</h4>
-    ${courseFormHTML(0)}
+    ${courseFormHTML()}
   `;
-  // Restore saved data
-  const ch = state.children[idx]||{};
-  const setVal=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v||'';};
-  setVal('c_name_0',ch.name); setVal('c_gender_0',ch.gender);
-  setVal('c_school_0',ch.school); setVal('c_age_0',ch.age);
-  setVal('c_medical_0',ch.medical);
-
-  const par = state.parents[idx]||{};
-  const pf = (id,v)=>{const el=document.getElementById(id);if(el)el.value=v||'';};
-  pf('p_mother_0',par.motherName); pf('p_father_0',par.fatherName);
-  pf('p_address_0',par.address); pf('p_phone1_0',par.phone1); pf('p_phone2_0',par.phone2);
-
-  // Restore course selections for this student
+  const ch=state.children[idx]||{};
+  const sv=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v||'';};
+  sv('c_name_0',ch.name);sv('c_gender_0',ch.gender);sv('c_school_0',ch.school);sv('c_age_0',ch.age);sv('c_medical_0',ch.medical);
+  const par=state.parents[idx]||{};
+  sv('p_mother_0',par.motherName);sv('p_father_0',par.fatherName);sv('p_address_0',par.address);sv('p_phone1_0',par.phone1);sv('p_phone2_0',par.phone2);
   const sel=(state.courses[idx]||{selected:[]}).selected;
-  COURSES.forEach(c=>{
-    const el=document.getElementById(`cc_0_${c.id}`);
-    if(el) el.classList.toggle('selected',sel.includes(c.id));
-  });
-
-  // Override toggleCourse target for group mode
-  state.currentCourseChild = idx;
+  COURSES.forEach(c=>{const el=document.getElementById(`cc_0_${c.id}`);if(el)el.classList.toggle('selected',sel.includes(c.id));});
+  state.currentCourseChild=idx;
 }
 
-function saveGroupStudentData(idx){
-  if(idx===undefined||idx===null) return;
+function saveGroupStudent(idx){
+  if(idx===undefined||idx===null)return;
   state.children[idx]={
     name:(document.getElementById('c_name_0')||{value:''}).value.trim(),
     gender:(document.getElementById('c_gender_0')||{value:''}).value,
@@ -1373,120 +927,80 @@ function saveGroupStudentData(idx){
     phone1:(document.getElementById('p_phone1_0')||{value:''}).value.trim(),
     phone2:(document.getElementById('p_phone2_0')||{value:''}).value.trim()
   };
-  // courses already saved live via toggleCourse
 }
 
 function nextFromGroup(){
-  // Save the current student's data before validating
-  saveGroupStudentData(state.currentGroupStudent);
-
-  let ok = true;
-  let firstFailIdx = -1;
-
+  saveGroupStudent(state.currentGroupStudent);
+  let ok=true,failIdx=-1;
   for(let i=0;i<state.count;i++){
-    const ch = state.children[i]||{};
-    if(!ch.name||ch.name.length<2){ ok=false; if(firstFailIdx<0)firstFailIdx=i; }
-    if(!ch.gender){ ok=false; if(firstFailIdx<0)firstFailIdx=i; }
-    if(!ch.school||ch.school.length<2){ ok=false; if(firstFailIdx<0)firstFailIdx=i; }
-    if(!ch.age){ ok=false; if(firstFailIdx<0)firstFailIdx=i; }
-    const par = state.parents[i]||{};
-    if(!par.motherName||par.motherName.length<2){ ok=false; if(firstFailIdx<0)firstFailIdx=i; }
-    if(!par.fatherName||par.fatherName.length<2){ ok=false; if(firstFailIdx<0)firstFailIdx=i; }
-    if(!par.address||par.address.length<5){ ok=false; if(firstFailIdx<0)firstFailIdx=i; }
-    if(!/^\d{10}$/.test(par.phone1||'')){ ok=false; if(firstFailIdx<0)firstFailIdx=i; }
-    if(!/^\d{10}$/.test(par.phone2||'')){ ok=false; if(firstFailIdx<0)firstFailIdx=i; }
-    if((state.courses[i]||{selected:[]}).selected.length===0){ ok=false; if(firstFailIdx<0)firstFailIdx=i; }
+    const ch=state.children[i]||{};
+    const par=state.parents[i]||{};
+    if(!ch.name||ch.name.length<2||!ch.gender||!ch.school||ch.school.length<2||!ch.age){ok=false;if(failIdx<0)failIdx=i;}
+    if(!par.motherName||par.motherName.length<2||!par.fatherName||par.fatherName.length<2||!par.address||par.address.length<5||!/^\d{10}$/.test(par.phone1||'')||!/^\d{10}$/.test(par.phone2||'')){ok=false;if(failIdx<0)failIdx=i;}
+    if((state.courses[i]||{selected:[]}).selected.length===0){ok=false;if(failIdx<0)failIdx=i;}
   }
-
   if(!ok){
-    // Navigate to the first failing student, show their form with errors highlighted
-    if(firstFailIdx>=0){
-      state.currentGroupStudent = firstFailIdx;
-      renderGroupPanel(firstFailIdx);
-      const tabsEl = document.getElementById('group-tabs');
-      Array.from(tabsEl.children).forEach((t,ti)=>t.classList.toggle('active',ti===firstFailIdx));
-      // Trigger inline validation errors on visible form
-      const nameEl=document.getElementById('c_name_0');
-      const gEl=document.getElementById('c_gender_0');
-      const sEl=document.getElementById('c_school_0');
-      const aEl=document.getElementById('c_age_0');
-      const m0=document.getElementById('p_mother_0');
-      const f0=document.getElementById('p_father_0');
-      const ad=document.getElementById('p_address_0');
-      const ph1=document.getElementById('p_phone1_0');
-      const ph2=document.getElementById('p_phone2_0');
-      const ch=state.children[firstFailIdx]||{};
-      const par=state.parents[firstFailIdx]||{};
-      if(nameEl){nameEl.classList.toggle('error',!ch.name||ch.name.length<2);document.getElementById('err_c_name_0').classList.toggle('show',!ch.name||ch.name.length<2);}
-      if(gEl){gEl.classList.toggle('error',!ch.gender);document.getElementById('err_c_gender_0').classList.toggle('show',!ch.gender);}
-      if(sEl){sEl.classList.toggle('error',!ch.school||ch.school.length<2);document.getElementById('err_c_school_0').classList.toggle('show',!ch.school||ch.school.length<2);}
-      if(aEl){aEl.classList.toggle('error',!ch.age);document.getElementById('err_c_age_0').classList.toggle('show',!ch.age);}
-      if(m0){const v=par.motherName||'';m0.classList.toggle('error',v.length<2);document.getElementById('err_p_mother_0').classList.toggle('show',v.length<2);}
-      if(f0){const v=par.fatherName||'';f0.classList.toggle('error',v.length<2);document.getElementById('err_p_father_0').classList.toggle('show',v.length<2);}
-      if(ad){const v=par.address||'';ad.classList.toggle('error',v.length<5);document.getElementById('err_p_address_0').classList.toggle('show',v.length<5);}
-      if(ph1){const v=par.phone1||'';const bad=!/^\d{10}$/.test(v);ph1.classList.toggle('error',bad);document.getElementById('err_p_phone1_0').classList.toggle('show',bad);}
-      if(ph2){const v=par.phone2||'';const bad=!/^\d{10}$/.test(v);ph2.classList.toggle('error',bad);document.getElementById('err_p_phone2_0').classList.toggle('show',bad);}
-      const cOk=(state.courses[firstFailIdx]||{selected:[]}).selected.length>0;
-      const ceEl=document.getElementById('err_course_0');if(ceEl)ceEl.classList.toggle('show',!cOk);
+    if(failIdx>=0){
+      state.currentGroupStudent=failIdx;state.currentCourseChild=failIdx;
+      renderGroupPanel(failIdx);setActiveTab('group-tabs',failIdx);
+      // Highlight errors
+      const ch=state.children[failIdx]||{},par=state.parents[failIdx]||{};
+      const te=(id,bad)=>{const el=document.getElementById(id);if(el)el.classList.toggle('error',bad);};
+      const em=(id,bad)=>{const el=document.getElementById(id);if(el)el.classList.toggle('show',bad);};
+      te('c_name_0',!ch.name||ch.name.length<2);em('err_c_name_0',!ch.name||ch.name.length<2);
+      te('c_gender_0',!ch.gender);em('err_c_gender_0',!ch.gender);
+      te('c_school_0',!ch.school||ch.school.length<2);em('err_c_school_0',!ch.school||ch.school.length<2);
+      te('c_age_0',!ch.age);em('err_c_age_0',!ch.age);
+      const pm=par.motherName||'';te('p_mother_0',pm.length<2);em('err_p_mother_0',pm.length<2);
+      const pf=par.fatherName||'';te('p_father_0',pf.length<2);em('err_p_father_0',pf.length<2);
+      const pa=par.address||'';te('p_address_0',pa.length<5);em('err_p_address_0',pa.length<5);
+      const bp1=!/^\d{10}$/.test(par.phone1||'');te('p_phone1_0',bp1);em('err_p_phone1_0',bp1);
+      const bp2=!/^\d{10}$/.test(par.phone2||'');te('p_phone2_0',bp2);em('err_p_phone2_0',bp2);
+      const cok=(state.courses[failIdx]||{selected:[]}).selected.length>0;
+      const ce=document.getElementById('err_course_0');if(ce)ce.classList.toggle('show',!cok);
     }
     return;
   }
-
   buildInfoPage();
-  goToPage('page-info', 62);
+  goToPage('page-info',62);
 }
 
-/* ═══════════════════════════════════════════════════════
-   PRICING LOGIC  — strict one-discount rule
-   Priority: Early Bird (20%) > Siblings/Group (10%)
-   No stacking. If EB applies, siblings/group discount ignored.
-═══════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════
+   PRICING — strict one-discount rule
+   Priority: Early Bird 20% > Siblings/Group 10%
+   No stacking.
+══════════════════════════════════════════ */
 function calcTotal(){
-  let raw = 0;
+  let raw=0;
   for(let i=0;i<state.count;i++){
     (state.courses[i]||{selected:[]}).selected.forEach(cid=>{
-      const c = COURSES.find(x=>x.id===cid);
-      if(c) raw += c.price;
+      const c=COURSES.find(x=>x.id===cid);if(c)raw+=c.price;
     });
   }
-
-  let discRate = 0;
-  let discLabel = '';
-
-  if(earlyBirdSlots > 0){
-    // Early Bird wins — 20% off, ignore other discounts
-    discRate = 0.20;
-    discLabel = '⭐ Early Bird Discount (20%)';
-  } else if(state.type === 'siblings'){
-    discRate = 0.10;
-    discLabel = '👫 Siblings Discount (10%)';
-  } else if(state.type === 'group'){
-    discRate = 0.10;
-    discLabel = '👨‍👩‍👧‍👦 Group Discount (10%)';
+  let discRate=0,discLabel='';
+  if(earlyBirdSlots>0){
+    discRate=0.20;discLabel='⭐ Early Bird Discount (20%)';
+  } else if(state.type==='siblings'){
+    discRate=0.10;discLabel='👫 Siblings Discount (10%)';
+  } else if(state.type==='group'){
+    discRate=0.10;discLabel='👨‍👩‍👧‍👦 Group Discount (10%)';
   }
-
-  const disc = Math.round(raw * discRate);
-  return { raw, disc, discLabel, discRate, final: raw - disc };
+  const disc=Math.round(raw*discRate);
+  return {raw,disc,discLabel,discRate,final:raw-disc};
 }
 
 function buildInfoPage(){
-  const p = calcTotal();
-  const c = document.getElementById('discount-container');
-  let html = '';
-
-  if(p.disc > 0){
-    html += `<div class="discount-banner">
-      <h4>🎉 Discount Applied!</h4>
-      <p>✅ ${p.discLabel}: −₹${p.disc.toLocaleString()}</p>
-    </div>`;
-  } else if(earlyBirdSlots <= 0 && state.type === 'single'){
-    html += `<div class="discount-banner" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);">
+  const p=calcTotal();
+  const c=document.getElementById('discount-container');
+  let html='';
+  if(p.disc>0){
+    html+=`<div class="discount-banner"><h4>🎉 Discount Applied!</h4><p>✅ ${p.discLabel}: −₹${p.disc.toLocaleString()}</p></div>`;
+  } else if(earlyBirdSlots<=0&&state.type==='single'){
+    html+=`<div class="discount-banner" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);">
       <h4 style="color:var(--text-muted);">No Discount Applicable</h4>
-      <p>Early Bird slots have filled up. Register siblings or a group to avail 10% off.</p>
-    </div>`;
+      <p>Early Bird slots are full. Register siblings or a group to avail 10% off.</p></div>`;
   }
-
-  html += `<div class="glass" style="padding:16px 20px;border-radius:14px;margin-bottom:18px;">
+  html+=`<div class="glass" style="padding:16px 20px;border-radius:14px;margin-bottom:18px;">
     <h4 style="color:var(--glow-sky);margin-bottom:10px;">💰 Fee Summary</h4>
     <div class="info-row"><span class="label">Subtotal</span><span class="val">₹${p.raw.toLocaleString()}</span></div>
     ${p.disc>0?`<div class="info-row"><span class="label">${p.discLabel}</span><span class="val" style="color:#4ade80;">−₹${p.disc.toLocaleString()}</span></div>`:''}
@@ -1495,47 +1009,38 @@ function buildInfoPage(){
       <span class="val" style="color:var(--glow-green);font-size:1.1rem;">₹${p.final.toLocaleString()}</span>
     </div>
   </div>`;
-  c.innerHTML = html;
+  c.innerHTML=html;
 }
 
-/* ═══════════════════════════════════════════════════════
+/* ══════════════════════════════════════════
    ACKNOWLEDGEMENT
-═══════════════════════════════════════════════════════ */
+══════════════════════════════════════════ */
 function goToReview(){
-  const cb = document.getElementById('consent-checkbox');
-  if(!cb.checked){
-    alert('Please check the consent box to proceed.');
-    return;
+  if(!document.getElementById('consent-checkbox').checked){
+    alert('Please check the consent box to proceed.');return;
   }
-  state.consentGiven = true;
-  state.specialRequest = document.getElementById('special-request').value.trim();
+  state.consentGiven=true;
+  state.specialRequest=document.getElementById('special-request').value.trim();
   buildReviewPage();
-  goToPage('page-review', 90);
+  goToPage('page-review',90);
 }
 
-/* ═══════════════════════════════════════════════════════
+/* ══════════════════════════════════════════
    REVIEW PAGE
-═══════════════════════════════════════════════════════ */
+══════════════════════════════════════════ */
 function buildReviewPage(){
-  const p = calcTotal();
-  let html = '';
-
-  // Registration type
-  html += `<div class="review-section">
+  const p=calcTotal();
+  let html='';
+  html+=`<div class="review-section">
     <h4>Registration Info</h4>
     <div class="review-row"><span class="rk">Type</span><span class="rv">${state.type.charAt(0).toUpperCase()+state.type.slice(1)}</span></div>
     <div class="review-row"><span class="rk">Children</span><span class="rv">${state.count}</span></div>
   </div>`;
-
-  // Children
   for(let i=0;i<state.count;i++){
-    const ch = state.children[i];
-    const par = state.type==='group' ? state.parents[i] : state.parents[0];
-    const sel = state.courses[i].selected.map(id=>{
-      const c=COURSES.find(x=>x.id===id);
-      return c ? `${c.icon} ${c.name} (₹${c.price})` : id;
-    });
-    html += `<div class="review-section">
+    const ch=state.children[i];
+    const par=state.type==='group'?state.parents[i]:state.parents[0];
+    const sel=state.courses[i].selected.map(id=>{const c=COURSES.find(x=>x.id===id);return c?`${c.icon} ${c.name} (₹${c.price})`:id;});
+    html+=`<div class="review-section">
       <h4>Child ${i+1}: ${ch.name}</h4>
       <div class="review-row"><span class="rk">Gender</span><span class="rv">${ch.gender}</span></div>
       <div class="review-row"><span class="rk">Age</span><span class="rv">${ch.age} yrs</span></div>
@@ -1549,105 +1054,96 @@ function buildReviewPage(){
       <div class="review-row"><span class="rk">Courses</span><span class="rv">${sel.join(', ')}</span></div>
     </div>`;
   }
-
-  html += `<div class="total-box">
+  html+=`<div class="total-box">
     <div class="total-label">Total Payable Amount</div>
     <div class="total-amount">₹${p.final.toLocaleString()}</div>
-    // Formspree submit → intercept, decrement EB, then POST via fetch
-  document.getElementById('formspree-form').onsubmit = function(e){
-    e.preventDefault();
-
-    // Decrement EB slot on every successful registration
-    if(earlyBirdSlots > 0){
-      earlyBirdSlots--;
-      localStorage.setItem('eb_slots_v2', earlyBirdSlots);
-      updateEB();
-    }
-
-    document.getElementById('hidden-summary').value = buildSummaryString();
-
-    const form = document.getElementById('formspree-form');
-    const data = new FormData(form);
-
-    fetch(form.action, {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    })
-    .then(r => {
-      if(r.ok){ goToPage('page-success', 100); }
-      else { alert('Submission failed. Please check your connection and try again.'); }
-    })
-    .catch(()=>{ alert('Network error. Please try again.'); });
-  };
-
-  document.getElementById('review-content').innerHTML = html;
-  document.getElementById('hidden-summary').value = buildSummaryString();
-
-  // Formspree submit → success
-  document.getElementById('formspree-form').onsubmit = function(e){
-    if(earlyBirdSlots>0){
-      earlyBirdSlots--;
-      localStorage.setItem('eb_slots', earlyBirdSlots);
-      updateEB();
-    }
-    // Let form submit naturally, then show success
-    setTimeout(()=>goToPage('page-success',100), 800);
-  };
+    ${p.disc>0?`<div class="discount-note">You saved ₹${p.disc.toLocaleString()} 🎉</div>`:''}
+  </div>`;
+  if(state.specialRequest){
+    html+=`<div class="review-section"><h4>Special Requests</h4><p style="font-size:0.88rem;color:var(--text-muted);">${state.specialRequest}</p></div>`;
+  }
+  document.getElementById('review-content').innerHTML=html;
 }
 
-/* ═══════════════════════════════════════════════════════
-   SUMMARY STRING (for Formspree)
-═══════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════
+   SUBMIT — fetch to Formspree, then decrement EB
+══════════════════════════════════════════ */
+function submitRegistration(){
+  const btn = document.querySelector('#page-review .btn-primary');
+  btn.disabled = true;
+  btn.textContent = '⏳ Submitting…';
+
+  const formData = new FormData();
+  formData.append('Registration_Summary', buildSummaryString());
+  formData.append('_subject', '🌸 New Camp Registration – Little Flowers 2026');
+
+  fetch('https://formspree.io/f/mgoprplj', {
+    method: 'POST',
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(function(response){
+    if(response.ok){
+      // SUCCESS — now decrement the early bird slot
+      if(earlyBirdSlots > 0){
+        earlyBirdSlots--;
+        localStorage.setItem('lf_eb_slots', String(earlyBirdSlots));
+        updateEB();
+      }
+      goToPage('page-success', 100);
+    } else {
+      btn.disabled = false;
+      btn.innerHTML = '🎉 Confirm & Submit Registration';
+      alert('Submission failed. Please check your internet connection and try again.');
+    }
+  })
+  .catch(function(){
+    btn.disabled = false;
+    btn.innerHTML = '🎉 Confirm & Submit Registration';
+    alert('Network error. Please try again.');
+  });
+}
+
+/* ══════════════════════════════════════════
+   SUMMARY STRING
+══════════════════════════════════════════ */
 function buildSummaryString(){
-  const p = calcTotal();
-  const line = s => s;
-  const hr = '─'.repeat(56);
-  const row = (k,v) => `│ ${k.padEnd(22)} │ ${String(v).padEnd(29)} │`;
-
-  let s = '';
-  s += `LITTLE FLOWERS SUMMER CAMP 2026 — REGISTRATION\n`;
-  s += `Krishnanagar Society, Gozaria, Gujarat\n`;
-  s += `${hr}\n`;
-  s += `│ REGISTRATION TYPE       │ ${(state.type.toUpperCase()).padEnd(29)} │\n`;
-  s += `│ NUMBER OF CHILDREN      │ ${String(state.count).padEnd(29)} │\n`;
-  s += `${hr}\n`;
-
+  const p=calcTotal();
+  const hr='─'.repeat(56);
+  const row=(k,v)=>`│ ${k.padEnd(22)} │ ${String(v).padEnd(29)} │`;
+  let s='LITTLE FLOWERS SUMMER CAMP 2026 — REGISTRATION\n';
+  s+='Krishnanagar Society, Gozaria, Gujarat\n';
+  s+=`${hr}\n`;
+  s+=`│ REGISTRATION TYPE       │ ${state.type.toUpperCase().padEnd(29)} │\n`;
+  s+=`│ NUMBER OF CHILDREN      │ ${String(state.count).padEnd(29)} │\n`;
+  s+=`${hr}\n`;
   for(let i=0;i<state.count;i++){
-    const ch = state.children[i];
-    const par = state.type==='group' ? state.parents[i] : state.parents[0];
-    const sel = state.courses[i].selected.map(id=>{
-      const c=COURSES.find(x=>x.id===id);
-      return c?`${c.name} (Rs.${c.price})`:id;
-    }).join(', ');
-
-    s += `\nCHILD ${i+1}\n${hr}\n`;
-    s += row('Name', ch.name)+'\n';
-    s += row('Gender', ch.gender)+'\n';
-    s += row('Age', ch.age+' yrs')+'\n';
-    s += row('School', ch.school)+'\n';
-    if(ch.medical) s += row('Medical Notes', ch.medical)+'\n';
-    s += row('Mother\'s Name', par.motherName)+'\n';
-    s += row('Father\'s Name', par.fatherName)+'\n';
-    s += row('Primary Phone', par.phone1)+'\n';
-    s += row('Alternate Phone', par.phone2)+'\n';
-    s += row('Address', par.address)+'\n';
-    s += row('Courses Selected', sel)+'\n';
-    s += `${hr}\n`;
+    const ch=state.children[i];
+    const par=state.type==='group'?state.parents[i]:state.parents[0];
+    const sel=state.courses[i].selected.map(id=>{const c=COURSES.find(x=>x.id===id);return c?`${c.name} (Rs.${c.price})`:id;}).join(', ');
+    s+=`\nCHILD ${i+1}\n${hr}\n`;
+    s+=row('Name',ch.name)+'\n';
+    s+=row('Gender',ch.gender)+'\n';
+    s+=row('Age',ch.age+' yrs')+'\n';
+    s+=row('School',ch.school)+'\n';
+    if(ch.medical)s+=row('Medical Notes',ch.medical)+'\n';
+    s+=row("Mother's Name",par.motherName)+'\n';
+    s+=row("Father's Name",par.fatherName)+'\n';
+    s+=row('Primary Phone',par.phone1)+'\n';
+    s+=row('Alternate Phone',par.phone2)+'\n';
+    s+=row('Address',par.address)+'\n';
+    s+=row('Courses Selected',sel)+'\n';
+    s+=`${hr}\n`;
   }
-
-  s += `\nFEE SUMMARY\n${hr}\n`;
-  s += row('Subtotal', 'Rs.'+p.raw.toLocaleString())+'\n';
-  if(p.disc>0) s += row('Discount Applied', '-Rs.'+p.disc.toLocaleString())+'\n';
-  s += row('TOTAL PAYABLE', 'Rs.'+p.final.toLocaleString())+'\n';
-  s += `${hr}\n`;
-
-  if(state.specialRequest){
-    s += `\nSPECIAL REQUESTS:\n${state.specialRequest}\n`;
-  }
-
-  s += `\nConsent Given: YES\n`;
-  s += `Submitted: ${new Date().toLocaleString('en-IN')}\n`;
+  s+=`\nFEE SUMMARY\n${hr}\n`;
+  s+=row('Subtotal','Rs.'+p.raw.toLocaleString())+'\n';
+  if(p.disc>0)s+=row('Discount Applied','-Rs.'+p.disc.toLocaleString())+'\n';
+  s+=row('TOTAL PAYABLE','Rs.'+p.final.toLocaleString())+'\n';
+  s+=`${hr}\n`;
+  if(state.specialRequest)s+=`\nSPECIAL REQUESTS:\n${state.specialRequest}\n`;
+  s+=`\nEarly Bird Slots Remaining: ${earlyBirdSlots}\n`;
+  s+=`Consent Given: YES\n`;
+  s+=`Submitted: ${new Date().toLocaleString('en-IN')}\n`;
   return s;
 }
 </script>
